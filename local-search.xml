@@ -4,6 +4,282 @@
   
   
   <entry>
+    <title>【剑指Offer】调整数组顺序使奇数位于偶数前面</title>
+    <link href="/2020/07/11/jianzhi-offer/21.%20%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/"/>
+    <url>/2020/07/11/jianzhi-offer/21.%20%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。</p><p>示例：</p><p>输入：nums = [1,2,3,4]<br>输出：[1,3,2,4]<br>注：[3,1,2,4] 也是正确的答案之一。</p><p>提示：</p><p>1 &lt;= nums.length &lt;= 50000<br>1 &lt;= nums[i] &lt;= 10000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>首尾双指针<br>定义头指针 leftleft ，尾指针 rightright .<br>leftleft 一直往右移，直到它指向的值为偶数<br>rightright 一直往左移， 直到它指向的值为奇数<br>交换 nums[left]nums[left] 和 nums[right]nums[right] .<br>重复上述操作，直到 left == rightleft==right .</p><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] exchange(<span class="hljs-keyword">int</span>[] nums) &#123;        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = nums.length - <span class="hljs-number">1</span>, tmp;        <span class="hljs-keyword">while</span>(i &lt; j) &#123;            <span class="hljs-keyword">while</span>(i &lt; j &amp;&amp; (nums[i] &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">1</span>) i++;            <span class="hljs-keyword">while</span>(i &lt; j &amp;&amp; (nums[j] &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span>) j--;            tmp = nums[i];            nums[i] = nums[j];            nums[j] = tmp;        &#125;        <span class="hljs-keyword">return</span> nums;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>数组</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】表示数值的字符串</title>
+    <link href="/2020/07/11/jianzhi-offer/20.%20%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    <url>/2020/07/11/jianzhi-offer/20.%20%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串”+100”、”5e2”、”-123”、”3.1416”、”0123”都表示数值，但”12e”、”1a3.14”、”1.2.3”、”+-5”、”-1E-16”及”12e+5.4”都不是。</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p><img src="http://img1.jimu98.cn//blog/20200715104812.png" srcset="/img/loading.gif" alt="image-20200715104811643"></p><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isNumber</span><span class="hljs-params">(String s)</span> </span>&#123;        Map[] states = &#123;            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">' '</span>, <span class="hljs-number">0</span>); put(<span class="hljs-string">'s'</span>, <span class="hljs-number">1</span>); put(<span class="hljs-string">'d'</span>, <span class="hljs-number">2</span>); put(<span class="hljs-string">'.'</span>, <span class="hljs-number">4</span>); &#125;&#125;, <span class="hljs-comment">// 0.</span>            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">2</span>); put(<span class="hljs-string">'.'</span>, <span class="hljs-number">4</span>); &#125;&#125;,                           <span class="hljs-comment">// 1.</span>            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">2</span>); put(<span class="hljs-string">'.'</span>, <span class="hljs-number">3</span>); put(<span class="hljs-string">'e'</span>, <span class="hljs-number">5</span>); put(<span class="hljs-string">' '</span>, <span class="hljs-number">8</span>); &#125;&#125;, <span class="hljs-comment">// 2.</span>            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">3</span>); put(<span class="hljs-string">'e'</span>, <span class="hljs-number">5</span>); put(<span class="hljs-string">' '</span>, <span class="hljs-number">8</span>); &#125;&#125;,              <span class="hljs-comment">// 3.</span>            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">3</span>); &#125;&#125;,                                        <span class="hljs-comment">// 4.</span>            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'s'</span>, <span class="hljs-number">6</span>); put(<span class="hljs-string">'d'</span>, <span class="hljs-number">7</span>); &#125;&#125;,                           <span class="hljs-comment">// 5.</span>            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">7</span>); &#125;&#125;,                                        <span class="hljs-comment">// 6.</span>            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">7</span>); put(<span class="hljs-string">' '</span>, <span class="hljs-number">8</span>); &#125;&#125;,                           <span class="hljs-comment">// 7.</span>            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">' '</span>, <span class="hljs-number">8</span>); &#125;&#125;                                         <span class="hljs-comment">// 8.</span>        &#125;;        <span class="hljs-keyword">int</span> p = <span class="hljs-number">0</span>;        <span class="hljs-keyword">char</span> t;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c : s.toCharArray()) &#123;            <span class="hljs-keyword">if</span>(c &gt;= <span class="hljs-string">'0'</span> &amp;&amp; c &lt;= <span class="hljs-string">'9'</span>) t = <span class="hljs-string">'d'</span>;            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c == <span class="hljs-string">'+'</span> || c == <span class="hljs-string">'-'</span>) t = <span class="hljs-string">'s'</span>;            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c == <span class="hljs-string">'.'</span> || c == <span class="hljs-string">'e'</span> || c == <span class="hljs-string">'E'</span> || c == <span class="hljs-string">' '</span>) t = c;            <span class="hljs-keyword">else</span> t = <span class="hljs-string">'?'</span>;            <span class="hljs-keyword">if</span>(!states[p].containsKey(t)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;            p = (<span class="hljs-keyword">int</span>)states[p].get(t);        &#125;        <span class="hljs-keyword">return</span> p == <span class="hljs-number">2</span> || p == <span class="hljs-number">3</span> || p == <span class="hljs-number">7</span> || p == <span class="hljs-number">8</span>;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>字符串</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】删除链表的节点</title>
+    <link href="/2020/07/11/jianzhi-offer/18.%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E8%8A%82%E7%82%B9/"/>
+    <url>/2020/07/11/jianzhi-offer/18.%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E8%8A%82%E7%82%B9/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定单向链表的头指针和一个要删除的节点的值，定义一个函数删除该节点。</p><p>返回删除后的链表的头节点。</p><p>注意：此题对比原题有改动</p><p>示例 1:</p><p>输入: head = [4,5,1,9], val = 5<br>输出: [4,1,9]<br>解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 1 -&gt; 9.<br>示例 2:</p><p>输入: head = [4,5,1,9], val = 1<br>输出: [4,5,9]<br>解释: 给定你链表中值为 1 的第三个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 5 -&gt; 9.</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">deleteNode</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> val)</span> </span>&#123;        <span class="hljs-keyword">if</span>(head.val==val)<span class="hljs-keyword">return</span> head.next;        ListNode p=head;        ListNode q=head;        head=head.next;        <span class="hljs-keyword">while</span>(head!=<span class="hljs-keyword">null</span>)&#123;            <span class="hljs-keyword">if</span>(head.val==val)&#123;                q.next=head.next;                <span class="hljs-keyword">return</span> p;            &#125;            q=head;            head=head.next;        &#125;        <span class="hljs-keyword">return</span> p;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>链表</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】打印从1到最大的n位数</title>
+    <link href="/2020/07/11/jianzhi-offer/17.%20%E6%89%93%E5%8D%B0%E4%BB%8E1%E5%88%B0%E6%9C%80%E5%A4%A7%E7%9A%84n%E4%BD%8D%E6%95%B0/"/>
+    <url>/2020/07/11/jianzhi-offer/17.%20%E6%89%93%E5%8D%B0%E4%BB%8E1%E5%88%B0%E6%9C%80%E5%A4%A7%E7%9A%84n%E4%BD%8D%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。</p><p>示例 1:</p><p>输入: n = 1<br>输出: [1,2,3,4,5,6,7,8,9]</p><p>说明：</p><p>用返回一个整数列表来代替打印<br>n 为正整数</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] printNumbers(<span class="hljs-keyword">int</span> n) &#123;        <span class="hljs-keyword">if</span>(n&lt;<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;&#125;;        <span class="hljs-keyword">int</span> Size=(<span class="hljs-keyword">int</span>)Math.pow(<span class="hljs-number">10</span>,n)-<span class="hljs-number">1</span>;        <span class="hljs-keyword">int</span>[] result=<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[Size];        <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;        <span class="hljs-keyword">while</span>(i&lt;Math.pow(<span class="hljs-number">10</span>,n)-<span class="hljs-number">1</span>)&#123;            result[i]=i+<span class="hljs-number">1</span>;            i++;        &#125;        <span class="hljs-keyword">return</span> result;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】数值的整数次方</title>
+    <link href="/2020/07/11/jianzhi-offer/16.%20%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/"/>
+    <url>/2020/07/11/jianzhi-offer/16.%20%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>实现函数double Power(double base, int exponent)，求base的exponent次方。不得使用库函数，同时不需要考虑大数问题。</p><p>示例 1:</p><p>输入: 2.00000, 10<br>输出: 1024.00000<br>示例 2:</p><p>输入: 2.10000, 3<br>输出: 9.26100<br>示例 3:</p><p>输入: 2.00000, -2<br>输出: 0.25000<br>解释: 2-2 = 1/22 = 1/4 = 0.25</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">myPow</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">int</span> n)</span> </span>&#123;        <span class="hljs-keyword">if</span>(x == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;        <span class="hljs-keyword">long</span> b = n;        <span class="hljs-keyword">double</span> res=<span class="hljs-number">1.0</span>;        <span class="hljs-keyword">if</span>(b&lt;<span class="hljs-number">0</span>)&#123;            x=<span class="hljs-number">1</span>/x;            b=-b;        &#125;        <span class="hljs-keyword">while</span>(b&gt;<span class="hljs-number">0</span>)&#123;            <span class="hljs-keyword">if</span>((b&amp;<span class="hljs-number">1</span>)!=<span class="hljs-number">0</span>)res*=x;            x*=x;            b&gt;&gt;=<span class="hljs-number">1</span>;        &#125;        <span class="hljs-keyword">return</span> res;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】二进制中1的个数</title>
+    <link href="/2020/07/11/jianzhi-offer/15.%20%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/"/>
+    <url>/2020/07/11/jianzhi-offer/15.%20%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>请实现一个函数，输入一个整数，输出该数二进制表示中 1 的个数。例如，把 9 表示成二进制是 1001，有 2 位是 1。因此，如果输入 9，则该函数输出 2。</p><p>示例 1：</p><p>输入：00000000000000000000000000001011<br>输出：3<br>解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 ‘1’。<br>示例 2：</p><p>输入：00000000000000000000000010000000<br>输出：1<br>解释：输入的二进制串 00000000000000000000000010000000 中，共有一位为 ‘1’。<br>示例 3：</p><p>输入：11111111111111111111111111111101<br>输出：31<br>解释：输入的二进制串 11111111111111111111111111111101 中，共有 31 位为 ‘1’。</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote><p>常规办法就是逐位判断</p></blockquote><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hammingWeight</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;        <span class="hljs-keyword">while</span>(n != <span class="hljs-number">0</span>) &#123;            res += n &amp; <span class="hljs-number">1</span>;            n &gt;&gt;&gt;= <span class="hljs-number">1</span>;        &#125;        <span class="hljs-keyword">return</span> res;    &#125;&#125;</code></pre><blockquote><p>下面看其他大佬们的位运算</p></blockquote><p>n&amp;(n-1)即可将最后一位1置为0</p><p><img src="http://img1.jimu98.cn//blog/20200714115317.png" srcset="/img/loading.gif" alt="image-20200714115316973"></p><p>那么循环置为0   就可以将全部的1统计出来了</p><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hammingWeight</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;        <span class="hljs-keyword">while</span>(n != <span class="hljs-number">0</span>) &#123;            res++;            n &amp;= n - <span class="hljs-number">1</span>;        &#125;        <span class="hljs-keyword">return</span> res;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】II. 剪绳子 II</title>
+    <link href="/2020/07/11/jianzhi-offer/14-%20II.%20%E5%89%AA%E7%BB%B3%E5%AD%90%20II/"/>
+    <url>/2020/07/11/jianzhi-offer/14-%20II.%20%E5%89%AA%E7%BB%B3%E5%AD%90%20II/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为 k[0],k[1]…k[m - 1] 。请问 k[0]<em>k[1]</em>…*k[m - 1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。</p><p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p><p>示例 1：</p><p>输入: 2<br>输出: 1<br>解释: 2 = 1 + 1, 1 × 1 = 1<br>示例 2:</p><p>输入: 10<br>输出: 36<br>解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36</p><p>提示：</p><p>2 &lt;= n &lt;= 1000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote><p>与剪绳子相比，这个需要手写一个快速幂</p></blockquote><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">cuttingRope</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;        <span class="hljs-keyword">if</span>(n &lt;= <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span> n - <span class="hljs-number">1</span>;        <span class="hljs-keyword">int</span> b = n % <span class="hljs-number">3</span>, p = <span class="hljs-number">1000000007</span>;        <span class="hljs-keyword">long</span> rem = <span class="hljs-number">1</span>, x = <span class="hljs-number">3</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> a = n / <span class="hljs-number">3</span> - <span class="hljs-number">1</span>; a &gt; <span class="hljs-number">0</span>; a /= <span class="hljs-number">2</span>) &#123;            <span class="hljs-keyword">if</span>(a % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>) rem = (rem * x) % p;            x = (x * x) % p;        &#125;        <span class="hljs-keyword">if</span>(b == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)(rem * <span class="hljs-number">3</span> % p);        <span class="hljs-keyword">if</span>(b == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)(rem * <span class="hljs-number">4</span> % p);        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)(rem * <span class="hljs-number">6</span> % p);    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】剪绳子</title>
+    <link href="/2020/07/11/jianzhi-offer/14-%20I.%20%E5%89%AA%E7%BB%B3%E5%AD%90/"/>
+    <url>/2020/07/11/jianzhi-offer/14-%20I.%20%E5%89%AA%E7%BB%B3%E5%AD%90/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为 k[0],k[1]…k[m-1] 。请问 k[0]<em>k[1]</em>…*k[m-1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。</p><p>示例 1：</p><p>输入: 2<br>输出: 1<br>解释: 2 = 1 + 1, 1 × 1 = 1<br>示例 2:</p><p>输入: 10<br>输出: 36<br>解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36<br>提示：</p><p>2 &lt;= n &lt;= 58</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote><p>先说结论，绳子尽量切割成多个3，至于为什么，我也不会</p><p>但是，比如四   1和3 明显不如 2和2</p><p>最终结论：<br>最优： 33 。把绳子尽可能切为多个长度为 33 的片段，留下的最后一段绳子的长度可能为 0,1,20,1,2 三种情况。<br>次优： 22 。若最后一段绳子长度为 22 ；则保留，不再拆为 1+11+1 。<br>最差： 11 。若最后一段绳子长度为 11 ；则应把一份 3 + 13+1 替换为 2 + 22+2，因为 2 * 2 &gt; 3 * 1 </p></blockquote><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">cuttingRope</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;        <span class="hljs-keyword">if</span>(n &lt;= <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span> n - <span class="hljs-number">1</span>;        <span class="hljs-keyword">int</span> a = n / <span class="hljs-number">3</span>, b = n % <span class="hljs-number">3</span>;        <span class="hljs-keyword">if</span>(b == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)Math.pow(<span class="hljs-number">3</span>, a);        <span class="hljs-keyword">if</span>(b == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)Math.pow(<span class="hljs-number">3</span>, a - <span class="hljs-number">1</span>) * <span class="hljs-number">4</span>;        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)Math.pow(<span class="hljs-number">3</span>, a) * <span class="hljs-number">2</span>;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】机器人的运动范围</title>
+    <link href="/2020/07/11/jianzhi-offer/13.%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/"/>
+    <url>/2020/07/11/jianzhi-offer/13.%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？</p><p>示例 1：</p><p>输入：m = 2, n = 3, k = 1<br>输出：3<br>示例 2：</p><p>输入：m = 3, n = 1, k = 0<br>输出：1<br>提示：</p><p>1 &lt;= n,m &lt;= 100<br>0 &lt;= k &lt;= 20</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote><p>注意，这里是不能进入行坐标和列坐标的数位之和大于k的格子。  是“数位之和”</p><p>所以不可以简单的循环，因为有些区域数值可以达到，但是走不到</p></blockquote><p><img src="http://img1.jimu98.cn//blog/20200714110526.png" srcset="/img/loading.gif" alt="image.png"></p><p>比如这张图</p><p><img src="http://img1.jimu98.cn//blog/20200714110900.png" srcset="/img/loading.gif" alt="image-20200714110900284"></p><pre><code class="hljs java"><span class="hljs-comment">//dfs</span><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">int</span> m, n, k;    <span class="hljs-keyword">boolean</span>[][] visited;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">movingCount</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span> </span>&#123;        <span class="hljs-keyword">this</span>.m = m; <span class="hljs-keyword">this</span>.n = n; <span class="hljs-keyword">this</span>.k = k;        <span class="hljs-keyword">this</span>.visited = <span class="hljs-keyword">new</span> <span class="hljs-keyword">boolean</span>[m][n];        <span class="hljs-keyword">return</span> dfs(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);    &#125;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j, <span class="hljs-keyword">int</span> si, <span class="hljs-keyword">int</span> sj)</span> </span>&#123;        <span class="hljs-keyword">if</span>(i &gt;= m || j &gt;= n || k &lt; si + sj || visited[i][j]) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;        visited[i][j] = <span class="hljs-keyword">true</span>;        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + dfs(i + <span class="hljs-number">1</span>, j, (i + <span class="hljs-number">1</span>) % <span class="hljs-number">10</span> != <span class="hljs-number">0</span> ? si + <span class="hljs-number">1</span> : si - <span class="hljs-number">8</span>, sj) + dfs(i, j + <span class="hljs-number">1</span>, si, (j + <span class="hljs-number">1</span>) % <span class="hljs-number">10</span> != <span class="hljs-number">0</span> ? sj + <span class="hljs-number">1</span> : sj - <span class="hljs-number">8</span>);    &#125;&#125;<span class="hljs-comment">//bfs</span><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">movingCount</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span> </span>&#123;        <span class="hljs-keyword">boolean</span>[][] visited = <span class="hljs-keyword">new</span> <span class="hljs-keyword">boolean</span>[m][n];        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;        Queue&lt;<span class="hljs-keyword">int</span>[]&gt; queue= <span class="hljs-keyword">new</span> LinkedList&lt;<span class="hljs-keyword">int</span>[]&gt;();        queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123; <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> &#125;);        <span class="hljs-keyword">while</span>(queue.size() &gt; <span class="hljs-number">0</span>) &#123;            <span class="hljs-keyword">int</span>[] x = queue.poll();            <span class="hljs-keyword">int</span> i = x[<span class="hljs-number">0</span>], j = x[<span class="hljs-number">1</span>], si = x[<span class="hljs-number">2</span>], sj = x[<span class="hljs-number">3</span>];            <span class="hljs-keyword">if</span>(i &gt;= m || j &gt;= n || k &lt; si + sj || visited[i][j]) <span class="hljs-keyword">continue</span>;            visited[i][j] = <span class="hljs-keyword">true</span>;            res ++;            queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123; i + <span class="hljs-number">1</span>, j, (i + <span class="hljs-number">1</span>) % <span class="hljs-number">10</span> != <span class="hljs-number">0</span> ? si + <span class="hljs-number">1</span> : si - <span class="hljs-number">8</span>, sj &#125;);            queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123; i, j + <span class="hljs-number">1</span>, si, (j + <span class="hljs-number">1</span>) % <span class="hljs-number">10</span> != <span class="hljs-number">0</span> ? sj + <span class="hljs-number">1</span> : sj - <span class="hljs-number">8</span> &#125;);        &#125;        <span class="hljs-keyword">return</span> res;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】矩阵中的路径</title>
+    <link href="/2020/07/11/jianzhi-offer/12.%20%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/"/>
+    <url>/2020/07/11/jianzhi-offer/12.%20%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。</p><p>[[“a”,”b”,”c”,”e”],<br>[“s”,”f”,”c”,”s”],<br>[“a”,”d”,”e”,”e”]]</p><p>但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。</p><p>示例 1：</p><p>输入：board = [[“A”,”B”,”C”,”E”],[“S”,”F”,”C”,”S”],[“A”,”D”,”E”,”E”]], word = “ABCCED”<br>输出：true<br>示例 2：</p><p>输入：board = [[“a”,”b”],[“c”,”d”]], word = “abcd”<br>输出：false<br>提示：</p><p>1 &lt;= board.length &lt;= 200<br>1 &lt;= board[i].length &lt;= 200</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">int</span> []dx=&#123;<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,-<span class="hljs-number">1</span>&#125;,dy=&#123;<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>&#125;;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">exist</span><span class="hljs-params">(<span class="hljs-keyword">char</span>[][] board, String word)</span> </span>&#123;        <span class="hljs-keyword">char</span>[] words = word.toCharArray();        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;board.length;i++)&#123;            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;board[<span class="hljs-number">0</span>].length;j++)&#123;                <span class="hljs-keyword">if</span>(dfs(board,words,i,j,<span class="hljs-number">0</span>))<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;            &#125;        &#125;        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;    &#125;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">char</span>[][]board,<span class="hljs-keyword">char</span> [] word,<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> j,<span class="hljs-keyword">int</span> tmp)</span></span>&#123;        <span class="hljs-keyword">if</span>(word[tmp]!=board[i][j])<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;        <span class="hljs-keyword">if</span>(tmp==word.length-<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k&lt;<span class="hljs-number">4</span>;k++)&#123;            <span class="hljs-keyword">int</span> new_x=i+dx[k],new_y=j+dy[k];            <span class="hljs-keyword">if</span>(new_x&lt;<span class="hljs-number">0</span> || new_x&gt;= board.length || new_y&lt;<span class="hljs-number">0</span> || new_y&gt;= board[<span class="hljs-number">0</span>].length)<span class="hljs-keyword">continue</span>;            <span class="hljs-keyword">char</span> c=board[i][j];            board[i][j]=<span class="hljs-string">'/'</span>;            <span class="hljs-keyword">if</span>(dfs(board,word,new_x,new_y,tmp+<span class="hljs-number">1</span>))<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;            board[i][j]=c;        &#125;        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【剑指Offer】旋转数组的最小数字</title>
     <link href="/2020/07/10/jianzhi-offer/11.%20%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/"/>
     <url>/2020/07/10/jianzhi-offer/11.%20%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/</url>

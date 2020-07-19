@@ -182,22 +182,16 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/08/goujian/1.%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%84%E8%8C%83/">【项目创建流程】数据库规范</a>
+      <a class="index-header" href="/2020/07/08/goujian/11.%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA%E5%92%8CRedis/">【项目创建流程】集成Redis缓存</a>
 
-      <a href="/2020/07/08/goujian/1.%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%84%E8%8C%83/" class="index-excerpt">
+      <a href="/2020/07/08/goujian/11.%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA%E5%92%8CRedis/" class="index-excerpt">
         
         
           
         
-        <div>【项目创建流程】数据库规范1.创建数据库
-注意，这里要遵循阿里数据库设计规约（参考《阿里巴巴Java开发手册》）
-
-1、库名与应用名称尽量一致
-2、表名、字段名必须使用小写字母或数字，禁止出现数字开头，
-3、表名不使用复数名词
-4、表的命名最好是加上“业务名称_表的作用”。如，edu_teacher
-5、表必备三字段：id, gmt_create, gmt_modified
-6、单表行数超过 50</div>
+        <div>【项目创建流程】集成Redis缓存一、简介1、场景由于首页数据变化不是很频繁，而且首页访问量相对较大，所以我们有必要把首页数据缓存到redis中，减少数据库压力和提高访问速度。
+2、RedisTemplateJedis是Redis官方推荐的面向Java的操作Redis的客户端，而RedisTemplate是Spring Data Redis中对Jedis api的高度封装。
+Spring Data</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -220,7 +214,476 @@
             
               <a href="/tags/SpringCloud/">SpringCloud</a>
             
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+              <a href="/tags/bean/">bean</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/10.Sentinel%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">【项目创建流程】Sentinel介绍和环境搭建</a>
+
+      <a href="/2020/07/08/goujian/10.Sentinel%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】Sentinel介绍和环境搭建一、Sentinel介绍1、什么是SentinelSentinel (分布式系统的流量防卫兵) 是阿里开源的一套用于服务容错的综合性解决方案。它以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度来保护服务的稳定性。
+2、Sentinel 的特征
+丰富的应用场景：Sentinel 承接了阿里巴巴近 10 年的双十一大促流量的核心场景，例如秒杀、</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+            
+              <a href="/tags/Sentinel/">Sentinel</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/9.Nacos%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/">【项目创建流程】Nacos注册中心与服务调用</a>
+
+      <a href="/2020/07/08/goujian/9.Nacos%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】Nacos注册中心与服务调用Nacos注册中心1、常见注册中心
+Eureka：Eureka是Spring Cloud Netflix中的重要组件，主要作用就是做服务注册和发现。2.0遇到性能瓶颈，停止维护，现在已经闭源。
+
+Consul：Consul是基于GO语言开发的开源工具，主要面向分布式，服务化的系统提供服务注册、服务发现和配置管理的功能。
+
+Zookeeper：zookee</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/Nacos/">Nacos</a>
+            
+              <a href="/tags/%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C/">服务注册</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/8.%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">【项目创建流程】前端项目开发流程</a>
+
+      <a href="/2020/07/08/goujian/8.%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】前端项目开发流程定义路由模块// 课程管理
+  &#123;
+    path: '/course',
+    component: Layout,
+    redirect: '/course/list',
+    name: 'Course',
+    meta: &#123; title: '课程管理' &#125;,
+    children: [
+      &#123;</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+            
+              <a href="/tags/Vue/">Vue</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/7.%E5%89%8D%E7%AB%AF%E4%B8%9A%E5%8A%A1/">【项目创建流程】前端业务总结</a>
+
+      <a href="/2020/07/08/goujian/7.%E5%89%8D%E7%AB%AF%E4%B8%9A%E5%8A%A1/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】前端业务总结前端基础vscode插件安装为方便后续开发，建议安装如下插件
+
+
+
+Node.jsJavaScript引擎浏览器的内核包括两部分核心：
+
+DOM渲染引擎
+
+JavaScript解析引擎
+
+
+Chrome浏览器内置V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。
+
+
+
+什么是Node.js脱离浏览器环境也可以运行JavaScript，只要有JavaSc</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+            
+              <a href="/tags/Vue/">Vue</a>
+            
+              <a href="/tags/axios/">axios</a>
+            
+              <a href="/tags/npm/">npm</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/6.%E9%9D%9E%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/">【项目创建流程】非业务功能统一处理</a>
+
+      <a href="/2020/07/08/goujian/6.%E9%9D%9E%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】非业务功能统一处理统一返回数据格式项目中我们会将响应封装成json返回，一般我们会将所有接口的数据格式统一， 使前端(iOS Android, Web)对数据的操作更一致、轻松。
+一般情况下，统一返回数据格式没有固定的格式，只要能描述清楚返回的数据状态以及要返回的具体数据就可以。但是一般会包含状态码、返回消息、数据这几部分内容
+例如，我们的系统要求返回的基本数据格式如下：
+&#12</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/Controller/">Controller</a>
+            
+              <a href="/tags/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/">统一处理</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/5.%E9%85%8D%E7%BD%AESwagger/">【项目创建流程】配置Swagger</a>
+
+      <a href="/2020/07/08/goujian/5.%E9%85%8D%E7%BD%AESwagger/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】配置SwaggerSwagger2介绍https://swagger.io/
+前后端分离开发模式中，api文档是最好的沟通方式。
+Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。
+及时性 (接口变更后，能够及时准确地通知相关前后端开发人员)规范性 (并且保证接口的规范性，如接口的地址，请求方式，参数及响应格式和错误信息)一</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/Controller/">Controller</a>
+            
+              <a href="/tags/Swagger2/">Swagger2</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/4.%E6%99%AE%E9%80%9A%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91/">【项目创建流程】普通接口开发</a>
+
+      <a href="/2020/07/08/goujian/4.%E6%99%AE%E9%80%9A%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】普通接口开发创建数据库
+创建的时候选择utf8mb4  urf8修改了兼容四字节的字符，解决某些汉字出现乱码问题
+utf8_general_ci: 校对速度快，但准确度稍差。
+utf8_unicode_ci: 准确度高，但校对速度稍慢。
+若数据库中有德语、法语或者俄语需求，需使用utf8_unicode_ci。其他情况用utf8_general_ci即可。
+
+建Maven改POM写</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/Controller/">Controller</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/3.MyBatisPlas%E6%B5%81%E7%A8%8B/">【项目创建流程】MyBatisPlas流程</a>
+
+      <a href="/2020/07/08/goujian/3.MyBatisPlas%E6%B5%81%E7%A8%8B/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】MyBatisPlas流程MP简介MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
+
+润物无声  
+
+
+只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑。
+
+
+效率至上
+
+
+只需简单配置，即可快速进行 CRUD 操作，从而节省大量时间。
+
+
+丰富功能
+
+
+热加载、代码生成、分</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/%E6%A1%86%E6%9E%B6/">框架</a>
+            
+              <a href="/tags/MyBatis-Plus/">MyBatis-Plus</a>
+            
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/">代码生成器</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/2.%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/">【项目创建流程】项目框架构建</a>
+
+      <a href="/2020/07/08/goujian/2.%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】项目框架构建工程结构
+在项目创建初期，应该首先规划一下工程结构
+将各个模块区分开来（根据阿里规范命名）
+重复的功能进行抽离
+pom文件根据范围选择合适的引用地址
+
+创建父工程创建SpringBoot项目删除一些无用的文件配置SpringBoot版本配置Pom文件依赖版本号比如：
+&lt;properties&gt;
+    &lt;java.version&gt;1.8&lt;/j</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/%E6%A1%86%E6%9E%B6/">框架</a>
             
           </div>
         
@@ -232,7 +695,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

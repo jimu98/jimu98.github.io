@@ -19,7 +19,7 @@
   <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
   <meta name="author" content="积木">
   <meta name="keywords" content="积木,jimu98,java,后端,jimu">
-  <title>【剑指Offer】旋转数组的最小数字 - 积木 | 互联网的一只小菜鸡</title>
+  <title>【剑指Offer】机器人的运动范围 - 积木 | 互联网的一只小菜鸡</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -166,8 +166,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-10 16:11">
-      2020年7月10日 下午
+    <time datetime="2020-07-11 16:11">
+      2020年7月11日 下午
     </time>
   </div>
 
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      172 字
+      480 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      7
        分钟
     </span>
   
@@ -218,25 +218,57 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一个旋转，该数组的最小值为1。  </p>
+              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？</p>
 <p>示例 1：</p>
-<p>输入：[3,4,5,1,2]<br>输出：1<br>示例 2：</p>
-<p>输入：[2,2,2,0,1]<br>输出：0</p>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minArray</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] numbers)</span> </span>&#123;
-        <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;
-        <span class="hljs-keyword">int</span> j=numbers.length-<span class="hljs-number">1</span>;
-        <span class="hljs-keyword">while</span>(i&lt;j) &#123;
-            <span class="hljs-keyword">int</span> mid=(i+j)&gt;&gt;<span class="hljs-number">1</span>;
-            <span class="hljs-keyword">if</span>(numbers[mid]&gt;numbers[j])
-                i=mid+<span class="hljs-number">1</span>;
-            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(numbers[mid]&lt;numbers[j])
-                j=mid;
-            <span class="hljs-keyword">else</span> j--;
+<p>输入：m = 2, n = 3, k = 1<br>输出：3<br>示例 2：</p>
+<p>输入：m = 3, n = 1, k = 0<br>输出：1<br>提示：</p>
+<p>1 &lt;= n,m &lt;= 100<br>0 &lt;= k &lt;= 20</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote>
+<p>注意，这里是不能进入行坐标和列坐标的数位之和大于k的格子。  是“数位之和”</p>
+<p>所以不可以简单的循环，因为有些区域数值可以达到，但是走不到</p>
+</blockquote>
+<p><img src="http://img1.jimu98.cn//blog/20200714110526.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>比如这张图</p>
+<p><img src="http://img1.jimu98.cn//blog/20200714110900.png" srcset="/img/loading.gif" alt="image-20200714110900284"></p>
+<pre><code class="hljs java"><span class="hljs-comment">//dfs</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
+    <span class="hljs-keyword">int</span> m, n, k;
+    <span class="hljs-keyword">boolean</span>[][] visited;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">movingCount</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.m = m; <span class="hljs-keyword">this</span>.n = n; <span class="hljs-keyword">this</span>.k = k;
+        <span class="hljs-keyword">this</span>.visited = <span class="hljs-keyword">new</span> <span class="hljs-keyword">boolean</span>[m][n];
+        <span class="hljs-keyword">return</span> dfs(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j, <span class="hljs-keyword">int</span> si, <span class="hljs-keyword">int</span> sj)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(i &gt;= m || j &gt;= n || k &lt; si + sj || visited[i][j]) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        visited[i][j] = <span class="hljs-keyword">true</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + dfs(i + <span class="hljs-number">1</span>, j, (i + <span class="hljs-number">1</span>) % <span class="hljs-number">10</span> != <span class="hljs-number">0</span> ? si + <span class="hljs-number">1</span> : si - <span class="hljs-number">8</span>, sj) + dfs(i, j + <span class="hljs-number">1</span>, si, (j + <span class="hljs-number">1</span>) % <span class="hljs-number">10</span> != <span class="hljs-number">0</span> ? sj + <span class="hljs-number">1</span> : sj - <span class="hljs-number">8</span>);
+    &#125;
+&#125;
+
+
+<span class="hljs-comment">//bfs</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">movingCount</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span> </span>&#123;
+        <span class="hljs-keyword">boolean</span>[][] visited = <span class="hljs-keyword">new</span> <span class="hljs-keyword">boolean</span>[m][n];
+        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;
+        Queue&lt;<span class="hljs-keyword">int</span>[]&gt; queue= <span class="hljs-keyword">new</span> LinkedList&lt;<span class="hljs-keyword">int</span>[]&gt;();
+        queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123; <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> &#125;);
+        <span class="hljs-keyword">while</span>(queue.size() &gt; <span class="hljs-number">0</span>) &#123;
+            <span class="hljs-keyword">int</span>[] x = queue.poll();
+            <span class="hljs-keyword">int</span> i = x[<span class="hljs-number">0</span>], j = x[<span class="hljs-number">1</span>], si = x[<span class="hljs-number">2</span>], sj = x[<span class="hljs-number">3</span>];
+            <span class="hljs-keyword">if</span>(i &gt;= m || j &gt;= n || k &lt; si + sj || visited[i][j]) <span class="hljs-keyword">continue</span>;
+            visited[i][j] = <span class="hljs-keyword">true</span>;
+            res ++;
+            queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123; i + <span class="hljs-number">1</span>, j, (i + <span class="hljs-number">1</span>) % <span class="hljs-number">10</span> != <span class="hljs-number">0</span> ? si + <span class="hljs-number">1</span> : si - <span class="hljs-number">8</span>, sj &#125;);
+            queue.add(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123; i, j + <span class="hljs-number">1</span>, si, (j + <span class="hljs-number">1</span>) % <span class="hljs-number">10</span> != <span class="hljs-number">0</span> ? sj + <span class="hljs-number">1</span> : sj - <span class="hljs-number">8</span> &#125;);
         &#125;
-        <span class="hljs-keyword">return</span> numbers[i];
+        <span class="hljs-keyword">return</span> res;
     &#125;
 &#125;</code></pre>
+
+
 
 
             </article>
@@ -259,8 +291,6 @@
                     
                       <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/">旋转数组</a>
-                    
                   </div>
                 
               </div>
@@ -272,9 +302,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/11/jianzhi-offer/12.%20%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/">
+                      <a href="/2020/07/11/jianzhi-offer/14-%20I.%20%E5%89%AA%E7%BB%B3%E5%AD%90/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【剑指Offer】矩阵中的路径</span>
+                        <span class="hidden-mobile">【剑指Offer】剪绳子</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -282,8 +312,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/10/jianzhi-offer/10-%20II.%20%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/">
-                        <span class="hidden-mobile">【剑指Offer】青蛙跳台问题</span>
+                      <a href="/2020/07/11/jianzhi-offer/12.%20%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/">
+                        <span class="hidden-mobile">【剑指Offer】矩阵中的路径</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -464,7 +494,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "【剑指Offer】旋转数组的最小数字&nbsp;",
+        "【剑指Offer】机器人的运动范围&nbsp;",
       ],
       cursorChar: "|",
       typeSpeed: 95,

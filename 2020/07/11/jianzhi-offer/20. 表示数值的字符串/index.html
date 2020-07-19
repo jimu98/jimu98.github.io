@@ -19,7 +19,7 @@
   <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
   <meta name="author" content="积木">
   <meta name="keywords" content="积木,jimu98,java,后端,jimu">
-  <title>【剑指Offer】旋转数组的最小数字 - 积木 | 互联网的一只小菜鸡</title>
+  <title>【剑指Offer】表示数值的字符串 - 积木 | 互联网的一只小菜鸡</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -166,8 +166,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-10 16:11">
-      2020年7月10日 下午
+    <time datetime="2020-07-11 16:20">
+      2020年7月11日 下午
     </time>
   </div>
 
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      172 字
+      275 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        分钟
     </span>
   
@@ -218,23 +218,32 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一个旋转，该数组的最小值为1。  </p>
-<p>示例 1：</p>
-<p>输入：[3,4,5,1,2]<br>输出：1<br>示例 2：</p>
-<p>输入：[2,2,2,0,1]<br>输出：0</p>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minArray</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] numbers)</span> </span>&#123;
-        <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;
-        <span class="hljs-keyword">int</span> j=numbers.length-<span class="hljs-number">1</span>;
-        <span class="hljs-keyword">while</span>(i&lt;j) &#123;
-            <span class="hljs-keyword">int</span> mid=(i+j)&gt;&gt;<span class="hljs-number">1</span>;
-            <span class="hljs-keyword">if</span>(numbers[mid]&gt;numbers[j])
-                i=mid+<span class="hljs-number">1</span>;
-            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(numbers[mid]&lt;numbers[j])
-                j=mid;
-            <span class="hljs-keyword">else</span> j--;
+              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串”+100”、”5e2”、”-123”、”3.1416”、”0123”都表示数值，但”12e”、”1a3.14”、”1.2.3”、”+-5”、”-1E-16”及”12e+5.4”都不是。</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p><img src="http://img1.jimu98.cn//blog/20200715104812.png" srcset="/img/loading.gif" alt="image-20200715104811643"></p>
+<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isNumber</span><span class="hljs-params">(String s)</span> </span>&#123;
+        Map[] states = &#123;
+            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">' '</span>, <span class="hljs-number">0</span>); put(<span class="hljs-string">'s'</span>, <span class="hljs-number">1</span>); put(<span class="hljs-string">'d'</span>, <span class="hljs-number">2</span>); put(<span class="hljs-string">'.'</span>, <span class="hljs-number">4</span>); &#125;&#125;, <span class="hljs-comment">// 0.</span>
+            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">2</span>); put(<span class="hljs-string">'.'</span>, <span class="hljs-number">4</span>); &#125;&#125;,                           <span class="hljs-comment">// 1.</span>
+            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">2</span>); put(<span class="hljs-string">'.'</span>, <span class="hljs-number">3</span>); put(<span class="hljs-string">'e'</span>, <span class="hljs-number">5</span>); put(<span class="hljs-string">' '</span>, <span class="hljs-number">8</span>); &#125;&#125;, <span class="hljs-comment">// 2.</span>
+            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">3</span>); put(<span class="hljs-string">'e'</span>, <span class="hljs-number">5</span>); put(<span class="hljs-string">' '</span>, <span class="hljs-number">8</span>); &#125;&#125;,              <span class="hljs-comment">// 3.</span>
+            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">3</span>); &#125;&#125;,                                        <span class="hljs-comment">// 4.</span>
+            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'s'</span>, <span class="hljs-number">6</span>); put(<span class="hljs-string">'d'</span>, <span class="hljs-number">7</span>); &#125;&#125;,                           <span class="hljs-comment">// 5.</span>
+            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">7</span>); &#125;&#125;,                                        <span class="hljs-comment">// 6.</span>
+            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">'d'</span>, <span class="hljs-number">7</span>); put(<span class="hljs-string">' '</span>, <span class="hljs-number">8</span>); &#125;&#125;,                           <span class="hljs-comment">// 7.</span>
+            <span class="hljs-keyword">new</span> HashMap&lt;&gt;() &#123;&#123; put(<span class="hljs-string">' '</span>, <span class="hljs-number">8</span>); &#125;&#125;                                         <span class="hljs-comment">// 8.</span>
+        &#125;;
+        <span class="hljs-keyword">int</span> p = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">char</span> t;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c : s.toCharArray()) &#123;
+            <span class="hljs-keyword">if</span>(c &gt;= <span class="hljs-string">'0'</span> &amp;&amp; c &lt;= <span class="hljs-string">'9'</span>) t = <span class="hljs-string">'d'</span>;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c == <span class="hljs-string">'+'</span> || c == <span class="hljs-string">'-'</span>) t = <span class="hljs-string">'s'</span>;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c == <span class="hljs-string">'.'</span> || c == <span class="hljs-string">'e'</span> || c == <span class="hljs-string">'E'</span> || c == <span class="hljs-string">' '</span>) t = c;
+            <span class="hljs-keyword">else</span> t = <span class="hljs-string">'?'</span>;
+            <span class="hljs-keyword">if</span>(!states[p].containsKey(t)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            p = (<span class="hljs-keyword">int</span>)states[p].get(t);
         &#125;
-        <span class="hljs-keyword">return</span> numbers[i];
+        <span class="hljs-keyword">return</span> p == <span class="hljs-number">2</span> || p == <span class="hljs-number">3</span> || p == <span class="hljs-number">7</span> || p == <span class="hljs-number">8</span>;
     &#125;
 &#125;</code></pre>
 
@@ -259,7 +268,7 @@
                     
                       <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/">旋转数组</a>
+                      <a class="hover-with-bg" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
                     
                   </div>
                 
@@ -272,9 +281,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/11/jianzhi-offer/12.%20%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/">
+                      <a href="/2020/07/11/jianzhi-offer/21.%20%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【剑指Offer】矩阵中的路径</span>
+                        <span class="hidden-mobile">【剑指Offer】调整数组顺序使奇数位于偶数前面</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -282,8 +291,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/10/jianzhi-offer/10-%20II.%20%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/">
-                        <span class="hidden-mobile">【剑指Offer】青蛙跳台问题</span>
+                      <a href="/2020/07/11/jianzhi-offer/18.%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E8%8A%82%E7%82%B9/">
+                        <span class="hidden-mobile">【剑指Offer】删除链表的节点</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -464,7 +473,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "【剑指Offer】旋转数组的最小数字&nbsp;",
+        "【剑指Offer】表示数值的字符串&nbsp;",
       ],
       cursorChar: "|",
       typeSpeed: 95,
