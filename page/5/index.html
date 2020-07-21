@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
+  <meta name="author" content="积木">
+  <meta name="keywords" content="积木,jimu98,java,后端,jimu">
+  <title>积木 | 互联网的一只小菜鸡</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jimu98</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/list/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                导航
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/world.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/11.%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA%E5%92%8CRedis/">【项目创建流程】集成Redis缓存</a>
+
+      <a href="/2020/07/08/goujian/11.%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA%E5%92%8CRedis/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】集成Redis缓存一、简介1、场景由于首页数据变化不是很频繁，而且首页访问量相对较大，所以我们有必要把首页数据缓存到redis中，减少数据库压力和提高访问速度。
+2、RedisTemplateJedis是Redis官方推荐的面向Java的操作Redis的客户端，而RedisTemplate是Spring Data Redis中对Jedis api的高度封装。
+Spring Data</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+              <a href="/tags/bean/">bean</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/10.Sentinel%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">【项目创建流程】Sentinel介绍和环境搭建</a>
+
+      <a href="/2020/07/08/goujian/10.Sentinel%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】Sentinel介绍和环境搭建一、Sentinel介绍1、什么是SentinelSentinel (分布式系统的流量防卫兵) 是阿里开源的一套用于服务容错的综合性解决方案。它以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度来保护服务的稳定性。
+2、Sentinel 的特征
+丰富的应用场景：Sentinel 承接了阿里巴巴近 10 年的双十一大促流量的核心场景，例如秒杀、</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/Sentinel/">Sentinel</a>
+            
+              <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/9.Nacos%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/">【项目创建流程】Nacos注册中心与服务调用</a>
+
+      <a href="/2020/07/08/goujian/9.Nacos%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】Nacos注册中心与服务调用Nacos注册中心1、常见注册中心
+Eureka：Eureka是Spring Cloud Netflix中的重要组件，主要作用就是做服务注册和发现。2.0遇到性能瓶颈，停止维护，现在已经闭源。
+
+Consul：Consul是基于GO语言开发的开源工具，主要面向分布式，服务化的系统提供服务注册、服务发现和配置管理的功能。
+
+Zookeeper：zookee</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/Nacos/">Nacos</a>
+            
+              <a href="/tags/%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C/">服务注册</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/8.%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">【项目创建流程】前端项目开发流程</a>
+
+      <a href="/2020/07/08/goujian/8.%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】前端项目开发流程定义路由模块// 课程管理
+  &#123;
+    path: '/course',
+    component: Layout,
+    redirect: '/course/list',
+    name: 'Course',
+    meta: &#123; title: '课程管理' &#125;,
+    children: [
+      &#123;</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+            
+              <a href="/tags/Vue/">Vue</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/7.%E5%89%8D%E7%AB%AF%E4%B8%9A%E5%8A%A1/">【项目创建流程】前端业务总结</a>
+
+      <a href="/2020/07/08/goujian/7.%E5%89%8D%E7%AB%AF%E4%B8%9A%E5%8A%A1/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】前端业务总结前端基础vscode插件安装为方便后续开发，建议安装如下插件
+
+
+
+Node.jsJavaScript引擎浏览器的内核包括两部分核心：
+
+DOM渲染引擎
+
+JavaScript解析引擎
+
+
+Chrome浏览器内置V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。
+
+
+
+什么是Node.js脱离浏览器环境也可以运行JavaScript，只要有JavaSc</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+            
+              <a href="/tags/Vue/">Vue</a>
+            
+              <a href="/tags/axios/">axios</a>
+            
+              <a href="/tags/npm/">npm</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/6.%E9%9D%9E%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/">【项目创建流程】非业务功能统一处理</a>
+
+      <a href="/2020/07/08/goujian/6.%E9%9D%9E%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】非业务功能统一处理统一返回数据格式项目中我们会将响应封装成json返回，一般我们会将所有接口的数据格式统一， 使前端(iOS Android, Web)对数据的操作更一致、轻松。
+一般情况下，统一返回数据格式没有固定的格式，只要能描述清楚返回的数据状态以及要返回的具体数据就可以。但是一般会包含状态码、返回消息、数据这几部分内容
+例如，我们的系统要求返回的基本数据格式如下：
+&#12</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/Controller/">Controller</a>
+            
+              <a href="/tags/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/">统一处理</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/5.%E9%85%8D%E7%BD%AESwagger/">【项目创建流程】配置Swagger</a>
+
+      <a href="/2020/07/08/goujian/5.%E9%85%8D%E7%BD%AESwagger/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】配置SwaggerSwagger2介绍https://swagger.io/
+前后端分离开发模式中，api文档是最好的沟通方式。
+Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。
+及时性 (接口变更后，能够及时准确地通知相关前后端开发人员)规范性 (并且保证接口的规范性，如接口的地址，请求方式，参数及响应格式和错误信息)一</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/Controller/">Controller</a>
+            
+              <a href="/tags/Swagger2/">Swagger2</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/4.%E6%99%AE%E9%80%9A%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91/">【项目创建流程】普通接口开发</a>
+
+      <a href="/2020/07/08/goujian/4.%E6%99%AE%E9%80%9A%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】普通接口开发创建数据库
+创建的时候选择utf8mb4  urf8修改了兼容四字节的字符，解决某些汉字出现乱码问题
+utf8_general_ci: 校对速度快，但准确度稍差。
+utf8_unicode_ci: 准确度高，但校对速度稍慢。
+若数据库中有德语、法语或者俄语需求，需使用utf8_unicode_ci。其他情况用utf8_general_ci即可。
+
+建Maven改POM写</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/Controller/">Controller</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/3.MyBatisPlas%E6%B5%81%E7%A8%8B/">【项目创建流程】MyBatisPlas流程</a>
+
+      <a href="/2020/07/08/goujian/3.MyBatisPlas%E6%B5%81%E7%A8%8B/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】MyBatisPlas流程MP简介MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
+
+润物无声  
+
+
+只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑。
+
+
+效率至上
+
+
+只需简单配置，即可快速进行 CRUD 操作，从而节省大量时间。
+
+
+丰富功能
+
+
+热加载、代码生成、分</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/%E6%A1%86%E6%9E%B6/">框架</a>
+            
+              <a href="/tags/MyBatis-Plus/">MyBatis-Plus</a>
+            
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/">代码生成器</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/08/goujian/2.%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/">【项目创建流程】项目框架构建</a>
+
+      <a href="/2020/07/08/goujian/2.%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA/" class="index-excerpt">
+        
+        
+          
+        
+        <div>【项目创建流程】项目框架构建工程结构
+在项目创建初期，应该首先规划一下工程结构
+将各个模块区分开来（根据阿里规范命名）
+重复的功能进行抽离
+pom文件根据范围选择合适的引用地址
+
+创建父工程创建SpringBoot项目删除一些无用的文件配置SpringBoot版本配置Pom文件依赖版本号比如：
+&lt;properties&gt;
+    &lt;java.version&gt;1.8&lt;/j</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringCloud/">SpringCloud</a>
+            
+              <a href="/tags/%E6%A1%86%E6%9E%B6/">框架</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/4/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+  <p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+   <div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("07/18/2020 18:00:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+      document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+  }
+  setInterval("createtime()",250);
+  </script>
+</div>
+    <div>
+      &copy;2019 - 2020 By Jimu98
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+		
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">冀ICP备19035627号</a>
+    
+  </div>
+
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1278280985" style="display: none"></span>
+    
+  </div>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "你会的越多,你不会的越多!&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 95,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1278280985&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
+</body>
+</html>
