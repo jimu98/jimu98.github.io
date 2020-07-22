@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.6k 字
+      2.5k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      31
+      30
        分钟
     </span>
   
@@ -240,7 +240,7 @@
 <p>（2）断言。Java8中的断言函数。Spring Cloud Gateway中的断言函数允许开发者去定义匹配来自于http request中的任何信息，比如请求头和参数等。</p>
 <p>（3）过滤器。一个标准的Spring webFilter。Spring cloud gateway中的filter分为两种类型的Filter，分别是Gateway Filter和Global Filter。过滤器Filter将会对请求和响应进行修改处理。</p>
 <h3 id="4、执行流程"><a href="#4、执行流程" class="headerlink" title="4、执行流程"></a>4、执行流程</h3><p>如下图所示，Spring cloud Gateway发出请求。然后再由Gateway Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway web handler。Handler再通过指定的过滤器链将请求发送到我们实际的服务执行业务逻辑，然后返回。</p>
-<p><img src="http://img1.jimu98.cn//blog/a3cb663f-16f5-4133-b091-1b92035b57ce.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="http://img1.jimu98.cn/blog/a3cb663f-16f5-4133-b091-1b92035b57ce.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p><strong>4、特点</strong></p>
 <p>优点：</p>
 <ul>
@@ -273,7 +273,11 @@
     <span class="hljs-attr">name:</span> <span class="hljs-string">infrastructure-apigateway</span> <span class="hljs-comment"># 服务名</span></code></pre>
 
 <h3 id="logback-xml"><a href="#logback-xml" class="headerlink" title="logback.xml"></a>logback.xml</h3><p>修改日志输出目录名为 apigateway</p>
-<h3 id="创建启动类"><a href="#创建启动类" class="headerlink" title="创建启动类"></a>创建启动类</h3><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.guli.infrastructure.apigateway;
+<h3 id="创建启动类"><a href="#创建启动类" class="headerlink" title="创建启动类"></a>创建启动类</h3><blockquote>
+<p>gataway依赖common，课是common引入了mybatisplus操作，所有有数据库操作，因此需要排除数据库操作</p>
+<p>@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class} )</p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.guli.infrastructure.apigateway;
 
 <span class="hljs-meta">@SpringBootApplication</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InfrastructureApiGatewayApplication</span> </span>&#123;
@@ -330,7 +334,7 @@
 <pre><code class="hljs haml">-<span class="ruby"> Path=<span class="hljs-regexp">/foo/</span>**</span></code></pre>
 
 <h6 id="8、基于Query请求参数"><a href="#8、基于Query请求参数" class="headerlink" title="8、基于Query请求参数"></a>8、基于Query请求参数</h6><p>QueryRoutePredicateFactory ：接收两个参数，请求param和正则表达式， 判断请求参数是否具有给定名称且值与正则表达式匹配。</p>
-<pre><code class="hljs routeros">- <span class="hljs-attribute">Query</span>=baz, ba.</code></pre>
+<pre><code class="hljs routeros">- <span class="hljs-attribute">Query</span>=url,baidu</code></pre>
 
 <h6 id="9、基于路由权重"><a href="#9、基于路由权重" class="headerlink" title="9、基于路由权重"></a>9、基于路由权重</h6><p>WeightRoutePredicateFactory：接收一个[组名,权重]，然后对于同一个组内的路由按照权重转发</p>
 <pre><code class="hljs yaml"><span class="hljs-attr">routes:</span>
@@ -351,7 +355,7 @@
 <p>客户端的请求先经过“pre”类型的filter，然后将请求转发到具体的业务服务，收到业务服务的响应之后，再经过“post”类型的filter处理，最后返回响应到客户端。</p>
 <p>pre： 这种过滤器在请求被路由之前调用。我们可利用这种过滤器实现参数校验、权限校验、流量监控、日志输出、协议转换等；</p>
 <p>post：这种过滤器在路由到达微服务以后执行。这种过滤器可用做响应内容、响应头的修改，日志的输出，流量监控等。</p>
-<p>![img](C:/Users/kaibo/Documents/My Knowledge/temp/3c0e137d-3839-462d-bf81-a0f11559b7f5/128/index_files/0dddd23a-c681-468b-b16f-31a7bc89ea9d.jpg)</p>
+<p><img src="http://img1.jimu98.cn/blog/20200722160833.png" srcset="/img/loading.gif" alt="image-20200722160833395"></p>
 <p>3、分类</p>
 <p>局部过滤器 GatewayFilter：作用在某一个路由上</p>
 <p>全局过滤器 GlobalFilter：作用全部路由上</p>
@@ -366,9 +370,9 @@
   <span class="hljs-bullet">-</span> <span class="hljs-string">SetStatus=250</span> <span class="hljs-comment"># 修改返回状态码</span></code></pre>
 
 <p>测试：</p>
-<p>![img](C:/Users/kaibo/Documents/My Knowledge/temp/3c0e137d-3839-462d-bf81-a0f11559b7f5/128/index_files/2d87bf44-5bac-42b0-bd4a-7a3260c40d19.png)</p>
+<p><img src="http://img1.jimu98.cn/blog/20200722160844.png" srcset="/img/loading.gif" alt="img"></p>
 <h6 id="三、全局过滤器"><a href="#三、全局过滤器" class="headerlink" title="三、全局过滤器"></a>三、全局过滤器</h6><p>1、内置全局过滤器</p>
-<p>*<em>![img](C:/Users/kaibo/Documents/My Knowledge/temp/3c0e137d-3839-462d-bf81-a0f11559b7f5/128/index_files/0.984782576945038.png)<br>*</em></p>
+<p>*<em><img src="http://img1.jimu98.cn/blog/20200722160848.png" srcset="/img/loading.gif" alt="img"><br>*</em></p>
 <p>内置全局过滤器的使用举例：负载均衡过滤器</p>
 <pre><code class="hljs dts"><span class="hljs-symbol">lb:</span><span class="hljs-comment">//service-edu</span></code></pre>
 

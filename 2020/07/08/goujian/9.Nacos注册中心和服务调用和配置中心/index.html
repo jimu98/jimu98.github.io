@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
+  <meta name="author" content="积木">
+  <meta name="keywords" content="积木,jimu98,java,后端,jimu">
+  <title>【项目创建流程】注册中心和服务调用和配置中心 - 积木 | 互联网的一只小菜鸡</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jimu98</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/list/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                导航
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-08 16:14">
+      2020年7月8日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="【项目创建流程】Nacos注册中心和服务调用和配置中心"><a href="#【项目创建流程】Nacos注册中心和服务调用和配置中心" class="headerlink" title="【项目创建流程】Nacos注册中心和服务调用和配置中心"></a>【项目创建流程】Nacos注册中心和服务调用和配置中心</h1><h2 id="Nacos注册中心"><a href="#Nacos注册中心" class="headerlink" title="Nacos注册中心"></a>Nacos注册中心</h2><h3 id="1、常见注册中心"><a href="#1、常见注册中心" class="headerlink" title="1、常见注册中心"></a>1、常见注册中心</h3><ul>
+<li><p>Eureka：Eureka是Spring Cloud Netflix中的重要组件，主要作用就是做服务注册和发现。2.0遇到性能瓶颈，停止维护，现在已经闭源。</p>
+</li>
+<li><p>Consul：Consul是基于GO语言开发的开源工具，主要面向分布式，服务化的系统提供服务注册、服务发现和配置管理的功能。</p>
+</li>
+<li><p>Zookeeper：zookeeper是一个分布式服务框架，是Apache Hadoop 的一个子项目。</p>
+</li>
+<li><p>Nacos（Spring Cloud Alibaba）</p>
+</li>
+<li><ul>
+<li>Alibaba针对Spring Cloud体系的注册中心</li>
+<li>相对于 Spring Cloud Eureka 来说，Nacos 更强大</li>
+<li>Nacos = Spring Cloud Eureka + Spring Cloud Config + Spring Cloud Bus</li>
+</ul>
+</li>
+</ul>
+<h3 id="2、为什么叫Nacos"><a href="#2、为什么叫Nacos" class="headerlink" title="2、为什么叫Nacos"></a>2、为什么叫Nacos</h3><ul>
+<li><p>前四个字母分别为 Naming 和 Configuration 的前两个字母，最后的s为Service</p>
+</li>
+<li><ul>
+<li>Dynamic Naming and Configuration Service</li>
+</ul>
+</li>
+<li><p>Nacos就是：注册中心 + 配置中心的组合</p>
+</li>
+<li><ul>
+<li>Spring Cloud Alibaba Nacos = SpringCloudEureka + SpringCloudConfig +SpringCloudBus</li>
+</ul>
+</li>
+</ul>
+<h3 id="3、Nacos下载和安装"><a href="#3、Nacos下载和安装" class="headerlink" title="3、Nacos下载和安装"></a>3、Nacos下载和安装</h3><p>下载地址：<a href="https://github.com/alibaba/nacos/releases" target="_blank" rel="noopener">https://github.com/alibaba/nacos/releases</a></p>
+<p>下载版本：nacos-server-1.1.4.zip 或 nacos-server-1.1.4.tar.gz，解压任意目录即可</p>
+<h3 id="4、启动Nacos"><a href="#4、启动Nacos" class="headerlink" title="4、启动Nacos"></a>4、启动Nacos</h3><p>- Windows</p>
+<p>启动：双击bin/startup.cmd运行文件</p>
+<p>访问：<a href="http://localhost:8848/nacos" target="_blank" rel="noopener">http://localhost:8848/nacos</a></p>
+<p>用户名密码：nacos/nacos</p>
+<p>- Linux/Unix/Mac</p>
+<p>启动命令(standalone代表着单机模式运行，非集群模式)</p>
+<p>启动命令：sh startup.sh -m standalone</p>
+<h2 id="服务注册"><a href="#服务注册" class="headerlink" title="服务注册"></a>服务注册</h2><h3 id="1、引入依赖"><a href="#1、引入依赖" class="headerlink" title="1、引入依赖"></a>1、引入依赖</h3><p>service模块中配置Nacos客户端的pom依赖</p>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--服务注册--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<h3 id="2、添加服务配置信息"><a href="#2、添加服务配置信息" class="headerlink" title="2、添加服务配置信息"></a>2、添加服务配置信息</h3><p>配置application.properties，在客户端微服务中添加注册Nacos服务的配置信息</p>
+<pre><code class="hljs yaml"><span class="hljs-comment">#spring:</span>
+  <span class="hljs-attr">cloud:</span>
+    <span class="hljs-attr">nacos:</span>
+      <span class="hljs-attr">discovery:</span>
+        <span class="hljs-attr">server-addr:</span> <span class="hljs-string">localhost:8848</span> <span class="hljs-comment"># nacos服务地址</span></code></pre>
+
+<p>接下来要起一个名字，这样才能知道这个服务在配置中心叫什么</p>
+<pre><code class="hljs yaml"><span class="hljs-comment">#spring:</span>
+  <span class="hljs-attr">application:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">gulimall-coupon</span></code></pre>
+
+
+
+<h3 id="3、添加Nacos客户端注解"><a href="#3、添加Nacos客户端注解" class="headerlink" title="3、添加Nacos客户端注解"></a>3、添加Nacos客户端注解</h3><p>在客户端微服务启动类中添加注解</p>
+<pre><code class="hljs java"><span class="hljs-meta">@EnableDiscoveryClient</span>   <span class="hljs-comment">//开启服务注册发现，这个注解可加可不加</span></code></pre>
+
+<h3 id="4、启动客户端微服务"><a href="#4、启动客户端微服务" class="headerlink" title="4、启动客户端微服务"></a>4、启动客户端微服务</h3><p>启动注册中心，启动已注册的微服务，可以在Nacos服务列表中看到被注册的微服务</p>
+<p><img src="http://img1.jimu98.cn/blog/4a9b848e-ebd3-4bb2-bc18-b4330095c72d.png" srcset="/img/loading.gif" alt="img"></p>
+<h2 id="基于OpenFeign的服务调用"><a href="#基于OpenFeign的服务调用" class="headerlink" title="基于OpenFeign的服务调用"></a>基于OpenFeign的服务调用</h2><h3 id="一、OpenFeign是什么"><a href="#一、OpenFeign是什么" class="headerlink" title="一、OpenFeign是什么"></a>一、OpenFeign是什么</h3><p>说起这个，还得先知道Feign是什么，Feign是一个声明式的Http客户端，它的目的就是让远程调用更加简单，Feign提供了HTTP请求的模板，通过编写简单的接口和插入注解，就可以定义好HTTP请求的参数，格式，地址等信息</p>
+<p>OpenFeign是Spring Cloud提供的一个声明式的伪Http客户端， 它使得调用远程服务就像调用本地服务一样简单， 只需要创建一个接口并添加一个注解即可。</p>
+<p>Nacos很好的兼容了OpenFeign， OpenFeign默认集成了 Ribbon， 所以在Nacos下使用OpenFeign默认就实现了负载均衡的效果。</p>
+<h3 id="二、OpenFeign的引入"><a href="#二、OpenFeign的引入" class="headerlink" title="二、OpenFeign的引入"></a>二、OpenFeign的引入</h3><h4 id="1、引入依赖-1"><a href="#1、引入依赖-1" class="headerlink" title="1、引入依赖"></a>1、引入依赖</h4><p>service模块中配置OpenFeign的pom依赖（实际是在服务消费者端需要OpenFeign的依赖）</p>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--服务调用--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<h4 id="2、启动类添加注解"><a href="#2、启动类添加注解" class="headerlink" title="2、启动类添加注解"></a>2、启动类添加注解</h4><p>在消费者service_edu的启动类添加如下注解</p>
+<pre><code class="hljs java"><span class="hljs-meta">@EnableFeignClients</span>
+或者
+<span class="hljs-meta">@EnableFeignClients</span>(basePackages = <span class="hljs-string">"cn.jimu98.gulimall.member.feign"</span>)</code></pre>
+
+<h3 id="三、OpenFeign的使用"><a href="#三、OpenFeign的使用" class="headerlink" title="三、OpenFeign的使用"></a>三、OpenFeign的使用</h3><h4 id="1、oss微服务中创建测试api"><a href="#1、oss微服务中创建测试api" class="headerlink" title="1、oss微服务中创建测试api"></a>1、oss微服务中创建测试api</h4><p>服务的生产者的FileController中添加如下方法：</p>
+<pre><code class="hljs less"><span class="hljs-variable">@ApiOperation</span>(value = <span class="hljs-string">"测试"</span>)
+<span class="hljs-variable">@GetMapping</span>(<span class="hljs-string">"test"</span>)
+public R test() &#123;
+    <span class="hljs-selector-tag">log</span><span class="hljs-selector-class">.info</span>(<span class="hljs-string">"oss test被调用"</span>);
+    <span class="hljs-selector-tag">return</span> <span class="hljs-selector-tag">R</span><span class="hljs-selector-class">.ok</span>();
+&#125;</code></pre>
+
+<h4 id="2、edu微服务中创建远程调用接口"><a href="#2、edu微服务中创建远程调用接口" class="headerlink" title="2、edu微服务中创建远程调用接口"></a>2、edu微服务中创建远程调用接口</h4><p>服务消费者中创建feign包，创建如下接口：</p>
+<p>该接口首先写上注解</p>
+<p>@FeignClient(“service-oss”)  表示调用哪个微服务</p>
+<p>然后里面写上具体的方法（该方法去直接复制生产者Controller复制即可，但是要注意全地址，包括类注解地址）</p>
+<pre><code class="hljs kotlin"><span class="hljs-keyword">package</span> com.atguigu.guli.service.edu.feign;
+
+<span class="hljs-meta">@Service</span>
+<span class="hljs-meta">@FeignClient(<span class="hljs-meta-string">"service-oss"</span>)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">OssFileService</span> </span>&#123;
+
+    <span class="hljs-meta">@GetMapping(<span class="hljs-meta-string">"/admin/oss/file/test"</span>)</span>
+    R test();
+&#125;</code></pre>
+
+<h4 id="3、调用远程方法"><a href="#3、调用远程方法" class="headerlink" title="3、调用远程方法"></a>3、调用远程方法</h4><p>服务消费者中的TeacherController中添加如下方法：</p>
+<pre><code class="hljs less"><span class="hljs-variable">@Autowired</span>
+private OssFileService ossFileService;
+
+<span class="hljs-variable">@ApiOperation</span>(<span class="hljs-string">"测试服务调用"</span>)
+<span class="hljs-variable">@GetMapping</span>(<span class="hljs-string">"test"</span>)
+public R test()&#123;
+    <span class="hljs-selector-tag">ossFileService</span><span class="hljs-selector-class">.test</span>();
+    <span class="hljs-selector-tag">return</span> <span class="hljs-selector-tag">R</span><span class="hljs-selector-class">.ok</span>();
+&#125;</code></pre>
+
+<h3 id="四、负载均衡"><a href="#四、负载均衡" class="headerlink" title="四、负载均衡"></a>四、负载均衡</h3><h4 id="Ribbon的负载均衡策略"><a href="#Ribbon的负载均衡策略" class="headerlink" title="Ribbon的负载均衡策略"></a>Ribbon的负载均衡策略</h4><table>
+<thead>
+<tr>
+<th>策略名</th>
+<th>策略描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BestAvailableRule</td>
+<td>选择一个最小的并发请求的server</td>
+</tr>
+<tr>
+<td>AvailabilityFilteringRule</td>
+<td>过滤掉那些因为一直连接失败的被标记为circuit tripped的后端server，并过滤掉那些高并发的的后端server（activeconnections 超过配置的阈值）</td>
+</tr>
+<tr>
+<td>WeightedResponseTimeRule</td>
+<td>根据响应时间分配一个weight，响应时间越长，weight越小，被选中的可能性越低。</td>
+</tr>
+<tr>
+<td>RetryRule</td>
+<td>对选定的负载均衡策略机上重试机制。</td>
+</tr>
+<tr>
+<td>RoundRobinRule</td>
+<td>轮询选择server</td>
+</tr>
+<tr>
+<td>RandomRule</td>
+<td>随机选择一个server</td>
+</tr>
+<tr>
+<td>ZoneAvoidanceRule</td>
+<td>综合判断server所在区域的性能和server的可用性选择server</td>
+</tr>
+</tbody></table>
+<p>配置负载均衡策略的方式：</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">service-product:</span> <span class="hljs-comment"># 调用的提供者的名称 </span>
+  <span class="hljs-attr">ribbon:</span> 
+    <span class="hljs-attr">NFLoadBalancerRuleClassName:</span> <span class="hljs-string">com.netflix.loadbalancer.RandomRule</span></code></pre>
+
+<h3 id="五、OpenFeign的超时控制"><a href="#五、OpenFeign的超时控制" class="headerlink" title="五、OpenFeign的超时控制"></a>五、OpenFeign的超时控制</h3><h4 id="1、模拟长流程业务"><a href="#1、模拟长流程业务" class="headerlink" title="1、模拟长流程业务"></a>1、模拟长流程业务</h4><p>修改oss服务FileController的test方法，添加sleep 3秒：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@ApiOperation</span>(value = <span class="hljs-string">"测试"</span>)
+<span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"test"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;
+    log.info(<span class="hljs-string">"oss test被调用"</span>);
+    <span class="hljs-keyword">try</span> &#123;
+        TimeUnit.SECONDS.sleep(<span class="hljs-number">3</span>);
+    &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;
+        e.printStackTrace();
+    &#125;
+    <span class="hljs-keyword">return</span> R.ok();
+&#125;</code></pre>
+
+<h4 id="2、远程调用测试"><a href="#2、远程调用测试" class="headerlink" title="2、远程调用测试"></a>2、远程调用测试</h4><p>上面的程序在测试时会出现远程调用超时错误。如下：因为OpenFeign默认等待1秒钟，否则超时报错</p>
+<p>重试规则：每隔一秒发起重试</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">ribbon:</span>
+  <span class="hljs-attr">MaxAutoRetries:</span> <span class="hljs-number">0</span> <span class="hljs-comment"># 同一实例最大重试次数，不包括首次调用，默认0</span>
+  <span class="hljs-attr">MaxAutoRetriesNextServer:</span> <span class="hljs-number">1</span> <span class="hljs-comment"># 重试其他实例的最大重试次数，不包括首次所选的server，默认1</span></code></pre>
+
+<h4 id="3、解决"><a href="#3、解决" class="headerlink" title="3、解决"></a>3、解决</h4><p>application.yml文件中配置ribbon的超时时间（因为OpenFeing的底层即是对ribbon的封装）</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">ribbon:</span>
+  <span class="hljs-attr">ConnectTimeout:</span> <span class="hljs-number">10000</span> <span class="hljs-comment">#连接建立的超时时长，默认1秒</span>
+  <span class="hljs-attr">ReadTimeout:</span> <span class="hljs-number">10000</span> <span class="hljs-comment">#处理请求的超时时间，默认为1秒</span></code></pre>
+
+<h3 id="六、OpenFeign日志"><a href="#六、OpenFeign日志" class="headerlink" title="六、OpenFeign日志"></a>六、OpenFeign日志</h3><h4 id="1、作用"><a href="#1、作用" class="headerlink" title="1、作用"></a>1、作用</h4><p>OpenFeign提供了日志打印功能，我们可以通过配置来调整日志级别，从而了解OpenFeign中Http请求的细节。即对OpenFeign远程接口调用的情况进行监控和日志输出。</p>
+<h4 id="2、日志级别"><a href="#2、日志级别" class="headerlink" title="2、日志级别"></a>2、日志级别</h4><ul>
+<li>NONE：默认级别，不显示日志</li>
+<li>BASIC：仅记录请求方法、URL、响应状态及执行时间</li>
+<li>HEADERS：除了BASIC中定义的信息之外，还有请求和响应头信息</li>
+<li>FULL：除了HEADERS中定义的信息之外，还有请求和响应正文及元数据信息</li>
+</ul>
+<h4 id="3、配置日志bean"><a href="#3、配置日志bean" class="headerlink" title="3、配置日志bean"></a>3、配置日志bean</h4><p>在service_edu中创建配置文件</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">package</span> <span class="hljs-selector-tag">com</span><span class="hljs-selector-class">.atguigu</span><span class="hljs-selector-class">.guli</span><span class="hljs-selector-class">.service</span><span class="hljs-selector-class">.edu</span><span class="hljs-selector-class">.config</span>;
+
+<span class="hljs-keyword">@Configuration</span>
+public class OpenFeignConfig &#123;
+
+    <span class="hljs-keyword">@Bean</span>
+    Logger.Level feignLoggerLevel()&#123;
+        <span class="hljs-selector-tag">return</span> <span class="hljs-selector-tag">Logger</span><span class="hljs-selector-class">.Level</span><span class="hljs-selector-class">.FULL</span>;
+    &#125;
+&#125;</code></pre>
+
+<h4 id="4、开启日志"><a href="#4、开启日志" class="headerlink" title="4、开启日志"></a>4、开启日志</h4><p>在service_edu中，application.yml中指定监控的接口，以及日志级别</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">logging</span>:
+  <span class="hljs-selector-tag">level</span>:
+    <span class="hljs-selector-tag">com</span><span class="hljs-selector-class">.atguigu</span><span class="hljs-selector-class">.guli</span><span class="hljs-selector-class">.service</span><span class="hljs-selector-class">.edu</span><span class="hljs-selector-class">.feign</span><span class="hljs-selector-class">.OssFileService</span>: <span class="hljs-selector-tag">debug</span> #以什么级别监控哪个接口</code></pre>
+
+<h2 id="Nacos配置中心"><a href="#Nacos配置中心" class="headerlink" title="Nacos配置中心"></a>Nacos配置中心</h2><h3 id="首先导入依赖"><a href="#首先导入依赖" class="headerlink" title="首先导入依赖"></a>首先导入依赖</h3><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--配置中心来做配置管理--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<h3 id="新建bootstrap-yml-配置文件中配置Nacos-Config元数据"><a href="#新建bootstrap-yml-配置文件中配置Nacos-Config元数据" class="headerlink" title="新建bootstrap.yml 配置文件中配置Nacos Config元数据"></a>新建bootstrap.yml 配置文件中配置Nacos Config元数据</h3><blockquote>
+<p>你既然要获取配置，那说明你上来根本没有配置，所以你得创建一个优先级更高的配置</p>
+<p>来指定配置中心的地址</p>
+<p>然后动态获取配置文件</p>
+</blockquote>
+<pre><code class="hljs yaml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">application:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">service-sms</span>
+  <span class="hljs-attr">cloud:</span>
+    <span class="hljs-attr">nacos:</span>
+      <span class="hljs-attr">config:</span>
+        <span class="hljs-attr">server-addr:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:8848</span> <span class="hljs-comment">#nacos中心地址</span>
+        <span class="hljs-attr">file-extension:</span> <span class="hljs-string">yaml</span> <span class="hljs-comment"># 配置文件格式，如果是properties文件则不用配置此项</span></code></pre>
+
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre><code class="hljs java"><span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;user.name1&#125;"</span>)
+<span class="hljs-keyword">private</span> String name;
+<span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;user.age&#125;"</span>)
+<span class="hljs-keyword">private</span> String age;
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"test"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">return</span> R.ok().put(<span class="hljs-string">"name"</span>, name+<span class="hljs-string">" ..."</span>).put(<span class="hljs-string">"age"</span>, age);
+&#125;</code></pre>
+
+<h2 id="其他细节"><a href="#其他细节" class="headerlink" title="其他细节"></a>其他细节</h2><h3 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h3><p>public（保留空间）默认新增的所有配置都在public空间</p>
+<p>开发，测试，生产：可能有不同的配置，这时候就可以创建不同的命名空间</p>
+<blockquote>
+<p>你可以创建不同的命名空间，然后创建配置的时候选择不同的命名空间</p>
+<p>然后修改bootstrap文件，spring.cloud.nacos.config.namespace=xxxx;(id编号)</p>
+</blockquote>
+<h3 id="配置集"><a href="#配置集" class="headerlink" title="配置集"></a>配置集</h3><p>所有配置的集合</p>
+<p>配置集ID：类似文件名</p>
+<p>​    Data ID：</p>
+<blockquote>
+<p>使用spring.cloud.nacos.config.group=1111  //切换不同的组</p>
+</blockquote>
+<p>加载多个配置集</p>
+<blockquote>
+<p>spring.cloud.nacos.config.ext-config[0].data-id=datasource.yml</p>
+<p>spring.cloud.nacos.config.ext-config[0].group=dev</p>
+<p>spring.cloud.nacos.config.ext-config[0].refresh=true  //配置是否自动刷新</p>
+<p>spring.cloud.nacos.config.ext-config[1].data-id=mybatis.yml</p>
+<p>spring.cloud.nacos.config.ext-config[1].group=dev</p>
+<p>spring.cloud.nacos.config.ext-config[1].refresh=true  //配置是否自动刷新</p>
+<p>spring.cloud.nacos.config.ext-config[2].data-id=other.yml</p>
+<p>spring.cloud.nacos.config.ext-config[2].group=dev</p>
+<p>spring.cloud.nacos.config.ext-config[2].refresh=true  //配置是否自动刷新</p>
+</blockquote>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/SpringCloud/">SpringCloud</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Nacos/">Nacos</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C/">服务注册</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/08/goujian/9.Nacos%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【项目创建流程】Nacos注册中心与服务调用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/08/goujian/8.%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">
+                        <span class="hidden-mobile">【项目创建流程】前端项目开发流程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "NFojgagn3zsFUjT0FGVVHUTM-gzGzoHsz",
+          app_key: "9R1L32c7WEvSGSP48NAnfStY",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: true,
+          serverURLs: "https://nfojgagn.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+  <p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+   <div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("07/18/2020 18:00:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+      document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+  }
+  setInterval("createtime()",250);
+  </script>
+</div>
+    <div>
+      &copy;2019 - 2020 By Jimu98
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+		
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">冀ICP备19035627号</a>
+    
+  </div>
+
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1278280985" style="display: none"></span>
+    
+  </div>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【项目创建流程】注册中心和服务调用和配置中心&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 95,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1278280985&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
+</body>
+</html>
