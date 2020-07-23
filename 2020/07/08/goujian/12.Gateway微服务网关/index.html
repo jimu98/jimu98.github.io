@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      30
+      31
        分钟
     </span>
   
@@ -378,6 +378,10 @@
 
 <p>2、自定义全局过滤器</p>
 <p>定义一个Filter实现 GlobalFilter 和 Ordered接口</p>
+<p><code>自定义转发路径</code></p>
+<pre><code class="hljs yaml"><span class="hljs-attr">filters:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">RewritePath=/api/(?&lt;segment&gt;.*),/renren-fast/$\&#123;segment&#125;</span></code></pre>
+
 <p>2、测试网关路由转发</p>
 <p>访问：<a href="http://localhost:9110/user/info" target="_blank" rel="noopener">http://localhost:9110/user/info</a></p>
 <p>请求转发到：<a href="http://localhost:9110/user/info" target="_blank" rel="noopener">http://localhost:8110/user/info</a></p>

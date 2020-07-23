@@ -17,7 +17,7 @@
   <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
   <meta name="author" content="积木">
   <meta name="keywords" content="积木,jimu98,java,后端,jimu">
-  <title>【剑指Offer】把数组排成最小的数 - 积木 | 互联网的一只小菜鸡</title>
+  <title>跨域问题 - 积木 | 互联网的一只小菜鸡</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -176,8 +176,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-22 11:20">
-      2020年7月22日 上午
+    <time datetime="2020-07-24 00:06">
+      2020年7月24日 凌晨
     </time>
   </div>
 
@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      190 字
+      681 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      7
        分钟
     </span>
   
@@ -228,26 +228,50 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。</p>
-<p>示例 1:</p>
-<p>输入: [10,2]<br>输出: “102”<br>示例 2:</p>
-<p>输入: [3,30,34,5,9]<br>输出: “3033459”</p>
-<p>提示:</p>
-<p>0 &lt; nums.length &lt;= 100<br>说明:</p>
-<p>输出结果可能非常大，所以你需要返回一个字符串而不是整数<br>拼接起来的数字可能会有前导 0，最后结果不需要去掉前导 0</p>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">minNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;
-        String[] strs = <span class="hljs-keyword">new</span> String[nums.length];
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) 
-            strs[i] = String.valueOf(nums[i]);
-        Arrays.sort(strs, (x, y) -&gt; (x + y).compareTo(y + x));
-        StringBuilder res = <span class="hljs-keyword">new</span> StringBuilder();
-        <span class="hljs-keyword">for</span>(String s : strs)
-            res.append(s);
-        <span class="hljs-keyword">return</span> res.toString();
-    &#125;
-&#125;</code></pre>
+              <h1 id="【项目创建流程】跨域问题"><a href="#【项目创建流程】跨域问题" class="headerlink" title="【项目创建流程】跨域问题"></a>【项目创建流程】跨域问题</h1><h2 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h2><p>跨域：指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是 浏览器对javascript施加的安全限制。 • 同源策略：是指协议，域名，端口都要相同，其中有一个不同都会产生跨域；</p>
+<p><img src="https://img2.jimu98.cn/blog/20200724001043.png" srcset="/img/loading.gif" alt="image-20200724001043268"></p>
+<h2 id="跨域流程"><a href="#跨域流程" class="headerlink" title="跨域流程"></a>跨域流程</h2><h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）<a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">具体点这里</a></p>
+<p>看名字就知道这是处理跨域问题的标准做法。CORS有两种请求，简单请求和非简单请求。</p>
+<p>只要同时满足以下两大条件，就属于简单请求。</p>
+<blockquote>
+<p>（1) 请求方法是以下三种方法之一：</p>
+<ul>
+<li>HEAD</li>
+<li>GET</li>
+<li>POST</li>
+</ul>
+<p>（2）HTTP的头信息不超出以下几种字段：</p>
+<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Last-Event-ID</li>
+<li>Content-Type：只限于三个值<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>、<code>text/plain</code></li>
+</ul>
+</blockquote>
+<p>巴拉巴拉，这些不是重点，如果大家想看更多，强烈建议去看阮一峰老师的博客</p>
+<p>那么这里着重说一下，非简单请求。</p>
+<p>非简单请求，在请求前，需要发送<code>预检请求</code></p>
+<p>非简单请求是那种对服务器有特殊要求的请求，比如请求方法是<code>PUT</code>或<code>DELETE</code>，或者<code>Content-Type</code>字段的类型是<code>application/json</code>。</p>
+<p>非简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为”预检”请求（preflight）。</p>
+<p>浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的<code>XMLHttpRequest</code>请求，否则就报错。</p>
+<h2 id="跨域解决办法"><a href="#跨域解决办法" class="headerlink" title="跨域解决办法"></a>跨域解决办法</h2><h3 id="1-使用niinx部署为同一域"><a href="#1-使用niinx部署为同一域" class="headerlink" title="1.使用niinx部署为同一域"></a>1.使用niinx部署为同一域</h3><p><img src="https://img2.jimu98.cn/blog/20200724001945.png" srcset="/img/loading.gif" alt="image-20200724001945071"></p>
+<h3 id="2-配置当次请求允许跨域"><a href="#2-配置当次请求允许跨域" class="headerlink" title="2.配置当次请求允许跨域"></a>2.配置当次请求允许跨域</h3><pre><code class="hljs mathematica"><span class="hljs-number">1</span>、添加响应头
+• Access-<span class="hljs-keyword">Control</span>-Allow-Origin：支持哪些来源的请求跨域
+• Access-<span class="hljs-keyword">Control</span>-Allow-Methods：支持哪些方法跨域
+• Access-<span class="hljs-keyword">Control</span>-Allow-Credentials：跨域请求默认不包含cookie，设置为true可以包含
+cookie
+• Access-<span class="hljs-keyword">Control</span>-Expose-Headers：跨域请求暴露的字段
+• CORS请求时，XMLHttpRequest对象的getResponseHeader()方法只能拿到<span class="hljs-number">6</span>个基本字段：
+Cache-<span class="hljs-keyword">Control</span>、Content-<span class="hljs-keyword">Language</span>、Content-Type、Expires、<span class="hljs-keyword">Last</span>-Modified、Pragma。如
+果想拿到其他字段，就必须在Access-<span class="hljs-keyword">Control</span>-Expose-Headers里面指定。
+• Access-<span class="hljs-keyword">Control</span>-<span class="hljs-keyword">Max</span>-Age：表明该响应的有效时间为多少秒。在有效时间内，浏览器无
+须为同一请求再次发起预检请求。请注意，浏览器自身维护了一个最大有效时间，如果
+该首部字段的值超过了最大有效时间，将不会生效。</code></pre>
 
+<blockquote>
+</blockquote>
+<h3 id="3…"><a href="#3…" class="headerlink" title="3….."></a>3…..</h3><p>办法相当多，合理使用</p>
 
             </article>
             <hr>
@@ -257,7 +281,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
                     
                   </div>
                 
@@ -265,9 +289,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%89%91%E6%8C%87Offer/">剑指Offer</a>
+                      <a class="hover-with-bg" href="/tags/%E9%80%92%E5%BD%92/">递归</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/tags/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/">箭头函数</a>
+                    
+                      <a class="hover-with-bg" href="/tags/stream/">stream</a>
                     
                   </div>
                 
@@ -280,18 +306,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/22/xiangmu/ES6%E5%A4%8D%E4%B9%A0/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【项目创建流程】ES6复习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/22/jianzhi-offer/44.%20%E6%95%B0%E5%AD%97%E5%BA%8F%E5%88%97%E4%B8%AD%E6%9F%90%E4%B8%80%E4%BD%8D%E7%9A%84%E6%95%B0%E5%AD%97/">
-                        <span class="hidden-mobile">【剑指Offer】最小的k个数</span>
+                      <a href="/2020/07/23/xiangmu/%E4%B8%89%E7%BA%A7%E5%88%86%E7%B1%BB%EF%BC%9A%E9%80%92%E5%BD%92%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE/">
+                        <span class="hidden-mobile">三级分类：递归树形结构数据</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -514,7 +534,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "【剑指Offer】把数组排成最小的数&nbsp;",
+        "跨域问题&nbsp;",
       ],
       cursorChar: "|",
       typeSpeed: 95,
