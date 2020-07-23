@@ -1,131 +1,490 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+
+
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
+  <meta name="author" content="积木">
+  <meta name="keywords" content="积木,jimu98,java,后端,jimu">
+  <title>【项目创建流程】非业务功能统一处理 - 积木 | 互联网的一只小菜鸡</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
   
 
   
-  <title>【项目创建流程】非业务功能统一处理 | 积木 | 互联网的一只小菜鸡</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="【项目创建流程】非业务功能统一处理统一返回数据格式项目中我们会将响应封装成json返回，一般我们会将所有接口的数据格式统一， 使前端(iOS Android, Web)对数据的操作更一致、轻松。 一般情况下，统一返回数据格式没有固定的格式，只要能描述清楚返回的数据状态以及要返回的具体数据就可以。但是一般会包含状态码、返回消息、数据这几部分内容 例如，我们的系统要求返回的基本数据格式如下： 1234">
-<meta property="og:type" content="article">
-<meta property="og:title" content="【项目创建流程】非业务功能统一处理">
-<meta property="og:url" content="http://www.jimu98.cn/2020/07/08/goujian/6.%E9%9D%9E%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/index.html">
-<meta property="og:site_name" content="积木 | 互联网的一只小菜鸡">
-<meta property="og:description" content="【项目创建流程】非业务功能统一处理统一返回数据格式项目中我们会将响应封装成json返回，一般我们会将所有接口的数据格式统一， 使前端(iOS Android, Web)对数据的操作更一致、轻松。 一般情况下，统一返回数据格式没有固定的格式，只要能描述清楚返回的数据状态以及要返回的具体数据就可以。但是一般会包含状态码、返回消息、数据这几部分内容 例如，我们的系统要求返回的基本数据格式如下： 1234">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-08T08:11:03.000Z">
-<meta property="article:modified_time" content="2020-07-21T16:07:53.386Z">
-<meta property="article:author" content="积木">
-<meta property="article:tag" content="SpringCloud">
-<meta property="article:tag" content="Controller">
-<meta property="article:tag" content="统一处理">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="积木 | 互联网的一只小菜鸡" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">积木 | 互联网的一只小菜鸡</a>
-      </h1>
-      
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jimu98</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/list/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                导航
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.jimu98.cn"></form>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-08 16:11">
+      2020年7月8日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      45
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
       </div>
     </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-goujian/6.非业务功能统一处理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/08/goujian/6.%E9%9D%9E%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/" class="article-date">
-  <time datetime="2020-07-08T08:11:03.000Z" itemprop="datePublished">2020-07-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
-  </div>
+  </header>
 
-  </div>
-  <div class="article-inner">
+  <main>
     
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      【项目创建流程】非业务功能统一处理
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="【项目创建流程】非业务功能统一处理"><a href="#【项目创建流程】非业务功能统一处理" class="headerlink" title="【项目创建流程】非业务功能统一处理"></a>【项目创建流程】非业务功能统一处理</h1><h2 id="统一返回数据格式"><a href="#统一返回数据格式" class="headerlink" title="统一返回数据格式"></a>统一返回数据格式</h2><p>项目中我们会将响应封装成json返回，一般我们会将所有接口的数据格式统一， 使前端(iOS Android, Web)对数据的操作更一致、轻松。</p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="【项目创建流程】非业务功能统一处理"><a href="#【项目创建流程】非业务功能统一处理" class="headerlink" title="【项目创建流程】非业务功能统一处理"></a>【项目创建流程】非业务功能统一处理</h1><h2 id="统一返回数据格式"><a href="#统一返回数据格式" class="headerlink" title="统一返回数据格式"></a>统一返回数据格式</h2><p>项目中我们会将响应封装成json返回，一般我们会将所有接口的数据格式统一， 使前端(iOS Android, Web)对数据的操作更一致、轻松。</p>
 <p>一般情况下，统一返回数据格式没有固定的格式，只要能描述清楚返回的数据状态以及要返回的具体数据就可以。但是一般会包含状态码、返回消息、数据这几部分内容</p>
 <p>例如，我们的系统要求返回的基本数据格式如下：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"success"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"code"</span>: <span class="number">20000</span>,</span><br><span class="line">  <span class="attr">"message"</span>: <span class="string">"成功"</span>,</span><br><span class="line">  <span class="attr">"data"</span>: &#123;</span><br><span class="line">    <span class="attr">"items"</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"id"</span>: <span class="string">"1"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"刘德华"</span>,</span><br><span class="line">        <span class="attr">"intro"</span>: <span class="string">"毕业于师范大学数学系，热爱教育事业，执教数学思维6年有余"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs json">&#123;
+  <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"code"</span>: <span class="hljs-number">20000</span>,
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"成功"</span>,
+  <span class="hljs-attr">"data"</span>: &#123;
+    <span class="hljs-attr">"items"</span>: [
+      &#123;
+        <span class="hljs-attr">"id"</span>: <span class="hljs-string">"1"</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"刘德华"</span>,
+        <span class="hljs-attr">"intro"</span>: <span class="hljs-string">"毕业于师范大学数学系，热爱教育事业，执教数学思维6年有余"</span>
+      &#125;
+    ]
+  &#125;
+&#125;</code></pre>
 
-<h3 id="定义统一返回结果"><a href="#定义统一返回结果" class="headerlink" title="定义统一返回结果"></a>定义统一返回结果</h3><h4 id="创建返回码定义枚举类"><a href="#创建返回码定义枚举类" class="headerlink" title="创建返回码定义枚举类"></a>创建返回码定义枚举类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ResultCodeEnum &#123;</span><br><span class="line"></span><br><span class="line">    SUCCESS(<span class="keyword">true</span>, <span class="number">20000</span>,<span class="string">"成功"</span>),</span><br><span class="line">    UNKNOWN_REASON(<span class="keyword">false</span>, <span class="number">20001</span>, <span class="string">"未知错误"</span>),</span><br><span class="line"></span><br><span class="line">    BAD_SQL_GRAMMAR(<span class="keyword">false</span>, <span class="number">21001</span>, <span class="string">"sql语法错误"</span>),</span><br><span class="line">    JSON_PARSE_ERROR(<span class="keyword">false</span>, <span class="number">21002</span>, <span class="string">"json解析异常"</span>),</span><br><span class="line">    PARAM_ERROR(<span class="keyword">false</span>, <span class="number">21003</span>, <span class="string">"参数不正确"</span>),</span><br><span class="line"></span><br><span class="line">    FILE_UPLOAD_ERROR(<span class="keyword">false</span>, <span class="number">21004</span>, <span class="string">"文件上传错误"</span>),</span><br><span class="line">    FILE_DELETE_ERROR(<span class="keyword">false</span>, <span class="number">21005</span>, <span class="string">"文件刪除错误"</span>),</span><br><span class="line">    EXCEL_DATA_IMPORT_ERROR(<span class="keyword">false</span>, <span class="number">21006</span>, <span class="string">"Excel数据导入错误"</span>),</span><br><span class="line"></span><br><span class="line">    VIDEO_UPLOAD_ALIYUN_ERROR(<span class="keyword">false</span>, <span class="number">22001</span>, <span class="string">"视频上传至阿里云失败"</span>),</span><br><span class="line">    VIDEO_UPLOAD_TOMCAT_ERROR(<span class="keyword">false</span>, <span class="number">22002</span>, <span class="string">"视频上传至业务服务器失败"</span>),</span><br><span class="line">    VIDEO_DELETE_ALIYUN_ERROR(<span class="keyword">false</span>, <span class="number">22003</span>, <span class="string">"阿里云视频文件删除失败"</span>),</span><br><span class="line">    FETCH_VIDEO_UPLOADAUTH_ERROR(<span class="keyword">false</span>, <span class="number">22004</span>, <span class="string">"获取上传地址和凭证失败"</span>),</span><br><span class="line">    REFRESH_VIDEO_UPLOADAUTH_ERROR(<span class="keyword">false</span>, <span class="number">22005</span>, <span class="string">"刷新上传地址和凭证失败"</span>),</span><br><span class="line">    FETCH_PLAYAUTH_ERROR(<span class="keyword">false</span>, <span class="number">22006</span>, <span class="string">"获取播放凭证失败"</span>),</span><br><span class="line"></span><br><span class="line">    URL_ENCODE_ERROR(<span class="keyword">false</span>, <span class="number">23001</span>, <span class="string">"URL编码失败"</span>),</span><br><span class="line">    ILLEGAL_CALLBACK_REQUEST_ERROR(<span class="keyword">false</span>, <span class="number">23002</span>, <span class="string">"非法回调请求"</span>),</span><br><span class="line">    FETCH_ACCESSTOKEN_FAILD(<span class="keyword">false</span>, <span class="number">23003</span>, <span class="string">"获取accessToken失败"</span>),</span><br><span class="line">    FETCH_USERINFO_ERROR(<span class="keyword">false</span>, <span class="number">23004</span>, <span class="string">"获取用户信息失败"</span>),</span><br><span class="line">    LOGIN_ERROR(<span class="keyword">false</span>, <span class="number">23005</span>, <span class="string">"登录失败"</span>),</span><br><span class="line"></span><br><span class="line">    COMMENT_EMPTY(<span class="keyword">false</span>, <span class="number">24006</span>, <span class="string">"评论内容必须填写"</span>),</span><br><span class="line"></span><br><span class="line">    PAY_RUN(<span class="keyword">false</span>, <span class="number">25000</span>, <span class="string">"支付中"</span>),</span><br><span class="line">    PAY_UNIFIEDORDER_ERROR(<span class="keyword">false</span>, <span class="number">25001</span>, <span class="string">"统一下单错误"</span>),</span><br><span class="line">    PAY_ORDERQUERY_ERROR(<span class="keyword">false</span>, <span class="number">25002</span>, <span class="string">"查询支付结果错误"</span>),</span><br><span class="line"></span><br><span class="line">    ORDER_EXIST_ERROR(<span class="keyword">false</span>, <span class="number">25003</span>, <span class="string">"课程已购买"</span>),</span><br><span class="line"></span><br><span class="line">    GATEWAY_ERROR(<span class="keyword">false</span>, <span class="number">26000</span>, <span class="string">"服务不能访问"</span>),</span><br><span class="line"></span><br><span class="line">    CODE_ERROR(<span class="keyword">false</span>, <span class="number">28000</span>, <span class="string">"验证码错误"</span>),</span><br><span class="line"></span><br><span class="line">    LOGIN_PHONE_ERROR(<span class="keyword">false</span>, <span class="number">28009</span>, <span class="string">"手机号码不正确"</span>),</span><br><span class="line">    LOGIN_MOBILE_ERROR(<span class="keyword">false</span>, <span class="number">28001</span>, <span class="string">"账号不正确"</span>),</span><br><span class="line">    LOGIN_PASSWORD_ERROR(<span class="keyword">false</span>, <span class="number">28008</span>, <span class="string">"密码不正确"</span>),</span><br><span class="line">    LOGIN_DISABLED_ERROR(<span class="keyword">false</span>, <span class="number">28002</span>, <span class="string">"该用户已被禁用"</span>),</span><br><span class="line">    REGISTER_MOBLE_ERROR(<span class="keyword">false</span>, <span class="number">28003</span>, <span class="string">"手机号已被注册"</span>),</span><br><span class="line">    LOGIN_AUTH(<span class="keyword">false</span>, <span class="number">28004</span>, <span class="string">"需要登录"</span>),</span><br><span class="line">    LOGIN_ACL(<span class="keyword">false</span>, <span class="number">28005</span>, <span class="string">"没有权限"</span>),</span><br><span class="line">    SMS_SEND_ERROR(<span class="keyword">false</span>, <span class="number">28006</span>, <span class="string">"短信发送失败"</span>),</span><br><span class="line">    SMS_SEND_ERROR_BUSINESS_LIMIT_CONTROL(<span class="keyword">false</span>, <span class="number">28007</span>, <span class="string">"短信发送过于频繁"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Boolean success;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line"></span><br><span class="line">    ResultCodeEnum(Boolean success, Integer code, String message) &#123;</span><br><span class="line">        <span class="keyword">this</span>.success = success;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.message = message;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="定义统一返回结果"><a href="#定义统一返回结果" class="headerlink" title="定义统一返回结果"></a>定义统一返回结果</h3><h4 id="创建返回码定义枚举类"><a href="#创建返回码定义枚举类" class="headerlink" title="创建返回码定义枚举类"></a>创建返回码定义枚举类</h4><pre><code class="hljs java"><span class="hljs-meta">@Getter</span>
+<span class="hljs-meta">@ToString</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> ResultCodeEnum &#123;
 
-<h4 id="创建结果类"><a href="#创建结果类" class="headerlink" title="创建结果类"></a>创建结果类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ApiModel</span>(value = <span class="string">"全局统一返回结果"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">R</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"是否成功"</span>)</span><br><span class="line">    <span class="keyword">private</span> Boolean success;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"返回码"</span>)</span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"返回消息"</span>)</span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"返回数据"</span>)</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, Object&gt; data = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">R</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> R <span class="title">ok</span><span class="params">()</span></span>&#123;</span><br><span class="line">        R r = <span class="keyword">new</span> R();</span><br><span class="line">        r.setSuccess(ResultCodeEnum.SUCCESS.getSuccess());</span><br><span class="line">        r.setCode(ResultCodeEnum.SUCCESS.getCode());</span><br><span class="line">        r.setMessage(ResultCodeEnum.SUCCESS.getMessage());</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> R <span class="title">error</span><span class="params">()</span></span>&#123;</span><br><span class="line">        R r = <span class="keyword">new</span> R();</span><br><span class="line">        r.setSuccess(ResultCodeEnum.UNKNOWN_REASON.getSuccess());</span><br><span class="line">        r.setCode(ResultCodeEnum.UNKNOWN_REASON.getCode());</span><br><span class="line">        r.setMessage(ResultCodeEnum.UNKNOWN_REASON.getMessage());</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> R <span class="title">setResult</span><span class="params">(ResultCodeEnum resultCodeEnum)</span></span>&#123;</span><br><span class="line">        R r = <span class="keyword">new</span> R();</span><br><span class="line">        r.setSuccess(resultCodeEnum.getSuccess());</span><br><span class="line">        r.setCode(resultCodeEnum.getCode());</span><br><span class="line">        r.setMessage(resultCodeEnum.getMessage());</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> R <span class="title">success</span><span class="params">(Boolean success)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setSuccess(success);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> R <span class="title">message</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setMessage(message);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> R <span class="title">code</span><span class="params">(Integer code)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setCode(code);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> R <span class="title">data</span><span class="params">(String key, Object value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data.put(key, value);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> R <span class="title">data</span><span class="params">(Map&lt;String, Object&gt; map)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setData(map);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    SUCCESS(<span class="hljs-keyword">true</span>, <span class="hljs-number">20000</span>,<span class="hljs-string">"成功"</span>),
+    UNKNOWN_REASON(<span class="hljs-keyword">false</span>, <span class="hljs-number">20001</span>, <span class="hljs-string">"未知错误"</span>),
 
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"list"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">listAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List&lt;Teacher&gt; list = teacherService.list();</span><br><span class="line">    <span class="keyword">return</span> R.ok().data(<span class="string">"items"</span>, list).message(<span class="string">"获取讲师列表成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    BAD_SQL_GRAMMAR(<span class="hljs-keyword">false</span>, <span class="hljs-number">21001</span>, <span class="hljs-string">"sql语法错误"</span>),
+    JSON_PARSE_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">21002</span>, <span class="hljs-string">"json解析异常"</span>),
+    PARAM_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">21003</span>, <span class="hljs-string">"参数不正确"</span>),
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DeleteMapping</span>(<span class="string">"remove/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">removeById</span><span class="params">(@PathVariable String id)</span></span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> result = teacherService.removeById(id);</span><br><span class="line">    <span class="keyword">if</span>(result)&#123;</span><br><span class="line">        <span class="keyword">return</span> R.ok().message(<span class="string">"删除成功"</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> R.error().message(<span class="string">"数据不存在"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    FILE_UPLOAD_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">21004</span>, <span class="hljs-string">"文件上传错误"</span>),
+    FILE_DELETE_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">21005</span>, <span class="hljs-string">"文件刪除错误"</span>),
+    EXCEL_DATA_IMPORT_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">21006</span>, <span class="hljs-string">"Excel数据导入错误"</span>),
 
-<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><h3 id="Controller创建分页方法"><a href="#Controller创建分页方法" class="headerlink" title="Controller创建分页方法"></a>Controller创建分页方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"list/&#123;page&#125;/&#123;limit&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">listPage</span><span class="params">(@ApiParam(value = <span class="string">"当前页码"</span>, required = <span class="keyword">true</span>)</span> @PathVariable Long page,</span></span><br><span class="line"><span class="function">                  @<span class="title">ApiParam</span><span class="params">(value = <span class="string">"每页记录数"</span>, required = <span class="keyword">true</span>)</span> @PathVariable Long limit,</span></span><br><span class="line"><span class="function">                  @<span class="title">ApiParam</span><span class="params">(<span class="string">"讲师列表查询对象"</span>)</span> TeacherQueryVo teacherQueryVo)</span>&#123;</span><br><span class="line"></span><br><span class="line">    IPage&lt;Teacher&gt; pageModel = teacherService.selectPage(page, limit, teacherQueryVo);</span><br><span class="line">    List&lt;Teacher&gt; records = pageModel.getRecords();</span><br><span class="line">    <span class="keyword">long</span> total = pageModel.getTotal();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>  R.ok().data(<span class="string">"total"</span>, total).data(<span class="string">"rows"</span>, records);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    VIDEO_UPLOAD_ALIYUN_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">22001</span>, <span class="hljs-string">"视频上传至阿里云失败"</span>),
+    VIDEO_UPLOAD_TOMCAT_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">22002</span>, <span class="hljs-string">"视频上传至业务服务器失败"</span>),
+    VIDEO_DELETE_ALIYUN_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">22003</span>, <span class="hljs-string">"阿里云视频文件删除失败"</span>),
+    FETCH_VIDEO_UPLOADAUTH_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">22004</span>, <span class="hljs-string">"获取上传地址和凭证失败"</span>),
+    REFRESH_VIDEO_UPLOADAUTH_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">22005</span>, <span class="hljs-string">"刷新上传地址和凭证失败"</span>),
+    FETCH_PLAYAUTH_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">22006</span>, <span class="hljs-string">"获取播放凭证失败"</span>),
+
+    URL_ENCODE_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">23001</span>, <span class="hljs-string">"URL编码失败"</span>),
+    ILLEGAL_CALLBACK_REQUEST_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">23002</span>, <span class="hljs-string">"非法回调请求"</span>),
+    FETCH_ACCESSTOKEN_FAILD(<span class="hljs-keyword">false</span>, <span class="hljs-number">23003</span>, <span class="hljs-string">"获取accessToken失败"</span>),
+    FETCH_USERINFO_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">23004</span>, <span class="hljs-string">"获取用户信息失败"</span>),
+    LOGIN_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">23005</span>, <span class="hljs-string">"登录失败"</span>),
+
+    COMMENT_EMPTY(<span class="hljs-keyword">false</span>, <span class="hljs-number">24006</span>, <span class="hljs-string">"评论内容必须填写"</span>),
+
+    PAY_RUN(<span class="hljs-keyword">false</span>, <span class="hljs-number">25000</span>, <span class="hljs-string">"支付中"</span>),
+    PAY_UNIFIEDORDER_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">25001</span>, <span class="hljs-string">"统一下单错误"</span>),
+    PAY_ORDERQUERY_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">25002</span>, <span class="hljs-string">"查询支付结果错误"</span>),
+
+    ORDER_EXIST_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">25003</span>, <span class="hljs-string">"课程已购买"</span>),
+
+    GATEWAY_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">26000</span>, <span class="hljs-string">"服务不能访问"</span>),
+
+    CODE_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">28000</span>, <span class="hljs-string">"验证码错误"</span>),
+
+    LOGIN_PHONE_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">28009</span>, <span class="hljs-string">"手机号码不正确"</span>),
+    LOGIN_MOBILE_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">28001</span>, <span class="hljs-string">"账号不正确"</span>),
+    LOGIN_PASSWORD_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">28008</span>, <span class="hljs-string">"密码不正确"</span>),
+    LOGIN_DISABLED_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">28002</span>, <span class="hljs-string">"该用户已被禁用"</span>),
+    REGISTER_MOBLE_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">28003</span>, <span class="hljs-string">"手机号已被注册"</span>),
+    LOGIN_AUTH(<span class="hljs-keyword">false</span>, <span class="hljs-number">28004</span>, <span class="hljs-string">"需要登录"</span>),
+    LOGIN_ACL(<span class="hljs-keyword">false</span>, <span class="hljs-number">28005</span>, <span class="hljs-string">"没有权限"</span>),
+    SMS_SEND_ERROR(<span class="hljs-keyword">false</span>, <span class="hljs-number">28006</span>, <span class="hljs-string">"短信发送失败"</span>),
+    SMS_SEND_ERROR_BUSINESS_LIMIT_CONTROL(<span class="hljs-keyword">false</span>, <span class="hljs-number">28007</span>, <span class="hljs-string">"短信发送过于频繁"</span>);
+
+
+    <span class="hljs-keyword">private</span> Boolean success;
+
+    <span class="hljs-keyword">private</span> Integer code;
+
+    <span class="hljs-keyword">private</span> String message;
+
+    ResultCodeEnum(Boolean success, Integer code, String message) &#123;
+        <span class="hljs-keyword">this</span>.success = success;
+        <span class="hljs-keyword">this</span>.code = code;
+        <span class="hljs-keyword">this</span>.message = message;
+    &#125;
+&#125;</code></pre>
+
+<h4 id="创建结果类"><a href="#创建结果类" class="headerlink" title="创建结果类"></a>创建结果类</h4><pre><code class="hljs java">
+<span class="hljs-meta">@Data</span>
+<span class="hljs-meta">@ApiModel</span>(value = <span class="hljs-string">"全局统一返回结果"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">R</span> </span>&#123;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">"是否成功"</span>)
+    <span class="hljs-keyword">private</span> Boolean success;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">"返回码"</span>)
+    <span class="hljs-keyword">private</span> Integer code;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">"返回消息"</span>)
+    <span class="hljs-keyword">private</span> String message;
+
+    <span class="hljs-meta">@ApiModelProperty</span>(value = <span class="hljs-string">"返回数据"</span>)
+    <span class="hljs-keyword">private</span> Map&lt;String, Object&gt; data = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">R</span><span class="hljs-params">()</span></span>&#123;&#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> R <span class="hljs-title">ok</span><span class="hljs-params">()</span></span>&#123;
+        R r = <span class="hljs-keyword">new</span> R();
+        r.setSuccess(ResultCodeEnum.SUCCESS.getSuccess());
+        r.setCode(ResultCodeEnum.SUCCESS.getCode());
+        r.setMessage(ResultCodeEnum.SUCCESS.getMessage());
+        <span class="hljs-keyword">return</span> r;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> R <span class="hljs-title">error</span><span class="hljs-params">()</span></span>&#123;
+        R r = <span class="hljs-keyword">new</span> R();
+        r.setSuccess(ResultCodeEnum.UNKNOWN_REASON.getSuccess());
+        r.setCode(ResultCodeEnum.UNKNOWN_REASON.getCode());
+        r.setMessage(ResultCodeEnum.UNKNOWN_REASON.getMessage());
+        <span class="hljs-keyword">return</span> r;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> R <span class="hljs-title">setResult</span><span class="hljs-params">(ResultCodeEnum resultCodeEnum)</span></span>&#123;
+        R r = <span class="hljs-keyword">new</span> R();
+        r.setSuccess(resultCodeEnum.getSuccess());
+        r.setCode(resultCodeEnum.getCode());
+        r.setMessage(resultCodeEnum.getMessage());
+        <span class="hljs-keyword">return</span> r;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">success</span><span class="hljs-params">(Boolean success)</span></span>&#123;
+        <span class="hljs-keyword">this</span>.setSuccess(success);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">message</span><span class="hljs-params">(String message)</span></span>&#123;
+        <span class="hljs-keyword">this</span>.setMessage(message);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">code</span><span class="hljs-params">(Integer code)</span></span>&#123;
+        <span class="hljs-keyword">this</span>.setCode(code);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">data</span><span class="hljs-params">(String key, Object value)</span></span>&#123;
+        <span class="hljs-keyword">this</span>.data.put(key, value);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">data</span><span class="hljs-params">(Map&lt;String, Object&gt; map)</span></span>&#123;
+        <span class="hljs-keyword">this</span>.setData(map);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    &#125;
+&#125;</code></pre>
+
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre><code class="hljs java"><span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"list"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">listAll</span><span class="hljs-params">()</span></span>&#123;
+    List&lt;Teacher&gt; list = teacherService.list();
+    <span class="hljs-keyword">return</span> R.ok().data(<span class="hljs-string">"items"</span>, list).message(<span class="hljs-string">"获取讲师列表成功"</span>);
+&#125;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-meta">@DeleteMapping</span>(<span class="hljs-string">"remove/&#123;id&#125;"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">removeById</span><span class="hljs-params">(@PathVariable String id)</span></span>&#123;
+    <span class="hljs-keyword">boolean</span> result = teacherService.removeById(id);
+    <span class="hljs-keyword">if</span>(result)&#123;
+        <span class="hljs-keyword">return</span> R.ok().message(<span class="hljs-string">"删除成功"</span>);
+    &#125;<span class="hljs-keyword">else</span>&#123;
+        <span class="hljs-keyword">return</span> R.error().message(<span class="hljs-string">"数据不存在"</span>);
+    &#125;
+&#125;</code></pre>
+
+<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><h3 id="Controller创建分页方法"><a href="#Controller创建分页方法" class="headerlink" title="Controller创建分页方法"></a>Controller创建分页方法</h3><pre><code class="hljs java"><span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"list/&#123;page&#125;/&#123;limit&#125;"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">listPage</span><span class="hljs-params">(@ApiParam(value = <span class="hljs-string">"当前页码"</span>, required = <span class="hljs-keyword">true</span>)</span> @PathVariable Long page,</span>
+<span class="hljs-function">                  @<span class="hljs-title">ApiParam</span><span class="hljs-params">(value = <span class="hljs-string">"每页记录数"</span>, required = <span class="hljs-keyword">true</span>)</span> @PathVariable Long limit,</span>
+<span class="hljs-function">                  @<span class="hljs-title">ApiParam</span><span class="hljs-params">(<span class="hljs-string">"讲师列表查询对象"</span>)</span> TeacherQueryVo teacherQueryVo)</span>&#123;
+
+    IPage&lt;Teacher&gt; pageModel = teacherService.selectPage(page, limit, teacherQueryVo);
+    List&lt;Teacher&gt; records = pageModel.getRecords();
+    <span class="hljs-keyword">long</span> total = pageModel.getTotal();
+
+    <span class="hljs-keyword">return</span>  R.ok().data(<span class="hljs-string">"total"</span>, total).data(<span class="hljs-string">"rows"</span>, records);
+&#125;</code></pre>
 
 <h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><blockquote>
 <p>在我们平时写项目的时候，一般查询数据字段可能只需要三四个，但是数据库里面有十多个，甚至多数据库，多表查询</p>
 <p>这时候就要根据返回类型创建Vo对象</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TeacherQueryVo</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer level;</span><br><span class="line">    <span class="keyword">private</span> String joinDateBegin;</span><br><span class="line">    <span class="keyword">private</span> String joinDateEnd;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java">
+<span class="hljs-meta">@Data</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TeacherQueryVo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
+    
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> Integer level;
+    <span class="hljs-keyword">private</span> String joinDateBegin;
+    <span class="hljs-keyword">private</span> String joinDateEnd;
+&#125;</code></pre>
 
 <blockquote>
 <p>创建完实体类，就需要写条件查询了</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.guli.service.edu.service.impl;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TeacherServiceImpl</span> <span class="keyword">extends</span> <span class="title">ServiceImpl</span>&lt;<span class="title">TeacherMapper</span>, <span class="title">Teacher</span>&gt; <span class="keyword">implements</span> <span class="title">TeacherService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IPage&lt;Teacher&gt; <span class="title">selectPage</span><span class="params">(Long page, Long limit, TeacherQueryVo teacherQueryVo)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        Page&lt;Teacher&gt; pageParam = <span class="keyword">new</span> Page&lt;&gt;(page, limit);</span><br><span class="line">        </span><br><span class="line">        QueryWrapper&lt;Teacher&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">        queryWrapper.orderByAsc(<span class="string">"sort"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (teacherQueryVo == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> baseMapper.selectPage(pageParam, queryWrapper);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String name = teacherQueryVo.getName();</span><br><span class="line">        Integer level = teacherQueryVo.getLevel();</span><br><span class="line">        String begin = teacherQueryVo.getJoinDateBegin();</span><br><span class="line">        String end = teacherQueryVo.getJoinDateEnd();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!StringUtils.isEmpty(name)) &#123;</span><br><span class="line">            <span class="comment">//左%会使索引失效</span></span><br><span class="line">            queryWrapper.likeRight(<span class="string">"name"</span>, name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (level != <span class="keyword">null</span>) &#123;</span><br><span class="line">            queryWrapper.eq(<span class="string">"level"</span>, level);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!StringUtils.isEmpty(begin)) &#123;</span><br><span class="line">            queryWrapper.ge(<span class="string">"join_date"</span>, begin);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!StringUtils.isEmpty(end)) &#123;</span><br><span class="line">            queryWrapper.le(<span class="string">"join_date"</span>, end);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> baseMapper.selectPage(pageParam, queryWrapper);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.atguigu.guli.service.edu.service.impl;
+
+<span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TeacherServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceImpl</span>&lt;<span class="hljs-title">TeacherMapper</span>, <span class="hljs-title">Teacher</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">TeacherService</span> </span>&#123;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> IPage&lt;Teacher&gt; <span class="hljs-title">selectPage</span><span class="hljs-params">(Long page, Long limit, TeacherQueryVo teacherQueryVo)</span> </span>&#123;
+        
+        Page&lt;Teacher&gt; pageParam = <span class="hljs-keyword">new</span> Page&lt;&gt;(page, limit);
+        
+        QueryWrapper&lt;Teacher&gt; queryWrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();
+        queryWrapper.orderByAsc(<span class="hljs-string">"sort"</span>);
+
+        <span class="hljs-keyword">if</span> (teacherQueryVo == <span class="hljs-keyword">null</span>)&#123;
+            <span class="hljs-keyword">return</span> baseMapper.selectPage(pageParam, queryWrapper);
+        &#125;
+
+        String name = teacherQueryVo.getName();
+        Integer level = teacherQueryVo.getLevel();
+        String begin = teacherQueryVo.getJoinDateBegin();
+        String end = teacherQueryVo.getJoinDateEnd();
+
+        <span class="hljs-keyword">if</span> (!StringUtils.isEmpty(name)) &#123;
+            <span class="hljs-comment">//左%会使索引失效</span>
+            queryWrapper.likeRight(<span class="hljs-string">"name"</span>, name);
+        &#125;
+
+        <span class="hljs-keyword">if</span> (level != <span class="hljs-keyword">null</span>) &#123;
+            queryWrapper.eq(<span class="hljs-string">"level"</span>, level);
+        &#125;
+
+        <span class="hljs-keyword">if</span> (!StringUtils.isEmpty(begin)) &#123;
+            queryWrapper.ge(<span class="hljs-string">"join_date"</span>, begin);
+        &#125;
+
+        <span class="hljs-keyword">if</span> (!StringUtils.isEmpty(end)) &#123;
+            queryWrapper.le(<span class="hljs-string">"join_date"</span>, end);
+        &#125;
+
+        <span class="hljs-keyword">return</span> baseMapper.selectPage(pageParam, queryWrapper);
+    &#125;
+&#125;</code></pre>
 
 <h2 id="统一异常处理"><a href="#统一异常处理" class="headerlink" title="统一异常处理"></a>统一异常处理</h2><p>我们想让异常结果也显示为统一的返回结果对象，并且统一处理系统的异常信息，那么需要统一异常处理</p>
 <h3 id="创建统一异常处理器"><a href="#创建统一异常处理器" class="headerlink" title="创建统一异常处理器"></a>创建统一异常处理器</h3><blockquote>
 <p>一般创建在service-base中handler包中，</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    @<span class="title">ResponseBody</span></span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">R</span> <span class="title">error</span>(<span class="title">Exception</span> <span class="title">e</span>)</span>&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="keyword">return</span> R.error();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java">
+<span class="hljs-meta">@ControllerAdvice</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GlobalExceptionHandler</span> </span>&#123;
+
+    <span class="hljs-meta">@ExceptionHandler</span>(Exception<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>
+<span class="hljs-class">    @<span class="hljs-title">ResponseBody</span></span>
+<span class="hljs-class">    <span class="hljs-title">public</span> <span class="hljs-title">R</span> <span class="hljs-title">error</span>(<span class="hljs-title">Exception</span> <span class="hljs-title">e</span>)</span>&#123;
+        e.printStackTrace();
+        <span class="hljs-keyword">return</span> R.error();
+    &#125;
+&#125;</code></pre>
 
 <blockquote>
 <p>例如上面就可以捕获所有异常</p>
@@ -133,34 +492,96 @@
 </blockquote>
 <h3 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h3><h2 id="1、创建自定义异常类"><a href="#1、创建自定义异常类" class="headerlink" title="1、创建自定义异常类"></a><strong>1、创建自定义异常类</strong></h2><p>service-base模块中创建cn.jimu98.guli.service.base.exception包，</p>
 <p>创建GuliException.java通用异常类 继承 RuntimeException，RuntimeException 对代码没有侵入性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GuliException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//状态码</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 接受状态码和消息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> code</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> message</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GuliException</span><span class="params">(Integer code, String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message);</span><br><span class="line">        <span class="keyword">this</span>.code=code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 接收枚举类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> resultCodeEnum</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GuliException</span><span class="params">(ResultCodeEnum resultCodeEnum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(resultCodeEnum.getMessage());</span><br><span class="line">        <span class="keyword">this</span>.code = resultCodeEnum.getCode();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java">
+<span class="hljs-meta">@Data</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GuliException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RuntimeException</span> </span>&#123;
+
+    <span class="hljs-comment">//状态码</span>
+    <span class="hljs-keyword">private</span> Integer code;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 接受状态码和消息</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> code</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> message</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GuliException</span><span class="hljs-params">(Integer code, String message)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>(message);
+        <span class="hljs-keyword">this</span>.code=code;
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 接收枚举类型</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> resultCodeEnum</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GuliException</span><span class="hljs-params">(ResultCodeEnum resultCodeEnum)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>(resultCodeEnum.getMessage());
+        <span class="hljs-keyword">this</span>.code = resultCodeEnum.getCode();
+    &#125;
+&#125;</code></pre>
 
 <h2 id="2、添加异常处理方法"><a href="#2、添加异常处理方法" class="headerlink" title="2、添加异常处理方法"></a>2、添加异常处理方法</h2><p>GlobalExceptionHandler.java中添加</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ExceptionHandler</span>(GuliException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">ResponseBody</span></span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">R</span> <span class="title">error</span>(<span class="title">GuliException</span> <span class="title">e</span>)</span>&#123;</span><br><span class="line">    log.error(ExceptionUtils.getMessage(e));</span><br><span class="line">    <span class="keyword">return</span> R.error().message(e.getMessage()).code(e.getCode());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-meta">@ExceptionHandler</span>(GuliException<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>
+<span class="hljs-class">@<span class="hljs-title">ResponseBody</span></span>
+<span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">R</span> <span class="hljs-title">error</span>(<span class="hljs-title">GuliException</span> <span class="hljs-title">e</span>)</span>&#123;
+    log.error(ExceptionUtils.getMessage(e));
+    <span class="hljs-keyword">return</span> R.error().message(e.getMessage()).code(e.getCode());
+&#125;</code></pre>
 
 <h2 id="3、修改FileController"><a href="#3、修改FileController" class="headerlink" title="3、修改FileController"></a>3、修改FileController</h2><p>在类上添加日志注解</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs aspectj"><span class="hljs-meta">@Slf</span>4j</code></pre>
 
 <p>业务中需要的位置抛出GuliException</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">upload</span><span class="params">(...)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ......</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">        log.error(ExceptionUtils.getMessage(e));</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> GuliException(ResultCodeEnum.FILE_UPLOAD_ERROR);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> R <span class="hljs-title">upload</span><span class="hljs-params">(...)</span> </span>&#123;
+
+    <span class="hljs-keyword">try</span> &#123;
+        ......
+    &#125; <span class="hljs-keyword">catch</span> (Exception e)&#123;
+        log.error(ExceptionUtils.getMessage(e));
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GuliException(ResultCodeEnum.FILE_UPLOAD_ERROR);
+    &#125;
+&#125;</code></pre>
 
 <h2 id="4、打印完整的异常信息"><a href="#4、打印完整的异常信息" class="headerlink" title="4、打印完整的异常信息"></a>4、打印完整的异常信息</h2><p>GuliException类中重写toString方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public String toString() &#123;</span><br><span class="line">    return &quot;GuliException&#123;&quot; +</span><br><span class="line">        &quot;code&#x3D;&quot; + code +</span><br><span class="line">        &quot;, message&#x3D;&quot; + this.getMessage() +</span><br><span class="line">        &#39;&#125;&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs kotlin"><span class="hljs-meta">@Override</span>
+<span class="hljs-keyword">public</span> String toString() &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"GuliException&#123;"</span> +
+        <span class="hljs-string">"code="</span> + code +
+        <span class="hljs-string">", message="</span> + <span class="hljs-keyword">this</span>.getMessage() +
+        <span class="hljs-string">'&#125;'</span>;
+&#125;</code></pre>
 
-<h2 id="三、前端错误处理"><a href="#三、前端错误处理" class="headerlink" title="三、前端错误处理"></a>三、前端错误处理</h2><h2 id="1、统一异常错误处理"><a href="#1、统一异常错误处理" class="headerlink" title="1、统一异常错误处理"></a>1、统一异常错误处理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 上传成功回调</span><br><span class="line">handleAvatarSuccess(res, file) &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">    if (res.success) &#123;</span><br><span class="line">        &#x2F;&#x2F; console.log(res)</span><br><span class="line">        this.teacher.avatar &#x3D; res.data.url</span><br><span class="line">        &#x2F;&#x2F; 强制重新渲染</span><br><span class="line">        this.$forceUpdate()</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        this.$message.error(&#39;上传失败 （非20000）&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="三、前端错误处理"><a href="#三、前端错误处理" class="headerlink" title="三、前端错误处理"></a>三、前端错误处理</h2><h2 id="1、统一异常错误处理"><a href="#1、统一异常错误处理" class="headerlink" title="1、统一异常错误处理"></a>1、统一异常错误处理</h2><pre><code class="hljs stylus"><span class="hljs-comment">// 上传成功回调</span>
+<span class="hljs-function"><span class="hljs-title">handleAvatarSuccess</span><span class="hljs-params">(res, file)</span></span> &#123;
+    console.log(res)
+    <span class="hljs-keyword">if</span> (res.success) &#123;
+        <span class="hljs-comment">// console.log(res)</span>
+        this<span class="hljs-selector-class">.teacher</span><span class="hljs-selector-class">.avatar</span> = res<span class="hljs-selector-class">.data</span>.url
+        <span class="hljs-comment">// 强制重新渲染</span>
+        this.<span class="hljs-variable">$forceUpdate</span>()
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        this.<span class="hljs-variable">$message</span>.error(<span class="hljs-string">'上传失败 （非20000）'</span>)
+    &#125;
+&#125;,</code></pre>
 
 <h2 id="2、http异常错误处理"><a href="#2、http异常错误处理" class="headerlink" title="2、http异常错误处理"></a>2、http异常错误处理</h2><p>注册事件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-upload</span> <span class="attr">:on-error</span>=<span class="string">"handleAvatarError"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">el-upload</span> <span class="hljs-attr">:on-error</span>=<span class="hljs-string">"handleAvatarError"</span>&gt;</span></code></pre>
 
 <p>事件函数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误处理</span></span><br><span class="line">handleAvatarError() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error'</span>)</span><br><span class="line">    <span class="keyword">this</span>.$message.error(<span class="string">'上传失败（http失败）'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-comment">// 错误处理</span>
+handleAvatarError() &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'error'</span>)
+    <span class="hljs-keyword">this</span>.$message.error(<span class="hljs-string">'上传失败（http失败）'</span>)
+&#125;</code></pre>
 
 
 
 <h2 id="统一日志处理"><a href="#统一日志处理" class="headerlink" title="统一日志处理"></a>统一日志处理</h2><h3 id="配置日志级别"><a href="#配置日志级别" class="headerlink" title="配置日志级别"></a>配置日志级别</h3><p>日志记录器（Logger）的行为是分等级的。如下表所示：</p>
 <p>分为：FATAL、ERROR、WARN、INFO、DEBUG</p>
 <p>默认情况下，spring boot从控制台打印出来的日志级别只有INFO及以上级别，可以配置日志级别</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置日志级别</span></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line">  <span class="attr">level:</span></span><br><span class="line">    <span class="attr">root:</span> <span class="string">ERROR</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs yaml"><span class="hljs-comment"># 设置日志级别</span>
+<span class="hljs-attr">logging:</span>
+  <span class="hljs-attr">level:</span>
+    <span class="hljs-attr">root:</span> <span class="hljs-string">ERROR</span></code></pre>
 
 <p>这种方式能将ERROR级别以及以上级别的日志打印在控制台上</p>
 <h3 id="Logback日志"><a href="#Logback日志" class="headerlink" title="Logback日志"></a>Logback日志</h3><p>spring boot内部使用Logback作为日志实现的框架。</p>
@@ -169,159 +590,552 @@
 <h4 id="配置logback日志"><a href="#配置logback日志" class="headerlink" title="配置logback日志"></a>配置logback日志</h4><p><strong>删除application.yml中的日志配置</strong></p>
 <p><strong>安装idea彩色日志插件：grep console</strong></p>
 <p>resources 中创建 logback-spring.xml （默认日志的名字，必须是这个名字）</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>  <span class="attr">scan</span>=<span class="string">"true"</span> <span class="attr">scanPeriod</span>=<span class="string">"10 seconds"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">contextName</span>&gt;</span>logback<span class="tag">&lt;/<span class="name">contextName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"log.path"</span> <span class="attr">value</span>=<span class="string">"D:/project/helen/guli_log/edu"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--控制台日志格式：彩色日志--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- magenta:洋红 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- boldMagenta:粗红--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- cyan:青色 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- white:白色 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- magenta:洋红 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"CONSOLE_LOG_PATTERN"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">value</span>=<span class="string">"%yellow(%date&#123;yyyy-MM-dd HH:mm:ss&#125;) |%highlight(%-5level) |%blue(%thread) |%blue(%file:%line) |%green(%logger) |%cyan(%msg%n)"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--文件日志格式--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"FILE_LOG_PATTERN"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">value</span>=<span class="string">"%date&#123;yyyy-MM-dd HH:mm:ss&#125; |%-5level |%thread |%file:%line |%logger |%msg%n"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--编码--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"ENCODING"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">value</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--输出到控制台--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"CONSOLE"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.ConsoleAppender"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.filter.ThresholdFilter"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--日志级别--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">level</span>&gt;</span>DEBUG<span class="tag">&lt;/<span class="name">level</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--日志格式--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Pattern</span>&gt;</span>$&#123;CONSOLE_LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">Pattern</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--日志字符集--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">charset</span>&gt;</span>$&#123;ENCODING&#125;<span class="tag">&lt;/<span class="name">charset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--输出到文件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"INFO_FILE"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--日志过滤器：此日志文件只记录INFO级别的--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.filter.LevelFilter"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">level</span>&gt;</span>INFO<span class="tag">&lt;/<span class="name">level</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMatch</span>&gt;</span>ACCEPT<span class="tag">&lt;/<span class="name">onMatch</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">onMismatch</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 正在记录的日志文件的路径及文件名 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;log.path&#125;/log_info.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;FILE_LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">charset</span>&gt;</span>$&#123;ENCODING&#125;<span class="tag">&lt;/<span class="name">charset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 日志记录器的滚动策略，按日期，按大小记录 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 每天日志归档路径以及格式 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;log.path&#125;/info/log-info-%d&#123;yyyy-MM-dd&#125;.%i.log<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">timeBasedFileNamingAndTriggeringPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>100MB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--日志文件保留天数--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>15<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"WARN_FILE"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 日志过滤器：此日志文件只记录WARN级别的 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.filter.LevelFilter"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">level</span>&gt;</span>WARN<span class="tag">&lt;/<span class="name">level</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMatch</span>&gt;</span>ACCEPT<span class="tag">&lt;/<span class="name">onMatch</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">onMismatch</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 正在记录的日志文件的路径及文件名 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;log.path&#125;/log_warn.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;FILE_LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">charset</span>&gt;</span>$&#123;ENCODING&#125;<span class="tag">&lt;/<span class="name">charset</span>&gt;</span> <span class="comment">&lt;!-- 此处设置字符集 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 日志记录器的滚动策略，按日期，按大小记录 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;log.path&#125;/warn/log-warn-%d&#123;yyyy-MM-dd&#125;.%i.log<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">timeBasedFileNamingAndTriggeringPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>100MB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--日志文件保留天数--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>15<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"ERROR_FILE"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 日志过滤器：此日志文件只记录ERROR级别的 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.filter.LevelFilter"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">level</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">level</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMatch</span>&gt;</span>ACCEPT<span class="tag">&lt;/<span class="name">onMatch</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">onMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">onMismatch</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 正在记录的日志文件的路径及文件名 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;log.path&#125;/log_error.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;FILE_LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">charset</span>&gt;</span>$&#123;ENCODING&#125;<span class="tag">&lt;/<span class="name">charset</span>&gt;</span> <span class="comment">&lt;!-- 此处设置字符集 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 日志记录器的滚动策略，按日期，按大小记录 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;log.path&#125;/error/log-error-%d&#123;yyyy-MM-dd&#125;.%i.log<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">timeBasedFileNamingAndTriggeringPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>100MB<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--日志文件保留天数--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>15<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--开发环境--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">"dev"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--可以灵活设置此处，从而控制日志的输出--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"DEBUG"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"CONSOLE"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"INFO_FILE"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"WARN_FILE"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"ERROR_FILE"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--生产环境--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">"pro"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"ERROR"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"ERROR_FILE"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>  <span class="hljs-attr">scan</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">scanPeriod</span>=<span class="hljs-string">"10 seconds"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">contextName</span>&gt;</span>logback<span class="hljs-tag">&lt;/<span class="hljs-name">contextName</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"log.path"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"D:/project/helen/guli_log/edu"</span> /&gt;</span>
+
+    <span class="hljs-comment">&lt;!--控制台日志格式：彩色日志--&gt;</span>
+    <span class="hljs-comment">&lt;!-- magenta:洋红 --&gt;</span>
+    <span class="hljs-comment">&lt;!-- boldMagenta:粗红--&gt;</span>
+    <span class="hljs-comment">&lt;!-- cyan:青色 --&gt;</span>
+    <span class="hljs-comment">&lt;!-- white:白色 --&gt;</span>
+    <span class="hljs-comment">&lt;!-- magenta:洋红 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"CONSOLE_LOG_PATTERN"</span></span>
+<span class="hljs-tag">              <span class="hljs-attr">value</span>=<span class="hljs-string">"%yellow(%date&#123;yyyy-MM-dd HH:mm:ss&#125;) |%highlight(%-5level) |%blue(%thread) |%blue(%file:%line) |%green(%logger) |%cyan(%msg%n)"</span>/&gt;</span>
+
+    <span class="hljs-comment">&lt;!--文件日志格式--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"FILE_LOG_PATTERN"</span></span>
+<span class="hljs-tag">              <span class="hljs-attr">value</span>=<span class="hljs-string">"%date&#123;yyyy-MM-dd HH:mm:ss&#125; |%-5level |%thread |%file:%line |%logger |%msg%n"</span> /&gt;</span>
+
+    <span class="hljs-comment">&lt;!--编码--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"ENCODING"</span></span>
+<span class="hljs-tag">              <span class="hljs-attr">value</span>=<span class="hljs-string">"UTF-8"</span> /&gt;</span>
+
+    <span class="hljs-comment">&lt;!--输出到控制台--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"CONSOLE"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.core.ConsoleAppender"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.classic.filter.ThresholdFilter"</span>&gt;</span>
+            <span class="hljs-comment">&lt;!--日志级别--&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">level</span>&gt;</span>DEBUG<span class="hljs-tag">&lt;/<span class="hljs-name">level</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">encoder</span>&gt;</span>
+            <span class="hljs-comment">&lt;!--日志格式--&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Pattern</span>&gt;</span>$&#123;CONSOLE_LOG_PATTERN&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">Pattern</span>&gt;</span>
+            <span class="hljs-comment">&lt;!--日志字符集--&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">charset</span>&gt;</span>$&#123;ENCODING&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">charset</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">encoder</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--输出到文件--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"INFO_FILE"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span>
+        <span class="hljs-comment">&lt;!--日志过滤器：此日志文件只记录INFO级别的--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.classic.filter.LevelFilter"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">level</span>&gt;</span>INFO<span class="hljs-tag">&lt;/<span class="hljs-name">level</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">onMatch</span>&gt;</span>ACCEPT<span class="hljs-tag">&lt;/<span class="hljs-name">onMatch</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">onMismatch</span>&gt;</span>DENY<span class="hljs-tag">&lt;/<span class="hljs-name">onMismatch</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- 正在记录的日志文件的路径及文件名 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>$&#123;log.path&#125;/log_info.log<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">encoder</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">pattern</span>&gt;</span>$&#123;FILE_LOG_PATTERN&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">pattern</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">charset</span>&gt;</span>$&#123;ENCODING&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">charset</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">encoder</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- 日志记录器的滚动策略，按日期，按大小记录 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rollingPolicy</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span>
+            <span class="hljs-comment">&lt;!-- 每天日志归档路径以及格式 --&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">fileNamePattern</span>&gt;</span>$&#123;log.path&#125;/info/log-info-%d&#123;yyyy-MM-dd&#125;.%i.log<span class="hljs-tag">&lt;/<span class="hljs-name">fileNamePattern</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">timeBasedFileNamingAndTriggeringPolicy</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">maxFileSize</span>&gt;</span>100MB<span class="hljs-tag">&lt;/<span class="hljs-name">maxFileSize</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span>
+            <span class="hljs-comment">&lt;!--日志文件保留天数--&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">maxHistory</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-name">maxHistory</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">rollingPolicy</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"WARN_FILE"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- 日志过滤器：此日志文件只记录WARN级别的 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.classic.filter.LevelFilter"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">level</span>&gt;</span>WARN<span class="hljs-tag">&lt;/<span class="hljs-name">level</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">onMatch</span>&gt;</span>ACCEPT<span class="hljs-tag">&lt;/<span class="hljs-name">onMatch</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">onMismatch</span>&gt;</span>DENY<span class="hljs-tag">&lt;/<span class="hljs-name">onMismatch</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- 正在记录的日志文件的路径及文件名 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>$&#123;log.path&#125;/log_warn.log<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">encoder</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">pattern</span>&gt;</span>$&#123;FILE_LOG_PATTERN&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">pattern</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">charset</span>&gt;</span>$&#123;ENCODING&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">charset</span>&gt;</span> <span class="hljs-comment">&lt;!-- 此处设置字符集 --&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">encoder</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- 日志记录器的滚动策略，按日期，按大小记录 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rollingPolicy</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">fileNamePattern</span>&gt;</span>$&#123;log.path&#125;/warn/log-warn-%d&#123;yyyy-MM-dd&#125;.%i.log<span class="hljs-tag">&lt;/<span class="hljs-name">fileNamePattern</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">timeBasedFileNamingAndTriggeringPolicy</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">maxFileSize</span>&gt;</span>100MB<span class="hljs-tag">&lt;/<span class="hljs-name">maxFileSize</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span>
+            <span class="hljs-comment">&lt;!--日志文件保留天数--&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">maxHistory</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-name">maxHistory</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">rollingPolicy</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"ERROR_FILE"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- 日志过滤器：此日志文件只记录ERROR级别的 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.classic.filter.LevelFilter"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">level</span>&gt;</span>ERROR<span class="hljs-tag">&lt;/<span class="hljs-name">level</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">onMatch</span>&gt;</span>ACCEPT<span class="hljs-tag">&lt;/<span class="hljs-name">onMatch</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">onMismatch</span>&gt;</span>DENY<span class="hljs-tag">&lt;/<span class="hljs-name">onMismatch</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- 正在记录的日志文件的路径及文件名 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>$&#123;log.path&#125;/log_error.log<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">encoder</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">pattern</span>&gt;</span>$&#123;FILE_LOG_PATTERN&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">pattern</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">charset</span>&gt;</span>$&#123;ENCODING&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">charset</span>&gt;</span> <span class="hljs-comment">&lt;!-- 此处设置字符集 --&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">encoder</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- 日志记录器的滚动策略，按日期，按大小记录 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rollingPolicy</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">fileNamePattern</span>&gt;</span>$&#123;log.path&#125;/error/log-error-%d&#123;yyyy-MM-dd&#125;.%i.log<span class="hljs-tag">&lt;/<span class="hljs-name">fileNamePattern</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">timeBasedFileNamingAndTriggeringPolicy</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">maxFileSize</span>&gt;</span>100MB<span class="hljs-tag">&lt;/<span class="hljs-name">maxFileSize</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span>
+            <span class="hljs-comment">&lt;!--日志文件保留天数--&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">maxHistory</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-name">maxHistory</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">rollingPolicy</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--开发环境--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">springProfile</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dev"</span>&gt;</span>
+        <span class="hljs-comment">&lt;!--可以灵活设置此处，从而控制日志的输出--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">root</span> <span class="hljs-attr">level</span>=<span class="hljs-string">"DEBUG"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"CONSOLE"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"INFO_FILE"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"WARN_FILE"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"ERROR_FILE"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">root</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">springProfile</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--生产环境--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">springProfile</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pro"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">root</span> <span class="hljs-attr">level</span>=<span class="hljs-string">"ERROR"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"ERROR_FILE"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">root</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">springProfile</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
 
 <h4 id="用日志记录器记录错误日志"><a href="#用日志记录器记录错误日志" class="headerlink" title="用日志记录器记录错误日志"></a>用日志记录器记录错误日志</h4><blockquote>
 <p>类上添加注解@Slf4j</p>
 </blockquote>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.jimu98.cn/2020/07/08/goujian/6.%E9%9D%9E%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/" data-id="ckcyf2wuq00ab1cvubhag8phh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Controller/" rel="tag">Controller</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/" rel="tag">统一处理</a></li></ul>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/SpringCloud/">SpringCloud</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Controller/">Controller</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/">统一处理</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/08/goujian/7.%E5%89%8D%E7%AB%AF%E4%B8%9A%E5%8A%A1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【项目创建流程】前端业务总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/08/goujian/5.%E9%85%8D%E7%BD%AESwagger/">
+                        <span class="hidden-mobile">【项目创建流程】配置Swagger</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/07/08/goujian/7.%E5%89%8D%E7%AB%AF%E4%B8%9A%E5%8A%A1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          【项目创建流程】前端业务总结
-        
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "NFojgagn3zsFUjT0FGVVHUTM-gzGzoHsz",
+          app_key: "9R1L32c7WEvSGSP48NAnfStY",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: true,
+          serverURLs: "https://nfojgagn.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
     </a>
   
-  
-    <a href="/2020/07/08/goujian/5.%E9%85%8D%E7%BD%AESwagger/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">【项目创建流程】配置Swagger</div>
-    </a>
-  
-</nav>
 
   
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Controller/" rel="tag">Controller</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gateway/" rel="tag">Gateway</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis-Plus/" rel="tag">MyBatis-Plus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nacos/" rel="tag">Nacos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sentinel/" rel="tag">Sentinel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger2/" rel="tag">Swagger2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bean/" rel="tag">bean</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/promist/" rel="tag">promist</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" rel="tag">二叉搜索树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/" rel="tag">代码生成器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87Offer/" rel="tag">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" rel="tag">反转链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" rel="tag">后序遍历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E9%A1%B6%E5%A0%86/" rel="tag">小顶堆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%88%97/" rel="tag">排列</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" rel="tag">斐波那契</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/" rel="tag">旋转数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C/" rel="tag">服务注册</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag">框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A9%E9%98%B5/" rel="tag">矩阵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/" rel="tag">箭头函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/" rel="tag">统一处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%9F%E5%88%97/" rel="tag">队列</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Controller/" style="font-size: 13.33px;">Controller</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Gateway/" style="font-size: 10px;">Gateway</a> <a href="/tags/MyBatis-Plus/" style="font-size: 10px;">MyBatis-Plus</a> <a href="/tags/Nacos/" style="font-size: 11.67px;">Nacos</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Sentinel/" style="font-size: 10px;">Sentinel</a> <a href="/tags/SpringCloud/" style="font-size: 18.33px;">SpringCloud</a> <a href="/tags/Swagger2/" style="font-size: 10px;">Swagger2</a> <a href="/tags/Vue/" style="font-size: 11.67px;">Vue</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/bean/" style="font-size: 10px;">bean</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/promist/" style="font-size: 10px;">promist</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" style="font-size: 11.67px;">二叉搜索树</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 16.67px;">二叉树</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/" style="font-size: 10px;">代码生成器</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 11.67px;">前端</a> <a href="/tags/%E5%89%91%E6%8C%87Offer/" style="font-size: 20px;">剑指Offer</a> <a href="/tags/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">反转链表</a> <a href="/tags/%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" style="font-size: 10px;">后序遍历</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 11.67px;">字符串</a> <a href="/tags/%E5%B0%8F%E9%A1%B6%E5%A0%86/" style="font-size: 10px;">小顶堆</a> <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 13.33px;">微服务</a> <a href="/tags/%E6%8E%92%E5%88%97/" style="font-size: 10px;">排列</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 15px;">数组</a> <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" style="font-size: 11.67px;">斐波那契</a> <a href="/tags/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/" style="font-size: 10px;">旋转数组</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C/" style="font-size: 11.67px;">服务注册</a> <a href="/tags/%E6%A0%88/" style="font-size: 13.33px;">栈</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 11.67px;">框架</a> <a href="/tags/%E7%9F%A9%E9%98%B5/" style="font-size: 10px;">矩阵</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/" style="font-size: 10px;">箭头函数</a> <a href="/tags/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86/" style="font-size: 10px;">统一处理</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 15px;">链表</a> <a href="/tags/%E9%98%9F%E5%88%97/" style="font-size: 10px;">队列</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/07/22/goujian/ES6%E5%A4%8D%E4%B9%A0/">【项目创建流程】ES6复习</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/jianzhi-offer/45.%20%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/">【剑指Offer】把数组排成最小的数</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/jianzhi-offer/44.%20%E6%95%B0%E5%AD%97%E5%BA%8F%E5%88%97%E4%B8%AD%E6%9F%90%E4%B8%80%E4%BD%8D%E7%9A%84%E6%95%B0%E5%AD%97/">【剑指Offer】最小的k个数</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/jianzhi-offer/43.%201%EF%BD%9En%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0/">【剑指Offer】1～n整数中1出现的次数</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/jianzhi-offer/42.%20%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/">【剑指Offer】连续子数组的最大和</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 积木<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
   </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+  <p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+   <div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("07/18/2020 18:00:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+      document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+  }
+  setInterval("createtime()",250);
+  </script>
+</div>
+    <div>
+      &copy;2019 - 2020 By Jimu98
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+		
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">冀ICP备19035627号</a>
+    
+  </div>
+
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1278280985" style="display: none"></span>
+    
+  </div>
+
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
 
 
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【项目创建流程】非业务功能统一处理&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 95,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
 
   
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
 
 
 
 
-  </div>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1278280985&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
 </body>
 </html>
