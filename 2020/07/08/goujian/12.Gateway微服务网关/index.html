@@ -240,7 +240,7 @@
 <p>（2）断言。Java8中的断言函数。Spring Cloud Gateway中的断言函数允许开发者去定义匹配来自于http request中的任何信息，比如请求头和参数等。</p>
 <p>（3）过滤器。一个标准的Spring webFilter。Spring cloud gateway中的filter分为两种类型的Filter，分别是Gateway Filter和Global Filter。过滤器Filter将会对请求和响应进行修改处理。</p>
 <h3 id="4、执行流程"><a href="#4、执行流程" class="headerlink" title="4、执行流程"></a>4、执行流程</h3><p>如下图所示，Spring cloud Gateway发出请求。然后再由Gateway Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway web handler。Handler再通过指定的过滤器链将请求发送到我们实际的服务执行业务逻辑，然后返回。</p>
-<p><img src="http://img1.jimu98.cn/blog/a3cb663f-16f5-4133-b091-1b92035b57ce.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https:////img2.jimu98.cn/blog/20200723154454.png" srcset="/img/loading.gif" alt="image-20200723154454083"></p>
 <p><strong>4、特点</strong></p>
 <p>优点：</p>
 <ul>
@@ -355,7 +355,7 @@
 <p>客户端的请求先经过“pre”类型的filter，然后将请求转发到具体的业务服务，收到业务服务的响应之后，再经过“post”类型的filter处理，最后返回响应到客户端。</p>
 <p>pre： 这种过滤器在请求被路由之前调用。我们可利用这种过滤器实现参数校验、权限校验、流量监控、日志输出、协议转换等；</p>
 <p>post：这种过滤器在路由到达微服务以后执行。这种过滤器可用做响应内容、响应头的修改，日志的输出，流量监控等。</p>
-<p><img src="http://img1.jimu98.cn/blog/20200722160833.png" srcset="/img/loading.gif" alt="image-20200722160833395"></p>
+<p><img src="https:////img2.jimu98.cn/blog/20200723154536.png" srcset="/img/loading.gif" alt="image-20200723154536196"></p>
 <p>3、分类</p>
 <p>局部过滤器 GatewayFilter：作用在某一个路由上</p>
 <p>全局过滤器 GlobalFilter：作用全部路由上</p>
@@ -370,9 +370,9 @@
   <span class="hljs-bullet">-</span> <span class="hljs-string">SetStatus=250</span> <span class="hljs-comment"># 修改返回状态码</span></code></pre>
 
 <p>测试：</p>
-<p><img src="http://img1.jimu98.cn/blog/20200722160844.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https:////img2.jimu98.cn/blog/20200723154605.png" srcset="/img/loading.gif" alt="image-20200723154605180"></p>
 <h6 id="三、全局过滤器"><a href="#三、全局过滤器" class="headerlink" title="三、全局过滤器"></a>三、全局过滤器</h6><p>1、内置全局过滤器</p>
-<p>*<em><img src="http://img1.jimu98.cn/blog/20200722160848.png" srcset="/img/loading.gif" alt="img"><br>*</em></p>
+<p><img src="https:////img2.jimu98.cn/blog/20200723154630.png" srcset="/img/loading.gif" alt="image-20200723154630370"></p>
 <p>内置全局过滤器的使用举例：负载均衡过滤器</p>
 <pre><code class="hljs dts"><span class="hljs-symbol">lb:</span><span class="hljs-comment">//service-edu</span></code></pre>
 

@@ -241,17 +241,17 @@
 <blockquote>
 <p>如下图所示，以 n = 2304为例，求 digit = 10（即十位）的 11 出现次数。</p>
 </blockquote>
-<p><img src="http://img1.jimu98.cn//blog/20200722105308.png" srcset="/img/loading.gif" alt="image-20200722105307948"></p>
+<p><img src="https://img2.jimu98.cn/blog/20200723155713.png" srcset="/img/loading.gif" alt="image-20200723155713725"></p>
 <p>当 cur = 1时： 此位 11 的出现次数由高位 high 和低位 low 决定，计算公式为：high×digit+low+1</p>
 <blockquote>
 <p>如下图所示，以 n = 2314 为例，求 digit = 10digit=10 （即十位）的 1出现次数。</p>
 </blockquote>
-<p><img src="http://img1.jimu98.cn//blog/20200722105354.png" srcset="/img/loading.gif" alt="image-20200722105354188"></p>
+<p><img src="https://img2.jimu98.cn/blog/20200723155726.png" srcset="/img/loading.gif" alt="image-20200723155726661"></p>
 <p>当 cur = 2, 3, …, 9时： 此位 1 的出现次数只由高位 high决定，计算公式为：(high+1)×digit</p>
 <blockquote>
 <p>如下图所示，以 n = 2324 为例，求 digit = 10（即十位）的 1 出现次数。</p>
 </blockquote>
-<p><img src="http://img1.jimu98.cn//blog/20200722105443.png" srcset="/img/loading.gif" alt="image-20200722105443126"></p>
+<p><img src="https://img2.jimu98.cn/blog/20200723155740.png" srcset="/img/loading.gif" alt="image-20200723155740761"></p>
 <pre><code class="hljs java">
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">countDigitOne</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;

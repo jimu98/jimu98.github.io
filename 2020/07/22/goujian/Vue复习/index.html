@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
+  <meta name="author" content="积木">
+  <meta name="keywords" content="积木,jimu98,java,后端,jimu">
+  <title>【项目创建流程】ES6复习 - 积木 | 互联网的一只小菜鸡</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jimu98</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/list/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                导航
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-22 21:06">
+      2020年7月22日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="【项目创建流程】VUE复习"><a href="#【项目创建流程】VUE复习" class="headerlink" title="【项目创建流程】VUE复习"></a>【项目创建流程】VUE复习</h1><h2 id="MVVM思想"><a href="#MVVM思想" class="headerlink" title="MVVM思想"></a>MVVM思想</h2><p>MVVM的全名是Model-View-ViewModel，它的基本思路就是这样：</p>
+<p><img src="https://pic3.zhimg.com/80/1d9336019baa5cabdf0e5e30b3effffb_hd.jpg" srcset="/img/loading.gif" alt="image"></p>
+<p>M：即Model，模型，包括数据和一些基本操作</p>
+<p>V：即View，试图，页面渲染结果</p>
+<p>VM：即View-Model，模型与视图间的双向操作</p>
+<p><img src="https://pic4.zhimg.com/80/edd0080fb145315fbc96164c219fee7e_hd.jpg" srcset="/img/loading.gif" alt="image"></p>
+<h2 id="Vue简介"><a href="#Vue简介" class="headerlink" title="Vue简介"></a>Vue简介</h2><p><a href="https://cn.vuejs.org/" target="_blank" rel="noopener">官网链接</a></p>
+<h2 id="入门案例"><a href="#入门案例" class="headerlink" title="入门案例"></a>入门案例</h2><pre><code class="hljs vue">&lt;div id&#x3D;&quot;app&quot;&gt;
+    &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;num&quot;&gt;
+    &lt;button v-on:click&#x3D;&quot;num++&quot;&gt;点赞&lt;&#x2F;button&gt;
+    &lt;button v-on:click&#x3D;&quot;cancle&quot;&gt;取消&lt;&#x2F;button&gt;
+    &lt;h1&gt; &#123;&#123;name&#125;&#125; ,非常帅，有&#123;&#123;num&#125;&#125;个人为他点赞&#123;&#123;hello()&#125;&#125;&lt;&#x2F;h1&gt;
+&lt;&#x2F;div&gt;
+
+&lt;script src&#x3D;&quot;.&#x2F;node_modules&#x2F;vue&#x2F;dist&#x2F;vue.js&quot;&gt;&lt;&#x2F;script&gt;
+
+&lt;script&gt;
+    &#x2F;&#x2F;1、vue声明式渲染
+    let vm &#x3D; new Vue(&#123;
+        el: &quot;#app&quot;,&#x2F;&#x2F;绑定元素
+        data: &#123;  &#x2F;&#x2F;封装数据
+            name: &quot;张三&quot;,
+            num: 1
+        &#125;,
+        methods:&#123;  &#x2F;&#x2F;封装方法
+            cancle()&#123;
+                this.num -- ;
+            &#125;,
+            hello()&#123;
+                return &quot;1&quot;
+            &#125;
+        &#125;
+    &#125;);
+
+    &#x2F;&#x2F;2、双向绑定,模型变化，视图变化。反之亦然。
+
+    &#x2F;&#x2F;3、事件处理
+
+    &#x2F;&#x2F;v-xx：指令
+
+    &#x2F;&#x2F;1、创建vue实例，关联页面的模板，将自己的数据（data）渲染到关联的模板，响应式的
+    &#x2F;&#x2F;2、指令来简化对dom的一些操作。
+    &#x2F;&#x2F;3、声明方法来做更复杂的操作。methods里面可以封装方法。
+
+&lt;&#x2F;script&gt;</code></pre>
+
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="v-text-v-html"><a href="#v-text-v-html" class="headerlink" title="v-text=   v-html="></a>v-text=   v-html=</h3><pre><code class="hljs js">&lt;span v-html=<span class="hljs-string">"msg"</span>&gt;&lt;<span class="hljs-regexp">/span&gt;</span>
+<span class="hljs-regexp">&lt;br/</span>&gt;
+&lt;span v-text=<span class="hljs-string">"msg"</span>&gt;&lt;<span class="hljs-regexp">/span&gt;</span>
+<span class="hljs-regexp"></span>
+<span class="hljs-regexp">data:&#123;</span>
+<span class="hljs-regexp">    msg:"&lt;h1&gt;Hello&lt;/</span>h1&gt;<span class="hljs-string">",</span>
+<span class="hljs-string">    link:"</span>http:<span class="hljs-comment">//www.baidu.com"</span>
+&#125;,</code></pre>
+
+<h3 id="v-bind：-给任意属性绑定值-或者前面加"><a href="#v-bind：-给任意属性绑定值-或者前面加" class="headerlink" title="v-bind： 给任意属性绑定值  或者前面加 :"></a>v-bind： 给任意属性绑定值  或者前面加 :</h3><pre><code class="hljs js">&lt;a :href=<span class="hljs-string">"link"</span>&gt;gogogo&lt;<span class="hljs-regexp">/a&gt;</span>
+<span class="hljs-regexp"></span>
+<span class="hljs-regexp">&lt;!-- class,style  &#123;class名：加上？&#125;--&gt;</span>
+<span class="hljs-regexp">    &lt;span v-bind:class="&#123;active:isActive,'text-danger':hasError&#125;"</span>
+<span class="hljs-regexp">    :style="&#123;color: color1,fontSize: size&#125;"&gt;你好&lt;/</span>span&gt;
+
+data:&#123;
+    link: <span class="hljs-string">"http://www.baidu.com"</span>,
+	isActive:<span class="hljs-literal">true</span>,
+	hasError:<span class="hljs-literal">true</span>,
+	color1:<span class="hljs-string">'red'</span>,
+	size:<span class="hljs-string">'36px'</span>
+&#125;</code></pre>
+
+<h3 id="v-model"><a href="#v-model" class="headerlink" title="v-model="></a>v-model=</h3><blockquote>
+<p>在未来开发中，使用这个较多</p>
+</blockquote>
+<pre><code class="hljs js">精通的语言：
+    &lt;input type=<span class="hljs-string">"checkbox"</span> v-model=<span class="hljs-string">"language"</span> value=<span class="hljs-string">"Java"</span>&gt; java&lt;br/&gt;
+	&lt;input type=<span class="hljs-string">"checkbox"</span> v-model=<span class="hljs-string">"language"</span> value=<span class="hljs-string">"PHP"</span>&gt; PHP&lt;br/&gt;
+	&lt;input type=<span class="hljs-string">"checkbox"</span> v-model=<span class="hljs-string">"language"</span> value=<span class="hljs-string">"Python"</span>&gt; Python&lt;br/&gt;
+选中了 &#123;&#123;language.join(<span class="hljs-string">","</span>)&#125;&#125;
+
+data:&#123;
+    language: []
+&#125;</code></pre>
+
+<h3 id="v-on：-绑定事件-或者直接写"><a href="#v-on：-绑定事件-或者直接写" class="headerlink" title="v-on： 绑定事件 或者直接写@"></a>v-on： 绑定事件 或者直接写@</h3><pre><code class="hljs js">&lt;!--事件中直接写js片段--&gt;
+    &lt;button v-on:click=<span class="hljs-string">"num++"</span>&gt;点赞&lt;<span class="hljs-regexp">/button&gt;</span>
+<span class="hljs-regexp">&lt;!--事件指定一个回调函数，必须是Vue实例中定义的函数--&gt;</span>
+<span class="hljs-regexp">        &lt;button @click="cancle"&gt;取消&lt;/</span>button&gt;
+&lt;!--  --&gt;
+        &lt;h1&gt;有&#123;&#123;num&#125;&#125;个赞&lt;<span class="hljs-regexp">/h1&gt;</span>
+<span class="hljs-regexp"></span>
+<span class="hljs-regexp">&lt;!-- 事件修饰符 --&gt;</span>
+<span class="hljs-regexp">&lt;div style="border: 1px solid red;padding: 20px;" v-on:click.once="hello"&gt;</span>
+<span class="hljs-regexp">                大div</span>
+<span class="hljs-regexp">&lt;div style="border: 1px solid blue;padding: 20px;" @click.stop="hello"&gt;</span>
+<span class="hljs-regexp">    小div &lt;br /</span>&gt;
+    &lt;a href=<span class="hljs-string">"http://www.baidu.com"</span> @click.prevent.stop=<span class="hljs-string">"hello"</span>&gt;去百度&lt;<span class="hljs-regexp">/a&gt;</span>
+<span class="hljs-regexp">&lt;/</span>div&gt;
+&lt;<span class="hljs-regexp">/div&gt;</span>
+<span class="hljs-regexp"></span>
+<span class="hljs-regexp"></span>
+<span class="hljs-regexp"></span>
+<span class="hljs-regexp">&lt;!-- 按键修饰符： --&gt;</span>
+<span class="hljs-regexp">        &lt;input type="text" v-model="num" v-on:keyup.up="num+=2" @keyup.down="num-=2" @click.ctrl="num=10"&gt;&lt;br /</span>&gt;
+
+            提示：
+
+&lt;<span class="hljs-regexp">/div&gt;</span>
+<span class="hljs-regexp">&lt;script src="../</span>node_modules/vue/dist/vue.js<span class="hljs-string">"&gt;&lt;/script&gt;</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">&lt;script&gt;</span>
+<span class="hljs-string">        new Vue(&#123;</span>
+        el:"#app",
+        data:&#123;
+            num: <span class="hljs-number">1</span>
+        &#125;,
+        methods:&#123;
+            cancle()&#123;
+                <span class="hljs-keyword">this</span>.num--;
+            &#125;,
+            hello()&#123;
+                alert(<span class="hljs-string">"点击了"</span>)
+            &#125;
+        &#125;
+    &#125;)
+&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
+
+<p>阻止事件</p>
+<blockquote>
+<p>.stop 阻止事件冒泡到父元素<br>.prevent 阻止默认事件发生<br>.capture 使用事件捕获模式<br>.self 只有元素自身触发事件才 执行。(冒泡或捕获的都不执行 )<br>.once 只执行一-次</p>
+</blockquote>
+<p>按键修饰符</p>
+<blockquote>
+<p>.ctrl  =&gt; //Ctrl键</p>
+<p>.enter =&gt; // enter键 </p>
+<p>.tab =&gt; // tab键 </p>
+<p>.delete (捕获“删除”和“退格”按键) =&gt; // 删除键 </p>
+<p>.esc =&gt; // 取消键 .space =&gt; // 空格键 </p>
+<p>.up =&gt; // 上 </p>
+<p>.down =&gt; // 下 </p>
+<p>.left =&gt; // 左 </p>
+<p>.right =&gt; // 右</p>
+</blockquote>
+<h3 id="v-for"><a href="#v-for" class="headerlink" title="v-for="></a>v-for=</h3><pre><code class="hljs js">&lt;div id=<span class="hljs-string">"app"</span>&gt;
+    &lt;ul&gt;
+    &lt;li v-<span class="hljs-keyword">for</span>=<span class="hljs-string">"(user,index) in users"</span> :key=<span class="hljs-string">"user.name"</span> v-<span class="hljs-keyword">if</span>=<span class="hljs-string">"user.gender == '女'"</span>&gt;
+        &lt;!-- <span class="hljs-number">1</span>、显示user信息：v-<span class="hljs-keyword">for</span>=<span class="hljs-string">"item in items"</span> --&gt;
+            当前索引：&#123;&#123;index&#125;&#125; ==&gt; &#123;&#123;user.name&#125;&#125;  ==&gt;   &#123;&#123;user.gender&#125;&#125; ==&gt;&#123;&#123;user.age&#125;&#125; &lt;br&gt;
+                &lt;!-- <span class="hljs-number">2</span>、获取数组下标：v-<span class="hljs-keyword">for</span>=<span class="hljs-string">"(item,index) in items"</span> --&gt;
+                &lt;!-- <span class="hljs-number">3</span>、遍历对象：
+                    v-<span class="hljs-keyword">for</span>=<span class="hljs-string">"value in object"</span>
+                    v-<span class="hljs-keyword">for</span>=<span class="hljs-string">"(value,key) in object"</span>
+                    v-<span class="hljs-keyword">for</span>=<span class="hljs-string">"(value,key,index) in object"</span> 
+    			--&gt;
+    对象信息：
+&lt;span v-<span class="hljs-keyword">for</span>=<span class="hljs-string">"(v,k,i) in user"</span>&gt;&#123;&#123;k&#125;&#125;==&#123;&#123;v&#125;&#125;==&#123;&#123;i&#125;&#125;；&lt;<span class="hljs-regexp">/span&gt;</span>
+<span class="hljs-regexp">&lt;!-- 4、遍历的时候都加上:key来区分不同数据，提高vue渲染效率 --&gt;</span>
+<span class="hljs-regexp">    &lt;/</span>li&gt;
+
+&lt;<span class="hljs-regexp">/ul&gt;</span>
+<span class="hljs-regexp"></span>
+<span class="hljs-regexp">&lt;ul&gt;</span>
+<span class="hljs-regexp">    &lt;li v-for="(num,index) in nums" :key="index"&gt;&lt;/</span>li&gt;
+&lt;<span class="hljs-regexp">/ul&gt;</span>
+<span class="hljs-regexp">&lt;/</span>div&gt;
+&lt;script src=<span class="hljs-string">"../node_modules/vue/dist/vue.js"</span>&gt;&lt;<span class="hljs-regexp">/script&gt;</span>
+<span class="hljs-regexp">&lt;script&gt;         </span>
+<span class="hljs-regexp">    let app = new Vue(&#123;</span>
+<span class="hljs-regexp">        el: "#app",</span>
+<span class="hljs-regexp">        data: &#123;</span>
+<span class="hljs-regexp">            users: [&#123; name: '柳岩', gender: '女', age: 21 &#125;,</span>
+<span class="hljs-regexp">                    &#123; name: '张三', gender: '男', age: 18 &#125;,</span>
+<span class="hljs-regexp">                    &#123; name: '范冰冰', gender: '女', age: 24 &#125;,</span>
+<span class="hljs-regexp">                    &#123; name: '刘亦菲', gender: '女', age: 18 &#125;,</span>
+<span class="hljs-regexp">                    &#123; name: '古力娜扎', gender: '女', age: 25 &#125;],</span>
+<span class="hljs-regexp">            nums: [1,2,3,4,4]</span>
+<span class="hljs-regexp">        &#125;,</span>
+<span class="hljs-regexp">    &#125;)</span>
+<span class="hljs-regexp">&lt;/</span>script&gt;</code></pre>
+
+
+
+<h2 id="计算属性和侦听器"><a href="#计算属性和侦听器" class="headerlink" title="计算属性和侦听器"></a>计算属性和侦听器</h2><h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/VUE/">VUE</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/">箭头函数</a>
+                    
+                      <a class="hover-with-bg" href="/tags/promist/">promist</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/22/goujian/ES6%E5%A4%8D%E4%B9%A0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【项目创建流程】ES6复习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/22/jianzhi-offer/45.%20%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/">
+                        <span class="hidden-mobile">【剑指Offer】把数组排成最小的数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "NFojgagn3zsFUjT0FGVVHUTM-gzGzoHsz",
+          app_key: "9R1L32c7WEvSGSP48NAnfStY",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: true,
+          serverURLs: "https://nfojgagn.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+  <p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+   <div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("07/18/2020 18:00:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+      document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+  }
+  setInterval("createtime()",250);
+  </script>
+</div>
+    <div>
+      &copy;2019 - 2020 By Jimu98
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+		
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">冀ICP备19035627号</a>
+    
+  </div>
+
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1278280985" style="display: none"></span>
+    
+  </div>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【项目创建流程】ES6复习&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 95,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1278280985&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
+</body>
+</html>
