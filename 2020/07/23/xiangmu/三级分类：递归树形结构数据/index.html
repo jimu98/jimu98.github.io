@@ -188,7 +188,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      201 字
+      450 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        分钟
     </span>
   
@@ -254,7 +254,7 @@
 <span class="hljs-comment">//递归查找所有菜单的子菜单</span>
 <span class="hljs-function"><span class="hljs-keyword">private</span> List&lt;CategoryEntity&gt; <span class="hljs-title">getChildrens</span><span class="hljs-params">(CategoryEntity root, List&lt;CategoryEntity&gt; all)</span> </span>&#123;
     List&lt;CategoryEntity&gt; children = all.stream().filter(categoryEntity -&gt; &#123;
-        <span class="hljs-keyword">return</span> categoryEntity.getParentCid() == root.getCatId();
+        <span class="hljs-keyword">return</span> categoryEntity.getParentCid().equals(root.getCatId());
     &#125;).map(categoryEntity -&gt; &#123;
         <span class="hljs-comment">//1.找到子菜单</span>
         categoryEntity.setChildren(getChildrens(categoryEntity, all));
@@ -263,6 +263,62 @@
         <span class="hljs-comment">//2.菜单的排序</span>
         <span class="hljs-keyword">return</span> (o1.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o1.getSort()) - (o2.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o2.getSort());
     &#125;).collect(Collectors.toList());
+    <span class="hljs-keyword">return</span> children;
+&#125;
+
+<span class="hljs-comment">//for循环拼接</span>
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;CategoryEntity&gt; <span class="hljs-title">listWithTree</span><span class="hljs-params">()</span> </span>&#123;
+
+    <span class="hljs-comment">// 1.查询出所有的分类</span>
+    List&lt;CategoryEntity&gt; entities = baseMapper.selectList(<span class="hljs-keyword">null</span>);
+
+    <span class="hljs-comment">// 2.组装成父子的树形结构</span>
+
+    List&lt;CategoryEntity&gt; level1Menus = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    <span class="hljs-comment">// 找到所有的一级分类</span>
+    <span class="hljs-keyword">for</span> (CategoryEntity entity : entities) &#123;
+        <span class="hljs-keyword">if</span> (entity.getParentCid() == <span class="hljs-number">0</span>) &#123;
+            level1Menus.add(entity);
+        &#125;
+    &#125;
+
+    <span class="hljs-keyword">for</span> (CategoryEntity level1Menu : level1Menus) &#123;
+        level1Menu.setChildren(getChildrens(level1Menu, entities));
+    &#125;
+    <span class="hljs-comment">//排序</span>
+    level1Menus.sort(<span class="hljs-keyword">new</span> Comparator&lt;CategoryEntity&gt;() &#123;
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(CategoryEntity o1, CategoryEntity o2)</span> </span>&#123;
+            <span class="hljs-keyword">return</span> (o1.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o1.getSort()) - (o2.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o2.getSort());
+        &#125;
+    &#125;);
+    <span class="hljs-keyword">return</span> level1Menus;
+&#125;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 递归查找所有的下级分类</span>
+<span class="hljs-comment">     * 在这一级别的分类中找下级分类</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> root 当前级别的分类</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> all  全部分类</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 下一级分类</span>
+<span class="hljs-comment">     */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> List&lt;CategoryEntity&gt; <span class="hljs-title">getChildrens</span><span class="hljs-params">(CategoryEntity root, List&lt;CategoryEntity&gt; all)</span> </span>&#123;
+    List&lt;CategoryEntity&gt; children = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    <span class="hljs-keyword">for</span> (CategoryEntity a : all) &#123;
+        <span class="hljs-keyword">if</span> (a.getParentCid().equals(root.getCatId())) &#123;
+            a.setChildren(getChildrens(a, all));
+            children.add(a);
+        &#125;
+    &#125;
+    children.sort(<span class="hljs-keyword">new</span> Comparator&lt;CategoryEntity&gt;() &#123;
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(CategoryEntity o1, CategoryEntity o2)</span> </span>&#123;
+            <span class="hljs-keyword">return</span> (o1.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o1.getSort()) - (o2.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o2.getSort());
+        &#125;
+    &#125;);
     <span class="hljs-keyword">return</span> children;
 &#125;</code></pre>
 
@@ -275,7 +331,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">项目笔记</a>
                     
                   </div>
                 

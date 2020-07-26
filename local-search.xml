@@ -4,6 +4,315 @@
   
   
   <entry>
+    <title>【剑指Offer】翻转单词顺序</title>
+    <link href="/2020/07/25/jianzhi-offer/58%20-%20I.%20%E7%BF%BB%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F/"/>
+    <url>/2020/07/25/jianzhi-offer/58%20-%20I.%20%E7%BF%BB%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串”I am a student. “，则输出”student. a am I”。</p><p>示例 1：</p><p>输入: “the sky is blue”<br>输出: “blue is sky the”<br>示例 2：</p><p>输入: “  hello world!  “<br>输出: “world! hello”<br>解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。<br>示例 3：</p><p>输入: “a good   example”<br>输出: “example good a”<br>解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。</p><p>说明：</p><p>无空格字符构成一个单词。<br>输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。<br>如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">reverseWords</span><span class="hljs-params">(String s)</span> </span>&#123;        s = s.trim(); <span class="hljs-comment">// 删除首尾空格</span>        <span class="hljs-keyword">int</span> j = s.length() - <span class="hljs-number">1</span>, i = j;        StringBuilder res = <span class="hljs-keyword">new</span> StringBuilder();        <span class="hljs-keyword">while</span>(i &gt;= <span class="hljs-number">0</span>) &#123;            <span class="hljs-keyword">while</span>(i &gt;= <span class="hljs-number">0</span> &amp;&amp; s.charAt(i) != <span class="hljs-string">' '</span>) i--; <span class="hljs-comment">// 搜索首个空格</span>            res.append(s.substring(i + <span class="hljs-number">1</span>, j + <span class="hljs-number">1</span>) + <span class="hljs-string">" "</span>); <span class="hljs-comment">// 添加单词</span>            <span class="hljs-keyword">while</span>(i &gt;= <span class="hljs-number">0</span> &amp;&amp; s.charAt(i) == <span class="hljs-string">' '</span>) i--; <span class="hljs-comment">// 跳过单词间空格</span>            j = i; <span class="hljs-comment">// j 指向下个单词的尾字符</span>        &#125;        <span class="hljs-keyword">return</span> res.toString().trim(); <span class="hljs-comment">// 转化为字符串并返回</span>    &#125;&#125;<span class="hljs-comment">//方法2</span><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">reverseWords</span><span class="hljs-params">(String s)</span> </span>&#123;        String[] strs = s.trim().split(<span class="hljs-string">" "</span>); <span class="hljs-comment">// 删除首尾空格，分割字符串</span>        StringBuilder res = <span class="hljs-keyword">new</span> StringBuilder();        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = strs.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123; <span class="hljs-comment">// 倒序遍历单词列表</span>            <span class="hljs-keyword">if</span>(strs[i].equals(<span class="hljs-string">""</span>)) <span class="hljs-keyword">continue</span>; <span class="hljs-comment">// 遇到空单词则跳过</span>            res.append(strs[i] + <span class="hljs-string">" "</span>); <span class="hljs-comment">// 将单词拼接至 StringBuilder</span>        &#125;        <span class="hljs-keyword">return</span> res.toString().trim(); <span class="hljs-comment">// 转化为字符串，删除尾部空格，并返回</span>    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>数组</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】和为s的连续正数序列</title>
+    <link href="/2020/07/25/jianzhi-offer/57%20-%20II.%20%E5%92%8C%E4%B8%BAs%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%AD%A3%E6%95%B0%E5%BA%8F%E5%88%97/"/>
+    <url>/2020/07/25/jianzhi-offer/57%20-%20II.%20%E5%92%8C%E4%B8%BAs%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%AD%A3%E6%95%B0%E5%BA%8F%E5%88%97/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入一个正整数 target ，输出所有和为 target 的连续正整数序列（至少含有两个数）。</p><p>序列内的数字由小到大排列，不同序列按照首个数字从小到大排列。</p><p>示例 1：</p><p>输入：target = 9<br>输出：[[2,3,4],[4,5]]<br>示例 2：</p><p>输入：target = 15<br>输出：[[1,2,3,4,5],[4,5,6],[7,8]]</p><p>限制：</p><p>1 &lt;= target &lt;= 10^5</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[][] findContinuousSequence(<span class="hljs-keyword">int</span> target) &#123;    <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; <span class="hljs-comment">// 滑动窗口的左边界</span>    <span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; <span class="hljs-comment">// 滑动窗口的右边界</span>    <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>; <span class="hljs-comment">// 滑动窗口中数字的和</span>    List&lt;<span class="hljs-keyword">int</span>[]&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();    <span class="hljs-keyword">while</span> (i &lt;= target / <span class="hljs-number">2</span>) &#123;        <span class="hljs-keyword">if</span> (sum &lt; target) &#123;            <span class="hljs-comment">// 右边界向右移动</span>            sum += j;            j++;        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &gt; target) &#123;            <span class="hljs-comment">// 左边界向右移动</span>            sum -= i;            i++;        &#125; <span class="hljs-keyword">else</span> &#123;            <span class="hljs-comment">// 记录结果</span>            <span class="hljs-keyword">int</span>[] arr = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[j-i];            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = i; k &lt; j; k++) &#123;                arr[k-i] = k;            &#125;            res.add(arr);            <span class="hljs-comment">// 左边界向右移动</span>            sum -= i;            i++;        &#125;    &#125;    <span class="hljs-keyword">return</span> res.toArray(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[res.size()][]);&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】和为s的两个数字</title>
+    <link href="/2020/07/25/jianzhi-offer/57.%20%E5%92%8C%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97/"/>
+    <url>/2020/07/25/jianzhi-offer/57.%20%E5%92%8C%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入一个递增排序的数组和一个数字s，在数组中查找两个数，使得它们的和正好是s。如果有多对数字的和等于s，则输出任意一对即可。</p><p>示例 1：</p><p>输入：nums = [2,7,11,15], target = 9<br>输出：[2,7] 或者 [7,2]<br>示例 2：</p><p>输入：nums = [10,26,30,31,47,60], target = 40<br>输出：[10,30] 或者 [30,10]</p><p>限制：</p><p>1 &lt;= nums.length &lt;= 10^5<br>1 &lt;= nums[i] &lt;= 10^6</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] twoSum(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target) &#123;        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = nums.length - <span class="hljs-number">1</span>;        <span class="hljs-keyword">while</span>(i &lt; j) &#123;            <span class="hljs-keyword">int</span> s = nums[i] + nums[j];            <span class="hljs-keyword">if</span>(s &lt; target) i++;            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s &gt; target) j--;            <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123; nums[i], nums[j] &#125;;        &#125;        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】56 - II. 数组中数字出现的次数 II</title>
+    <link href="/2020/07/25/jianzhi-offer/56%20-%20II.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%20II/"/>
+    <url>/2020/07/25/jianzhi-offer/56%20-%20II.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%20II/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>在一个数组 nums 中除一个数字只出现一次之外，其他数字都出现了三次。请找出那个只出现一次的数字。</p><p>示例 1：</p><p>输入：nums = [3,4,3,3]<br>输出：4<br>示例 2：</p><p>输入：nums = [9,1,7,9,7,9,7]<br>输出：1</p><p>限制：</p><p>1 &lt;= nums.length &lt;= 10000<br>1 &lt;= nums[i] &lt; 2^31</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/solution/mian-shi-ti-56-ii-shu-zu-zhong-shu-zi-chu-xian-d-4/" target="_blank" rel="noopener">大佬题解</a></p><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">singleNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;    <span class="hljs-keyword">int</span> a=<span class="hljs-number">0</span>,b=<span class="hljs-number">0</span>;    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> c : nums) &#123;        b = b ^ c &amp; ~ a;        a = a ^ c &amp; ~ b;    &#125;    <span class="hljs-keyword">return</span> b;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>数组</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】I. 数组中数字出现的次数</title>
+    <link href="/2020/07/25/jianzhi-offer/56%20-%20I.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0/"/>
+    <url>/2020/07/25/jianzhi-offer/56%20-%20I.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。</p><p>示例 1：</p><p>输入：nums = [4,1,4,6]<br>输出：[1,6] 或 [6,1]<br>示例 2：</p><p>输入：nums = [1,2,10,4,1,4,3,3]<br>输出：[2,10] 或 [10,2]</p><p>限制：</p><p>2 &lt;= nums.length &lt;= 10000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] singleNumbers(<span class="hljs-keyword">int</span>[] nums) &#123;        <span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> s:nums)&#123;            x^=s;        &#125;        x&amp;=-x;        <span class="hljs-keyword">int</span> x1=<span class="hljs-number">0</span>,x2=<span class="hljs-number">0</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> s:nums)&#123;            <span class="hljs-keyword">if</span>((s&amp;x) ==<span class="hljs-number">0</span>) x1^=s;            <span class="hljs-keyword">else</span> x2^=s;        &#125;        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;x1,x2&#125;;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>数组</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】平衡二叉树</title>
+    <link href="/2020/07/25/jianzhi-offer/55%20-%20II.%20%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <url>/2020/07/25/jianzhi-offer/55%20-%20II.%20%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。</p><p>示例 1:</p><p>给定二叉树 [3,9,20,null,null,15,7]</p><pre><code>  3 / \9  20  /  \ 15   7</code></pre><p>返回 true 。</p><p>示例 2:</p><p>给定二叉树 [1,2,2,3,3,null,null,4,4]</p><pre><code>      1     / \    2   2   / \  3   3 / \4   4</code></pre><p>返回 false 。</p><pre><code class="hljs java"><span class="hljs-comment">/**</span><span class="hljs-comment"> * Definition for a binary tree node.</span><span class="hljs-comment"> * public class TreeNode &#123;</span><span class="hljs-comment"> *     int val;</span><span class="hljs-comment"> *     TreeNode left;</span><span class="hljs-comment"> *     TreeNode right;</span><span class="hljs-comment"> *     TreeNode(int x) &#123; val = x; &#125;</span><span class="hljs-comment"> * &#125;</span><span class="hljs-comment"> */</span><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isBalanced</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;        <span class="hljs-keyword">return</span> dg(root)!=-<span class="hljs-number">1</span>;    &#125;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">dg</span><span class="hljs-params">(TreeNode root)</span></span>&#123;        <span class="hljs-keyword">if</span>(root==<span class="hljs-keyword">null</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;        <span class="hljs-keyword">int</span> left=dg(root.left);        <span class="hljs-keyword">if</span>(left==-<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;        <span class="hljs-keyword">int</span> right=dg(root.right);        <span class="hljs-keyword">if</span>(right==-<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;        <span class="hljs-keyword">return</span> Math.abs(left-right)&lt;<span class="hljs-number">2</span>?Math.max(left,right)+<span class="hljs-number">1</span>:-<span class="hljs-number">1</span>;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>二叉树</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】55 - I. 二叉树的深度</title>
+    <link href="/2020/07/25/jianzhi-offer/55%20-%20I.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/"/>
+    <url>/2020/07/25/jianzhi-offer/55%20-%20I.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。</p><p>例如：</p><p>给定二叉树 [3,9,20,null,null,15,7]，</p><pre><code>  3 / \9  20  /  \ 15   7</code></pre><p>返回它的最大深度 3 。</p><p>提示：</p><p>节点总数 &lt;= 10000</p><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxDepth</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;        List&lt;TreeNode&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;() &#123;&#123; add(root); &#125;&#125;, tmp;        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;        <span class="hljs-keyword">while</span>(!queue.isEmpty()) &#123;            tmp = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();            <span class="hljs-keyword">for</span>(TreeNode node : queue) &#123;                <span class="hljs-keyword">if</span>(node.left != <span class="hljs-keyword">null</span>) tmp.add(node.left);                <span class="hljs-keyword">if</span>(node.right != <span class="hljs-keyword">null</span>) tmp.add(node.right);            &#125;            queue = tmp;            res++;        &#125;        <span class="hljs-keyword">return</span> res;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>二叉树</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】二叉搜索树的第k大节点</title>
+    <link href="/2020/07/25/jianzhi-offer/54.%20%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%AC%ACk%E5%A4%A7%E8%8A%82%E7%82%B9/"/>
+    <url>/2020/07/25/jianzhi-offer/54.%20%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%AC%ACk%E5%A4%A7%E8%8A%82%E7%82%B9/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一棵二叉搜索树，请找出其中第k大的节点。</p><p>示例 1:</p><p>输入: root = [3,1,4,null,2], k = 1<br>   3<br>  / <br> 1   4<br>  <br>   2<br>输出: 4<br>示例 2:</p><p>输入: root = [5,3,6,2,4,null,null,1], k = 3<br>       5<br>      / <br>     3   6<br>    / <br>   2   4<br>  /<br> 1<br>输出: 4</p><p>限制：</p><p>1 ≤ k ≤ 二叉搜索树元素个数</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote><p>本文解法基于此性质：二叉搜索树的中序遍历为 <strong>递增序列</strong> 。</p><p>根据以上性质，易得二叉搜索树的 <strong>中序遍历倒序</strong> 为 <strong>递减序列</strong> 。</p><p>因此，求 “二叉搜索树第 <em>k</em> 大的节点” 可转化为求 “此树的中序遍历倒序的第 <em>k</em> 个节点”。</p></blockquote><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">int</span> res, k;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">kthLargest</span><span class="hljs-params">(TreeNode root, <span class="hljs-keyword">int</span> k)</span> </span>&#123;        <span class="hljs-keyword">this</span>.k = k;        dfs(root);        <span class="hljs-keyword">return</span> res;    &#125;    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span>;        dfs(root.right);        <span class="hljs-keyword">if</span>(k == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;        <span class="hljs-keyword">if</span>(--k == <span class="hljs-number">0</span>) res = root.val;        dfs(root.left);    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>二叉搜索树</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】II. 0～n-1中缺失的数字</title>
+    <link href="/2020/07/25/jianzhi-offer/53%20-%20II.%200%EF%BD%9En-1%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/"/>
+    <url>/2020/07/25/jianzhi-offer/53%20-%20II.%200%EF%BD%9En-1%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。</p><p>示例 1:</p><p>输入: [0,1,3]<br>输出: 2<br>示例 2:</p><p>输入: [0,1,2,3,4,5,6,7,9]<br>输出: 8</p><p>限制：</p><p>1 &lt;= 数组长度 &lt;= 10000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">missingNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = nums.length - <span class="hljs-number">1</span>;        <span class="hljs-keyword">while</span>(i &lt;= j) &#123;            <span class="hljs-keyword">int</span> m = (i + j) / <span class="hljs-number">2</span>;            <span class="hljs-keyword">if</span>(nums[m] == m) i = m + <span class="hljs-number">1</span>;            <span class="hljs-keyword">else</span> j = m - <span class="hljs-number">1</span>;        &#125;        <span class="hljs-keyword">return</span> i;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】二叉搜索树的第k大节点</title>
+    <link href="/2020/07/25/jianzhi-offer/53%20-%20I.%20%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E5%AD%97%20I/"/>
+    <url>/2020/07/25/jianzhi-offer/53%20-%20I.%20%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E5%AD%97%20I/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>统计一个数字在排序数组中出现的次数。</p><p>示例 1:</p><p>输入: nums = [5,7,7,8,8,10], target = 8<br>输出: 2<br>示例 2:</p><p>输入: nums = [5,7,7,8,8,10], target = 6<br>输出: 0</p><p>限制：</p><p>0 &lt;= 数组长度 &lt;= 50000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;        <span class="hljs-keyword">return</span> helper(nums, target) - helper(nums, target - <span class="hljs-number">1</span>);    &#125;    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">helper</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> tar)</span> </span>&#123;        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = nums.length - <span class="hljs-number">1</span>;        <span class="hljs-keyword">while</span>(i &lt;= j) &#123;            <span class="hljs-keyword">int</span> m = (i + j) / <span class="hljs-number">2</span>;            <span class="hljs-keyword">if</span>(nums[m] &lt;= tar) i = m + <span class="hljs-number">1</span>;            <span class="hljs-keyword">else</span> j = m - <span class="hljs-number">1</span>;        &#125;        <span class="hljs-keyword">return</span> i;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】两个链表的第一个公共节点</title>
+    <link href="/2020/07/25/jianzhi-offer/52.%20%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9/"/>
+    <url>/2020/07/25/jianzhi-offer/52.%20%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入两个链表，找出它们的第一个公共节点。</p><p>如下面的两个链表：</p><p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png" srcset="/img/loading.gif" alt="img"></p><p>在节点 c1 开始相交。</p><p>示例 1：</p><p> <img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_1.png" srcset="/img/loading.gif" alt="img"></p><p>输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3<br>输出：Reference of the node with value = 8<br>输入解释：相交节点的值为 8 （注意，如果两个列表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。</p><p>示例 2：</p><p>输入：intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1<br>输出：Reference of the node with value = 2<br>输入解释：相交节点的值为 2 （注意，如果两个列表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [0,9,1,2,4]，链表 B 为 [3,2,4]。在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。</p><p>示例 3：</p><p>输入：intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2<br>输出：null<br>输入解释：从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。<br>解释：这两个链表不相交，因此返回 null。</p><p>注意：</p><p>如果两个链表没有交点，返回 null.<br>在返回结果后，两个链表仍须保持原有的结构。<br>可假定整个链表结构中没有循环。<br>程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote><p>方法1，使用双指针</p><p>一个从A开始   结束之后指向B</p><p>一个从B开始 结束之后指向A</p></blockquote><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">getIntersectionNode</span><span class="hljs-params">(ListNode headA, ListNode headB)</span> </span>&#123;    <span class="hljs-keyword">if</span> (headA == <span class="hljs-keyword">null</span> || headB == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;    ListNode L = headA;    ListNode R = headB;    <span class="hljs-keyword">int</span> count=<span class="hljs-number">0</span>; <span class="hljs-comment">//当一个节点达到一个链表的尾部，则从另一个链表继续，同时count++</span>    <span class="hljs-keyword">while</span> (L != R) &#123;        L = L.next;        R = R.next;        <span class="hljs-keyword">if</span> (L == <span class="hljs-keyword">null</span>) &#123;            L = headB;            count ++;        &#125;        <span class="hljs-keyword">if</span> (R == <span class="hljs-keyword">null</span>) &#123;            R = headA;            count++;        &#125;        <span class="hljs-keyword">if</span> (count &gt;<span class="hljs-number">2</span>) &#123;            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;        &#125;    &#125;    <span class="hljs-keyword">return</span> L;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>跨域问题</title>
     <link href="/2020/07/24/xiangmu/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/"/>
     <url>/2020/07/24/xiangmu/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</url>
@@ -13,7 +322,7 @@
     
     <categories>
       
-      <category>项目构建</category>
+      <category>项目笔记</category>
       
     </categories>
     
@@ -37,12 +346,12 @@
     <link href="/2020/07/23/xiangmu/%E4%B8%89%E7%BA%A7%E5%88%86%E7%B1%BB%EF%BC%9A%E9%80%92%E5%BD%92%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE/"/>
     <url>/2020/07/23/xiangmu/%E4%B8%89%E7%BA%A7%E5%88%86%E7%B1%BB%EF%BC%9A%E9%80%92%E5%BD%92%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE/</url>
     
-    <content type="html"><![CDATA[<h1 id="【项目创建流程】三级分类：递归树形结构数据"><a href="#【项目创建流程】三级分类：递归树形结构数据" class="headerlink" title="【项目创建流程】三级分类：递归树形结构数据"></a>【项目创建流程】三级分类：递归树形结构数据</h1><blockquote><p>注意要熟悉 stream 写法</p></blockquote><pre><code class="hljs java"><span class="hljs-meta">@Override</span><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;CategoryEntity&gt; <span class="hljs-title">listWithTree</span><span class="hljs-params">()</span> </span>&#123;    <span class="hljs-comment">//1.查出所有分类</span>    List&lt;CategoryEntity&gt; entities = baseMapper.selectList(<span class="hljs-keyword">null</span>);    List&lt;CategoryEntity&gt; level1Menus = entities.stream().filter((categoryEntity) -&gt;                                                                categoryEntity.getParentCid() == <span class="hljs-number">0</span>                                                               ).map((menu) -&gt; &#123;        menu.setChildren(getChildrens(menu, entities));        <span class="hljs-keyword">return</span> menu;    &#125;).sorted((o1, o2) -&gt; &#123;        <span class="hljs-keyword">return</span> (o1.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o1.getSort()) - (o2.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o2.getSort());    &#125;).collect(Collectors.toList());    <span class="hljs-comment">//2.组装成父子树形结构</span>    <span class="hljs-keyword">return</span> level1Menus;&#125;<span class="hljs-comment">//递归查找所有菜单的子菜单</span><span class="hljs-function"><span class="hljs-keyword">private</span> List&lt;CategoryEntity&gt; <span class="hljs-title">getChildrens</span><span class="hljs-params">(CategoryEntity root, List&lt;CategoryEntity&gt; all)</span> </span>&#123;    List&lt;CategoryEntity&gt; children = all.stream().filter(categoryEntity -&gt; &#123;        <span class="hljs-keyword">return</span> categoryEntity.getParentCid() == root.getCatId();    &#125;).map(categoryEntity -&gt; &#123;        <span class="hljs-comment">//1.找到子菜单</span>        categoryEntity.setChildren(getChildrens(categoryEntity, all));        <span class="hljs-keyword">return</span> categoryEntity;    &#125;).sorted((o1, o2) -&gt; &#123;        <span class="hljs-comment">//2.菜单的排序</span>        <span class="hljs-keyword">return</span> (o1.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o1.getSort()) - (o2.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o2.getSort());    &#125;).collect(Collectors.toList());    <span class="hljs-keyword">return</span> children;&#125;</code></pre>]]></content>
+    <content type="html"><![CDATA[<h1 id="【项目创建流程】三级分类：递归树形结构数据"><a href="#【项目创建流程】三级分类：递归树形结构数据" class="headerlink" title="【项目创建流程】三级分类：递归树形结构数据"></a>【项目创建流程】三级分类：递归树形结构数据</h1><blockquote><p>注意要熟悉 stream 写法</p></blockquote><pre><code class="hljs java"><span class="hljs-meta">@Override</span><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;CategoryEntity&gt; <span class="hljs-title">listWithTree</span><span class="hljs-params">()</span> </span>&#123;    <span class="hljs-comment">//1.查出所有分类</span>    List&lt;CategoryEntity&gt; entities = baseMapper.selectList(<span class="hljs-keyword">null</span>);    List&lt;CategoryEntity&gt; level1Menus = entities.stream().filter((categoryEntity) -&gt;                                                                categoryEntity.getParentCid() == <span class="hljs-number">0</span>                                                               ).map((menu) -&gt; &#123;        menu.setChildren(getChildrens(menu, entities));        <span class="hljs-keyword">return</span> menu;    &#125;).sorted((o1, o2) -&gt; &#123;        <span class="hljs-keyword">return</span> (o1.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o1.getSort()) - (o2.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o2.getSort());    &#125;).collect(Collectors.toList());    <span class="hljs-comment">//2.组装成父子树形结构</span>    <span class="hljs-keyword">return</span> level1Menus;&#125;<span class="hljs-comment">//递归查找所有菜单的子菜单</span><span class="hljs-function"><span class="hljs-keyword">private</span> List&lt;CategoryEntity&gt; <span class="hljs-title">getChildrens</span><span class="hljs-params">(CategoryEntity root, List&lt;CategoryEntity&gt; all)</span> </span>&#123;    List&lt;CategoryEntity&gt; children = all.stream().filter(categoryEntity -&gt; &#123;        <span class="hljs-keyword">return</span> categoryEntity.getParentCid().equals(root.getCatId());    &#125;).map(categoryEntity -&gt; &#123;        <span class="hljs-comment">//1.找到子菜单</span>        categoryEntity.setChildren(getChildrens(categoryEntity, all));        <span class="hljs-keyword">return</span> categoryEntity;    &#125;).sorted((o1, o2) -&gt; &#123;        <span class="hljs-comment">//2.菜单的排序</span>        <span class="hljs-keyword">return</span> (o1.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o1.getSort()) - (o2.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o2.getSort());    &#125;).collect(Collectors.toList());    <span class="hljs-keyword">return</span> children;&#125;<span class="hljs-comment">//for循环拼接</span><span class="hljs-meta">@Override</span><span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;CategoryEntity&gt; <span class="hljs-title">listWithTree</span><span class="hljs-params">()</span> </span>&#123;    <span class="hljs-comment">// 1.查询出所有的分类</span>    List&lt;CategoryEntity&gt; entities = baseMapper.selectList(<span class="hljs-keyword">null</span>);    <span class="hljs-comment">// 2.组装成父子的树形结构</span>    List&lt;CategoryEntity&gt; level1Menus = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();    <span class="hljs-comment">// 找到所有的一级分类</span>    <span class="hljs-keyword">for</span> (CategoryEntity entity : entities) &#123;        <span class="hljs-keyword">if</span> (entity.getParentCid() == <span class="hljs-number">0</span>) &#123;            level1Menus.add(entity);        &#125;    &#125;    <span class="hljs-keyword">for</span> (CategoryEntity level1Menu : level1Menus) &#123;        level1Menu.setChildren(getChildrens(level1Menu, entities));    &#125;    <span class="hljs-comment">//排序</span>    level1Menus.sort(<span class="hljs-keyword">new</span> Comparator&lt;CategoryEntity&gt;() &#123;        <span class="hljs-meta">@Override</span>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(CategoryEntity o1, CategoryEntity o2)</span> </span>&#123;            <span class="hljs-keyword">return</span> (o1.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o1.getSort()) - (o2.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o2.getSort());        &#125;    &#125;);    <span class="hljs-keyword">return</span> level1Menus;&#125;<span class="hljs-comment">/**</span><span class="hljs-comment">     * 递归查找所有的下级分类</span><span class="hljs-comment">     * 在这一级别的分类中找下级分类</span><span class="hljs-comment">     *</span><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> root 当前级别的分类</span><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> all  全部分类</span><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 下一级分类</span><span class="hljs-comment">     */</span><span class="hljs-function"><span class="hljs-keyword">private</span> List&lt;CategoryEntity&gt; <span class="hljs-title">getChildrens</span><span class="hljs-params">(CategoryEntity root, List&lt;CategoryEntity&gt; all)</span> </span>&#123;    List&lt;CategoryEntity&gt; children = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();    <span class="hljs-keyword">for</span> (CategoryEntity a : all) &#123;        <span class="hljs-keyword">if</span> (a.getParentCid().equals(root.getCatId())) &#123;            a.setChildren(getChildrens(a, all));            children.add(a);        &#125;    &#125;    children.sort(<span class="hljs-keyword">new</span> Comparator&lt;CategoryEntity&gt;() &#123;        <span class="hljs-meta">@Override</span>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(CategoryEntity o1, CategoryEntity o2)</span> </span>&#123;            <span class="hljs-keyword">return</span> (o1.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o1.getSort()) - (o2.getSort() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">0</span> : o2.getSort());        &#125;    &#125;);    <span class="hljs-keyword">return</span> children;&#125;</code></pre>]]></content>
     
     
     <categories>
       
-      <category>项目构建</category>
+      <category>项目笔记</category>
       
     </categories>
     
@@ -71,7 +380,7 @@
     
     <categories>
       
-      <category>项目构建</category>
+      <category>项目笔记</category>
       
     </categories>
     
@@ -80,9 +389,9 @@
       
       <tag>箭头函数</tag>
       
-      <tag>VUE</tag>
-      
       <tag>promist</tag>
+      
+      <tag>VUE</tag>
       
     </tags>
     
@@ -235,7 +544,7 @@
     
     <categories>
       
-      <category>项目构建</category>
+      <category>项目笔记</category>
       
     </categories>
     
@@ -244,9 +553,9 @@
       
       <tag>箭头函数</tag>
       
-      <tag>promist</tag>
-      
       <tag>ES6</tag>
+      
+      <tag>promist</tag>
       
     </tags>
     
@@ -1568,9 +1877,9 @@
       
       <tag>SpringCloud</tag>
       
-      <tag>微服务</tag>
-      
       <tag>Redis</tag>
+      
+      <tag>微服务</tag>
       
       <tag>bean</tag>
       
@@ -1599,9 +1908,9 @@
       
       <tag>SpringCloud</tag>
       
-      <tag>Sentinel</tag>
-      
       <tag>微服务</tag>
+      
+      <tag>Sentinel</tag>
       
     </tags>
     
