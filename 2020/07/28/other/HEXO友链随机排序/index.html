@@ -188,7 +188,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      1.7k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      25
+      26
        分钟
     </span>
   
@@ -290,10 +290,13 @@ page.banner_mask_alpha &#x3D; theme.links.banner_mask_alpha
 <p>大家看上面的&lt;%  %&gt;了吗  很明显，这里是动态获取数据的地方</p>
 <p>那我们就开始写了</p>
 <p>打乱数组：</p>
-<p> emmmm<del>~</del>  （写几个循环，然后根据随机数交换数组，也可以，代码太多了。。。。）</p>
 <p>其实我们可以使用js的sort，然后给他一个随机对比</p>
 <p>这样</p>
-<p>function randomsort(a, b) {<br>    return Math.random()&gt;.5 ? -1 : 1;<br>}<br>theme.links.items.sort(randomsort);</p>
+<p>function randomsort(a, b) {<br> return Math.random()&gt;.5 ? -1 : 1;<br>}<br>theme.links.items.sort(randomsort);</p>
+<p>//这是一种最简单的方法，但是你可想一下  前面的在前面的概率比较大，后面的在后面的概率比较大，对不对</p>
+<p>（比如先给你加友链的小伙伴，很大的改了可以在前面对不对）</p>
+<p>//当然，我们还是的采用更公平的随机算法：随机洗牌算法</p>
+<p>Array.prototype.shuffle = function() {<br>var input = this;<br>    for (var i = input.length-1; i &gt;=0; i–) {<br>        var randomIndex = Math.floor(Math.random()*(i+1));<br>        var itemAtIndex = input[randomIndex];<br>        input[randomIndex] = input[i];<br>        input[i] = itemAtIndex;<br>    }<br>    return input;<br>}<br>theme.links.items.shuffle();</p>
 </blockquote>
 <h2 id="修改后的代码"><a href="#修改后的代码" class="headerlink" title="修改后的代码"></a>修改后的代码</h2><pre><code class="hljs ejs">&lt;%
 page.layout &#x3D; &quot;links&quot;
