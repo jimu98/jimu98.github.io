@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
+  <meta name="author" content="积木">
+  <meta name="keywords" content="积木,jimu98,java,后端,jimu">
+  <title>【java总结】计算机网络-基础篇 - 积木 | 互联网的一只小菜鸡</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="/.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="/.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script data-ad-client="ca-pub-2806771379080352" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jimu98</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/list/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                导航
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-28 20:06">
+      2020年7月28日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      52
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="【java总结】计算机网络-基础篇"><a href="#【java总结】计算机网络-基础篇" class="headerlink" title="【java总结】计算机网络-基础篇"></a>【java总结】计算机网络-基础篇</h1><blockquote>
+<p>本内容参考了多位大佬，几十篇博客整理出来的，方便自己的复习，同时有不全面，不正确的内容欢迎补充</p>
+</blockquote>
+<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="网络概述"><a href="#网络概述" class="headerlink" title="网络概述"></a>网络概述</h3><p>那我们作为一个程序员，难免会去编写一些通信类应用，甚至开发桌面端应用（好像C++更多吧），就算你是一个前端，那么总是要和后台取数据吧，天天post，get，我们也总要学一些计算机网络知识。（详细学习的话强烈推荐谢希仁老师的计算机网络）</p>
+<p>那么什么是计算机网络呢？</p>
+<p>很多书都是这么一句话：计算机网络是通过传输介质、通信设施和网络通信协议，把分散在不同地点的计算机设备互连起来，实现资源共享和数据传输的系统。</p>
+<p>我们生活中从电脑出发，背后连接着一根网线（如果使用的无线，那么就把他当作一根看不见的线）然后这跟网线连接到家里墙上的一个出口，然后这个出口连接到小区的汇聚交换机上面，然后中间经过其他交换机，路由器，再连接到我们这个城市的中心路由器上面。其他城市的小伙伴同样这样，然后两个城市间架起一座桥梁（我们这里暂时只把他记作光纤），那么，网络就是这样。</p>
+<blockquote>
+<p>从宏观上面来看，就是这么简单</p>
+</blockquote>
+<p><img src="https://img2.jimu98.cn/blog/20200728203448.png" srcset="/img/loading.gif" alt="image-20200728203448182"></p>
+<p>但是我们继续想，网络可能同时有大量的数据，同时在光纤上面传输，而且还同时有大量的人发送，</p>
+<p>我们怎么才能在光纤上传递文字，图片，甚至音频，接受到你的消息以后，你怎么把他还原，看一看他到第是什么</p>
+<p>于是乎，网络又变得复杂了起来，甚至复杂到一种很难解释的情况。</p>
+<h3 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h3><p>（举个例子：一个皇帝又管大家吃饭，又管外出打仗，这时候还要考虑王阿姨家的猫和另一个省的一条狗重名了，王阿姨不乐意了，可是生活就是这样，皇帝于是决定周一处理打仗的事情，周三处理王阿姨的事情，情况有所缓解，于是乎他设立了不同的官员去做不同的事情，就这样，把大事分成小事去做就解决了这个问题）</p>
+<p>这时候，有人提出来，我们把网络分层，每一层只处理本层的事情，处理完再传递给下一层</p>
+<p>于是ISO（国际标准化组织）提出了OSI/RM（开放系统互连参考模型）大家根据单词首字母简单记一下</p>
+<p>这个组织把网络通信分为了七层：物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。</p>
+<p>但是有趣的是ISO提出来以后没啥产品，于是伴随着Internet火遍大江南北，TCP/IP才成为真正使用的协议</p>
+<p>更有趣的TCP/IP的四层把物理层和数据链路层给合并了，但是物理层这么重要的一层，直接跟物理设备打交道，这也太没面子了</p>
+<p>而且最主要的人类思考起来不太方便，那么我们经常说的是TCP/IP的五层模型</p>
+<p><img src="https://img2.jimu98.cn/blog/20200728212643.png" srcset="/img/loading.gif" alt="image-20200728212643527"></p>
+<blockquote>
+<p>这张图还是要背的，有些时候理解不了的知识，那么就去背。背会了，慢慢就理解了。</p>
+</blockquote>
+<h3 id="通信协议"><a href="#通信协议" class="headerlink" title="通信协议"></a>通信协议</h3><p>（举个例子，小A和小B要通讯，小A要给小B发送一幅蒙娜丽莎，但是光纤可不能直接发送画呀，只能发送0，1字符串，于是小A发送了 1100111代表蒙娜丽莎，小B收到了，非要翻译成清明上河图，你说这闹的。。。）</p>
+<p>所以通信双方想要通信，必须建立约定，约定好1100111就是蒙娜丽莎，约定就可以称作协议，因此通信协议（communications protocol）是指双方实体完成通信或服务所必须遵循的规则和约定。要使其能协同工作实现信息交换和资源共享，它们之间必须具有共同的语言。交流什么、怎样交流及何时交流，都必须遵循某种互相都能接受的规则。这个规则就是通信协议。</p>
+<p>换个例子</p>
+<p>小A和小B要通讯，比作小A给小B寄快递</p>
+<p>寄快递首先得称重、确认体积(确认数据大小)，贵重物品还得层层包裹填充物确保安全，封装，然后填写发件地址(源主机地址)和收件地址(目标主机地址)，确认快递方式。对于偏远地区，快递不能直达，还需要中途转发。网络通信也是一样的道理，只不过把这些步骤都规定成了各种协议。</p>
+<p>当我们某一个网站上不去的时候。通常会ping一下这个网站</p>
+<p><code>ping</code> 可以说是网络层ICMP的最著名的应用，是TCP/IP协议的一部分。利用<code>ping</code>命令可以检查网络是否连通，可以很好地帮助我们分析和判定网络故障。</p>
+<h2 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h2><h3 id="TCP-IP解释"><a href="#TCP-IP解释" class="headerlink" title="TCP/IP解释"></a>TCP/IP解释</h3><p>这个分层相当重要，前面也说过了，TCP/IP才是我们真正实现了的协议（那么我们到底说的是四层呢还是五层呢，在生活中常用五层，但是TCP/IP提出时候就是四层，但是大家不要迷惑，你就站在他们头顶，聊到四层，就往四层想，聊到五层，就往五层想，游刃有余的时候，就能感觉到，他们就是一个东西，emmm，这里我有点说不清楚。。）</p>
+<blockquote>
+<p>另外，TCP/IP是一个协议簇，也就是一个组合，包含了多种协议，但是TCP和IP最具代表性，所以被称为TCP/IP协议。</p>
+</blockquote>
+<h3 id="TCP-与-UDP"><a href="#TCP-与-UDP" class="headerlink" title="TCP 与 UDP"></a>TCP 与 UDP</h3><p>它们都属于传输层协议,</p>
+<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>TCP（Transmission Control Protocol，传输控制协议）是面向连接的协议，也就是说，在收发数据前，必须和对方建立可靠的连接。一个TCP连接必须有三次握手、四次挥手。</p>
+<h5 id="TCP-三次握手"><a href="#TCP-三次握手" class="headerlink" title="TCP  三次握手"></a>TCP  三次握手</h5><blockquote>
+<p>这个好多人都吃过亏，感觉好复杂，我觉得码农翻身里面这一段解释的特别简单</p>
+<p>第一次：A跟B说话   B收到了 B知道A发送消息没问题</p>
+<p>第二次：B跟A说话   A收到了  A知道B发送和接收都没问题</p>
+<p>第三次：A跟B说话   B收到了  B知道A发送和接收都没问题</p>
+<p>于是乎，A和B可以正常通讯了</p>
+</blockquote>
+<p>为什么需要三次握手呢？两次不行吗？</p>
+<blockquote>
+<p>在谢希仁的《计算机网络》中是这样说的：”为了防止已失效的连接请求报文段突然又传送到了服务端，因而产生错误。”</p>
+<p>我们先要知道TCP是基于IP协议的（下面有解释），而IP协议是有路由的，IP协议不能够保证先发送的数据先到达，这当中依赖于IP协议底层的网络质量，以及Client与Server之间的路由跳数。</p>
+<p>比如A和B说话，A跟B说：“在吗，借我一块钱”，B回答他：“给你转到支付宝了”，但是B说的这句话走的一条很漫长的路，走了一分钟。</p>
+<p>但是A说完了，等了好久B都不理他，他以为B就没收到他说的话，他又发了一句话：“在吗，借我一块钱”，这时候B又收到了，他不知道这是A从新发送的，以为又建立了一个新的通话连接，于是这个过程就会浪费很多的资源，而三次握手就相对保险。</p>
+</blockquote>
+<p>简单的理解了，那我们也要看看复杂的情况（我会尽量说的清楚）</p>
+<p>暂时只看绿色部分的三次握手（状态大家可以百度一下TCP11种状态，我感觉直接翻译可能更乱）</p>
+<blockquote>
+<p>1.第一次握手：建立连接。客户端发送连接请求报文段，将<code>SYN</code>位置为1，<code>Sequence Number</code>为x（也就是随机值）；然后，客户端进入<code>SYN_SEND</code>状态，等待服务器的确认；</p>
+<p>2.第二次握手：服务器收到<code>SYN</code>报文段。服务器收到客户端的<code>SYN</code>报文段，需要对这个<code>SYN</code>报文段进行确认，设置<code>Acknowledgment Number</code>为x+1(<code>Sequence Number</code>+1)；同时，自己自己还要发送<code>SYN</code>请求信息，将<code>SYN</code>位置为1，<code>Sequence Number</code>为y；服务器端将上述所有信息放到一个报文段（即<code>SYN+ACK</code>报文段）中，一并发送给客户端，此时服务器进入<code>SYN_RECV</code>状态；</p>
+<p>3.第三次握手：客户端收到服务器的<code>SYN+ACK</code>报文段。然后将<code>Acknowledgment Number</code>设置为y+1，向服务器发送<code>ACK</code>报文段，这个报文段发送完毕以后，客户端和服务器端都进入<code>ESTABLISHED</code>状态，完成TCP三次握手。</p>
+</blockquote>
+<p><img src="https://img2.jimu98.cn/blog/20200729161601.png" srcset="/img/loading.gif" alt="image-20200729161600822"></p>
+<h5 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h5><blockquote>
+<p>举个栗子：把客户端比作男孩，服务器比作女孩。通过他们的分手来说明“四次挥手”过程。</p>
+<p>“第一次挥手”：男孩发现女孩变成了自己讨厌的样子，忍无可忍，于是决定分手，随即写了一封信告诉女孩。</p>
+<p>“第二次挥手”：女孩收到信之后，知道了男孩要和自己分手，怒火中烧，心中暗骂：你算什么东西，当初你可不是这个样子的！于是立马给男孩写了一封回信：分手就分手，给我点时间，我要把你的东西整理好，全部还给你！男孩收到女孩的第一封信之后，明白了女孩知道自己要和她分手。随后等待女孩把自己的东西收拾好。</p>
+<p>“第三次挥手”：过了几天，女孩把男孩送的东西都整理好了，于是再次写信给男孩：你的东西我整理好了，快把它们拿走，从此你我恩断义绝！</p>
+<p>“第四次挥手”：男孩收到女孩第二封信之后，知道了女孩收拾好东西了，可以正式分手了，于是再次写信告诉女孩：我知道了，这就去拿回来！（这里有一个重要的概念 <code>TIME-WAIT</code> 阿正哥说这个可以比作冷静期 emmm~）</p>
+<p>这里双方都有各自的坚持。女孩自发出第二封信开始，限定一天内收不到男孩回信，就会再发一封信催促男孩来取东西！</p>
+<p>男孩自发出第二封信开始，限定两天内没有再次收到女孩的信就认为，女孩收到了自己的第二封信；若两天内再次收到女孩的来信，就认为自己的第二封信女孩没收到，需要再写一封信，再等两天…..</p>
+<p>倘若双方信都能正常收到，最少只用四封信就能彻底分手！这就是“四次挥手”。</p>
+</blockquote>
+<blockquote>
+<p>上面的解释应该很清楚解释了为什么是四次挥手</p>
+<p><strong>这里强调一下TIME-WAIT的概念</strong></p>
+<p>因为TCP连接是双向的，所以在关闭连接的时候，两个方向各自都需要关闭。先发FIN包的一方执行的是主动关闭；后发FIN包的一方执行的是被动关闭。主动关闭的一方会进入TIME_WAIT状态，并且在此状态停留两倍的MSL时长。</p>
+<p><strong>什么是MSL？</strong></p>
+<p>MSL指的是报文段的最大生存时间，如果报文段在网络活动了MSL时间，还没有被接收，那么会被丢弃。 关于MSL的大小，RFC<br>793协议中给出的建议是两分钟，不过实际上不同的操作系统可能有不同的设置，<br>以Linux为例，通常是半分钟，两倍的MSL就是一分钟，也就是60秒，并且这个数值是硬编码在内核中的，<br>也就是说除非你重新编译内核，否则没法修改它：</p>
+<p><strong>为什么客户端在TIME-WAIT阶段要等2MSL?</strong></p>
+<p>为的是确认服务器端是否收到客户端发出的ACK确认报文</p>
+<p>当客户端发出最后的ACK确认报文时，并不能确定服务器端能够收到该段报文。所以客户端在发送完ACK确认报文之后，会设置一个时长为2MSL的计时器。MSL指的是Maximum Segment Lifetime：一段TCP报文在传输过程中的最大生命周期。2MSL即是服务器端发出为FIN报文和客户端发出的ACK确认报文所能保持有效的最大时长。</p>
+<p>服务器端在1MSL内没有收到客户端发出的ACK确认报文，就会再次向客户端发出FIN报文；</p>
+<p><strong>如果没有time_wait会怎么样？</strong><br> 我们举一个比较简单的例子：假设服务端发送了断开请求的包，（假设没有TIME_WAIT），客户端收到后立马就回复了确认包，连接就关闭了，但是服务器这边其实还有一个数据在路上，到了之后会发现客户端已经关闭了，一脸懵逼的收到了一个RST包，然后也关闭了连接，这样就导致了数据包的丢失。</p>
+</blockquote>
+<h5 id="TCP协议如何来保证传输的可靠性"><a href="#TCP协议如何来保证传输的可靠性" class="headerlink" title="TCP协议如何来保证传输的可靠性"></a>TCP协议如何来保证传输的可靠性</h5><ul>
+<li>数据包校验：目的是检测数据在传输过程中的任何变化，若校验出包有错，则丢弃报文段并且不给出响应，这时TCP发送数据端超时后会重发数据；</li>
+<li>对失序数据包重排序：既然TCP报文段作为IP数据报来传输，而IP数据报的到达可能会失序，因此TCP报文段的到达也可能会失序。TCP将对失序数据进行重新排序，然后才交给应用层；</li>
+<li>丢弃重复数据：对于重复数据，能够丢弃重复数据；</li>
+<li>应答机制：当TCP收到发自TCP连接另一端的数据，它将发送一个确认。这个确认不是立即发送，通常将推迟几分之一秒；</li>
+<li>超时重发：当TCP发出一个段后，它启动一个定时器，等待目的端确认收到这个报文段。如果不能及时收到一个确认，将重发这个报文段；</li>
+<li>流量控制：TCP连接的每一方都有固定大小的缓冲空间。TCP的接收端只允许另一端发送接收端缓冲区所能接纳的数据，这可以防止较快主机致使较慢主机的缓冲区溢出，这就是流量控制。TCP使用的流量控制协议是可变大小的滑动窗口协议。</li>
+</ul>
+<h6 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h6><blockquote>
+<p>TCP 是全双工的，客户端和服务器均可作为发送方或接收方。首先接收方有一块接收缓存，当数据来到时会先把数据放到缓存中，上层应用等缓存中有数据时就会到缓存中取数据。假如发送方没有限制地不断地向接收方发送数据，接收方的应用程序又没有及时把接收缓存中的数据读走，就会出现缓存溢出，数据丢失的现象，为了解决这个问题，我们引入流量控制窗口。</p>
+<p>定义流量窗口为接收缓存剩余的空间。只要接收方在响应 ACK 的时候把这个窗口的值带给发送方，发送方就能知道接收方的接收缓存还有多大的空间，进而设置滑动窗口的大小。</p>
+</blockquote>
+<h6 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h6><blockquote>
+<p>拥塞控制是指发送方先设置一个小的窗口值作为发送速率，当成功发包并接收到ACK时，便以指数速率增大发送窗口的大小，直到遇到丢包（超时/三个冗余ACK），才停止并调整窗口的大小。这么做能最大限度地利用带宽，又不至于让网络环境变得太过拥挤。</p>
+<p>最终滑动窗口的值将设置为流量控制窗口和拥塞控制窗口中的较小值。</p>
+</blockquote>
+<p>流量控制之滑动窗口机制</p>
+<blockquote>
+<p>如果发送方把数据发送得过快，接收方可能会来不及接收，这就会造成数据的丢失。所谓<strong>流量控制</strong>就是让发送方的发送速率不要太快，要让接收方来得及接收。</p>
+<p>利用<strong>滑动窗口机制</strong>可以很方便地在TCP连接上实现对发送方的流量控制。</p>
+</blockquote>
+<p><img src="https://img2.jimu98.cn/blog/20200728230255.png" srcset="/img/loading.gif" alt="image-20200728230255200"></p>
+<h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><p>UDP（User Data Protocol，用户数据报协议）是一个非连接的协议，传输数据之前源端和终端不建立连接， 当它想传送时就简单地去抓取来自应用程序的数据，并尽可能快地把它扔到网络上，是不是很随便，大家记住他很随便就可以了</p>
+<h4 id="TCP与UDP区别及应用"><a href="#TCP与UDP区别及应用" class="headerlink" title="TCP与UDP区别及应用"></a>TCP与UDP区别及应用</h4><table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">TCP</th>
+<th align="left">UDP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">连接性</td>
+<td align="left">面向连接</td>
+<td align="left">面向非连接</td>
+</tr>
+<tr>
+<td align="left">传输可靠性</td>
+<td align="left">可靠</td>
+<td align="left">不可靠</td>
+</tr>
+<tr>
+<td align="left">报文</td>
+<td align="left">面向字节流</td>
+<td align="left">面向报文</td>
+</tr>
+<tr>
+<td align="left">效率</td>
+<td align="left">传输效率低</td>
+<td align="left">传输效率高</td>
+</tr>
+<tr>
+<td align="left">流量控制</td>
+<td align="left">滑动窗口</td>
+<td align="left">无</td>
+</tr>
+<tr>
+<td align="left">拥塞控制</td>
+<td align="left">慢开始、拥塞避免、快重传、快恢复</td>
+<td align="left">无</td>
+</tr>
+<tr>
+<td align="left">传输速度</td>
+<td align="left">慢</td>
+<td align="left">快</td>
+</tr>
+<tr>
+<td align="left">应用场合</td>
+<td align="left">对效率要求低，对准确性要求高或要求有连接的场景</td>
+<td align="left">对效率要求高，对准确性要求低</td>
+</tr>
+</tbody></table>
+<p><img src="https://img2.jimu98.cn/blog/20200728221157.png" srcset="/img/loading.gif" alt="image-20200728221157748"></p>
+<h3 id="IP解释"><a href="#IP解释" class="headerlink" title="IP解释"></a>IP解释</h3><p>“IP”代表网际协议，TCP 和 UDP 使用该协议从一个网络传送数据包到另一个网络。把<strong>IP想像成一种高速公路</strong>，它允许其它协议在上面行驶并找到到其它电脑的出口。<strong>TCP和UDP是高速公路上的“卡车”</strong>，它们携带的货物就是像HTTP，FTP这样的协议等。</p>
+<p><strong>而HTTP是应用层协议，主要解决如何包装数据。</strong></p>
+<h3 id="ARP协议工作原理"><a href="#ARP协议工作原理" class="headerlink" title="ARP协议工作原理"></a>ARP协议工作原理</h3><blockquote>
+<p>首先，每台主机都会在自己的ARP缓冲区中建立一个 ARP列表，以表示IP地址和MAC地址的对应关系。</p>
+<p>当源主机需要将一个数据包要发送到目的主机时，会首先检查自己 ARP列表中是否存在该 IP地址对应的MAC地址，</p>
+<p>如果有，就直接将数据包发送到这个MAC地址；<br>如果没有，就向本地网段发起一个ARP请求的广播包，查询此目的主机对应的MAC地址。</p>
+<p>此ARP请求数据包里包括源主机的IP地址、硬件地址、以及目的主机的IP地址。网络中所有的主机收到这个ARP请求后，会检查数据包中的目的IP是否和自己的IP地址一致。</p>
+<p>如果不相同就忽略此数据包；<br>如果相同，该主机首先将发送端的MAC地址和IP地址添加到自己的ARP列表中，如果ARP表中已经存在该IP的信息，则将其覆盖，然后给源主机发送一个 ARP响应数据包，告诉对方自己是它需要查找的MAC地址；</p>
+<p>源主机收到这个ARP响应数据包后，将得到的目的主机的IP地址和MAC地址添加到自己的ARP列表中，并利用此信息开始数据的传输。如果源主机一直没有收到ARP响应数据包，表示ARP查询失败。</p>
+</blockquote>
+<h3 id="常见的路由选择协议，以及它们的区别"><a href="#常见的路由选择协议，以及它们的区别" class="headerlink" title="常见的路由选择协议，以及它们的区别"></a>常见的路由选择协议，以及它们的区别</h3><p><strong>RIP协议</strong>（路由信息协议）：底层是贝尔曼福特算法，它选择路由的度量标准（metric)是跳数，最大跳数是15跳，如果大于15跳，它就会丢弃数据包。</p>
+<p><strong>OSPF协议</strong>（开放最短路径优先）：底层是迪杰斯特拉算法，它选择路由的度量标准是带宽，延迟。</p>
+<p>我的博客即将同步至腾讯云+社区，邀请大家一同入驻：<a href="https://cloud.tencent.com/developer/support-plan?invite_code=2jj04zn26ku8g" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=2jj04zn26ku8g</a></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/java%E6%80%BB%E7%BB%93/">java总结</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                      <a class="hover-with-bg" href="/tags/TCP/">TCP</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82/">网络分层</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/29/java/%E3%80%90Java%E6%80%BB%E7%BB%93%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTP/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【java总结】计算机网络-HTTP</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/28/other/HEXO%E5%8F%8B%E9%93%BE%E9%9A%8F%E6%9C%BA%E6%8E%92%E5%BA%8F/">
+                        <span class="hidden-mobile">HEXO友链随机排序</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "NFojgagn3zsFUjT0FGVVHUTM-gzGzoHsz",
+          app_key: "9R1L32c7WEvSGSP48NAnfStY",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: true,
+          serverURLs: "https://nfojgagn.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+  <p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+   <div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("07/18/2020 18:00:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+      document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+  }
+  setInterval("createtime()",250);
+  </script>
+</div>
+    <div>
+      &copy;2019 - 2020 By Jimu98
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+		
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">冀ICP备19035627号</a>
+    
+  </div>
+
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1278280985" style="display: none"></span>
+    
+  </div>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【java总结】计算机网络-基础篇&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 95,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1278280985&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
+</body>
+</html>
