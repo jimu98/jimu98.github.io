@@ -188,7 +188,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5k 字
+      7.1k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      52
+      74
        分钟
     </span>
   
@@ -396,7 +396,55 @@
 </blockquote>
 <h3 id="常见的路由选择协议，以及它们的区别"><a href="#常见的路由选择协议，以及它们的区别" class="headerlink" title="常见的路由选择协议，以及它们的区别"></a>常见的路由选择协议，以及它们的区别</h3><p><strong>RIP协议</strong>（路由信息协议）：底层是贝尔曼福特算法，它选择路由的度量标准（metric)是跳数，最大跳数是15跳，如果大于15跳，它就会丢弃数据包。</p>
 <p><strong>OSPF协议</strong>（开放最短路径优先）：底层是迪杰斯特拉算法，它选择路由的度量标准是带宽，延迟。</p>
-<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>明日再更。。</p>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>这个协议对于网络工程师来说，他只是一个协议而已，但对于我们java工程师，或者前端工程师，或者其他非网络计算机从业者都太重要了。我们java开发的很大部分都是web应用，。我们对Web的操作都是通过HTTP协议来进⾏传 输数据的，前端也是很直接的利益相关（怎么有股知乎的味道。）总而言之，Http就是Web通信的基础，这是我们必学的。我一定要总结的全面，透彻。方便自己，方便大家。</p>
+<h3 id="Http基本概念"><a href="#Http基本概念" class="headerlink" title="Http基本概念"></a>Http基本概念</h3><p>HTTP全称是 HyperText Transfer Protocal，即：超文本传输协议。是互联网上应用最为广泛的一种<strong>网络通信协议</strong>，它允许将超文本标记语言（HTML）文档从Web服务器传送到客户端的浏览器。目前我们使用的是<strong>HTTP/1.1 版本</strong>。</p>
+<p>前面不是说了网络的分层概念吗，我们的HTTP协议是在最上层，也就是应⽤层。这是最贴近我们的程序员的层次。</p>
+<blockquote>
+<p>我们逐步一点点来看，解决一个又一个小概念，争取建立一个完整的HTTP体系</p>
+<p>最终解决一个大的问题：在浏览器输入 URL 后发生了什么？</p>
+</blockquote>
+<h3 id="URI-和-URL-有什么区别？"><a href="#URI-和-URL-有什么区别？" class="headerlink" title="URI 和 URL 有什么区别？"></a>URI 和 URL 有什么区别？</h3><p>URI：统一资源标识符（Uniform Resource Identifier），就是在某一规则下能把一个资源独一无二地标识出来。它可以理解成是一个资源的名字，比如<code>积木</code>,<code>jimu98</code>甚至<code>jimu98@foxmail.com</code>或者是<code>aaa.html</code>，只要可以唯一的标识一个名字，那么我们就把他称作uri，甚至<code>https://www.jimu98.cn/aaa.html</code>也是一个URI(这个不是应该叫URL，别着急)</p>
+<p>URI：统一资源标识符(uniform resource identifier)，比如<code>https://www.jimu98.cn/aaa.html</code>，</p>
+<p>其实，我们可以发现，URI强调的是给资源标记命名，URL强调的是给资源定位，但是你会发现，URL显然比URI包含信息更多，我通过URL也可以知道自己的资源名字可能是<code>aaa.html</code>，并且我还知道了他的地址.</p>
+<p>所以大多数情况下大家觉得给一个网络资源分别命名和给出地址太麻烦，干脆就用地址既当地址用，又当标记名用</p>
+<p>所以，URL也充当了WWW万维网里面URI的角色，但是他比URI多了一层意义，我不光知道你叫什么，我还知道你在哪里。</p>
+<p>我们在浏览器输入的都是URL，因为我们输入的目的是为了找到某一个资源。</p>
+<h3 id="DNS：负责解析域名"><a href="#DNS：负责解析域名" class="headerlink" title="DNS：负责解析域名"></a>DNS：负责解析域名</h3><blockquote>
+<p>当我们需要访问一个远程资源的时候，必然要和他建立连接(建立TCP，或者UDP连接，基于IP协议)</p>
+<p>所以我们要知道他的地址，可是随着互联网的发展，越来越多的web应用进入大家视线，比如我们访问一些常用的网站，<code>www.baidu.com</code> <code>www.jd.com</code> 这些时候，我们明明输入的不是ip。</p>
+<p>其实让我们记IP，也是可以访问的，但是你愿意记那么长的数字吗，反正我不愿意，于是乎DNS <code>域名解析协议</code> 诞生了，他就可以把一个特殊含义的域名转换成一个IP地址。</p>
+<p>但是你想啊，你想要用baidu这个名字，别人也想，那到底该给谁呢。于是肯定有专门的管理机构去统一规范。</p>
+<p>但是，我们还有一个叫做本地DNS的东西，通过配置Host文件，去自定义一个域名，实现本地映射。</p>
+</blockquote>
+<blockquote>
+<p>DNS工作流程：</p>
+<p>1、在浏览器中输入<a href="http://www.baidu.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个ip地址映射，完成域名解析。" target="_blank" rel="noopener">www.baidu.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个ip地址映射，完成域名解析。</a></p>
+<p>2、如果hosts里没有这个域名的映射，则会查找本地DNS解析器缓存，是否有这个网址映射关系，如果有，直接返回，完成域名解析。</p>
+<p>3、如果hosts与本地DNS解析器缓存都没有相应的网址映射关系，首先会找TCP/IP参数中设置的首选DNS服务器，在此我们叫它本地DNS服务器，此服务器收到查询时，如果要查询的域名，包含在本地配置区域资源中，则返回解析记过给客户端，完成域名解析，此解析具有权威性。</p>
+<p>4、如果要查询域名，不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析，此解析不具有权威性。</p>
+<p>5、如果本地DNS服务器本地区域文件与缓存解析都失效，则根据本地DNS服务器的设置（是否设置转发器）进行查询，如果未用转发模式，本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名（.com）是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址（baidu.com）给本地DNS服务器。当本地DNS服务器收到这个地址后，就会找baidu.com域服务器，重复上面的动作，进行查询，直至找到<a href="http://www.baidu.com主机。" target="_blank" rel="noopener">www.baidu.com主机。</a></p>
+<p>6、如果用的是转发模式，此DNS服务器就会把请求转发至上一级DNS服务器，由上一级服务器进行解析，上一级服务器如果不能解析，或找根DNS或把请求转至上上级，以此循环。不管是本地DNS服务器用是转发，还是根提示，最后都是把结果返回给本地DNS服务器，由此DNS服务器再返回给客户机。</p>
+</blockquote>
+<h3 id="HTTP协议详解"><a href="#HTTP协议详解" class="headerlink" title="HTTP协议详解"></a>HTTP协议详解</h3><p>到现在为⽌，HTTP协议已经有四个版本了： </p>
+<ul>
+<li><p>HTTP/0.9</p>
+<p>HTTP协议的最初版本，功能简陋，仅支持请求方式GET，并且仅能请求访问HTML格式的资源。</p>
+</li>
+<li><p>HTTP1.0</p>
+<p>引入了新的命令POST和HEAD（http数据头部）命令，可自定义类型, 常见Content-Type值：text/xml image/jpeg audio/mp3</p>
+<p>同时也开始支持cache，就是当客户端在规定时间内访问统一网站，直接访问cache即可。</p>
+<p>但是1.0版本的工作方式是每次TCP连接只能发送一个请求，当服务器响应后就会关闭这次连接，下一个请求需要再次建立TCP连接，就是不支持keepalive。</p>
+</li>
+<li><p>HTTP1.1</p>
+<p>新增方法：PUT、PATCH、OPTIONS、DELETE，引入了持久连接（persistent connection），即TCP连接默认不关闭，可以被多个请求复用，不用声明Connection: keep-alive。</p>
+</li>
+<li><p>HTTP/2</p>
+<p>HTTP2.0是SPDY（谷歌公司研发的https的一种协议）的升级版<br>1.头信息和数据体都是二进制，称为头信息帧和数据帧<br>2.复用TCP连接，在一个连接里，客户端和浏览器都可以同时发送多个请求或回应，且不用按顺序一一对应，避免了“队头堵塞“,此双向的实时通信称为多工（Multiplexing）<br>3.引入头信息压缩机制（header compression）,头信息使用gzip或compress压缩后再发送；客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，不发送同样字段，只发送索引号，提高速度<br>4.HTTP/2 允许服务器未经请求，主动向客户端发送资源，即服务器推送（server push）</p>
+</li>
+<li><p>HTTP/3 </p>
+</li>
+</ul>
+<h4 id="HTTP1-0和HTTP1-1区别"><a href="#HTTP1-0和HTTP1-1区别" class="headerlink" title="HTTP1.0和HTTP1.1区别"></a>HTTP1.0和HTTP1.1区别</h4><p>我的博客即将同步至腾讯云+社区，邀请大家一同入驻：<a href="https://cloud.tencent.com/developer/support-plan?invite_code=2jj04zn26ku8g" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=2jj04zn26ku8g</a></p>
 
             </article>
             <hr>
