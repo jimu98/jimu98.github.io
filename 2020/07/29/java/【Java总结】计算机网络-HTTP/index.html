@@ -188,7 +188,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.2k 字
+      9.8k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      77
+      105
        分钟
     </span>
   
@@ -520,6 +520,73 @@
 <p>而且我访问一个网站，黑客真的会在中间截获数据吗，我觉得更应该从源头或者目的来截获吧（可能是我网络安全知识薄弱，不太懂）</p>
 <p>而且很明显，多了9次握手，那速度势必会影响 emmmm。。。</p>
 </blockquote>
+<h2 id="在浏览器中输入url地址，发生了什么？"><a href="#在浏览器中输入url地址，发生了什么？" class="headerlink" title="在浏览器中输入url地址，发生了什么？"></a>在浏览器中输入url地址，发生了什么？</h2><blockquote>
+<ul>
+<li>1.解析url地址，</li>
+<li>2.DNS解析</li>
+<li>3.TCP连接</li>
+<li>4.发送HTTP请求</li>
+<li>5.服务器处理请求</li>
+<li>6.服务器返回HTTP报文</li>
+<li>7.浏览器解析渲染页面</li>
+</ul>
+</blockquote>
+<p>1.解析该url地址的域名，浏览器会检查这是一个url还是查询的关键字，然后自动编码，还会做一些安全检查</p>
+<p>2.DNA解析的过程是递归的，下面以请求 <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a> 为例：首先在本地域名服务器中查询IP地址，如果没有找到的情况下，本地域名服务器会向根域名服务器发送一个请求，如果根域名服务器也不存在该域名时，本地域名会向com顶级域名服务器发送一个请求，依次类推下去。直到最后本地域名服务器得到google的IP地址并把它缓存到本地，供下次查询使用。从上述过程中，可以看出网址的解析是一个从右向左的过程: com -&gt; google.com -&gt; <a href="http://www.google.com。" target="_blank" rel="noopener">www.google.com。</a></p>
+<p>3.HTTP协议是使用TCP作为其传输层协议的，当TCP出现瓶颈时，HTTP也会受到影响。</p>
+<p>4.发送HTTP请求的过程就是构建HTTP请求报文并通过TCP协议中发送到服务器指定端口(HTTP协议80/8080, HTTPS协议443)。HTTP请求报文是由三部分组成: 请求行, 请求报头和请求体。请求行格式及示例如下：</p>
+<pre><code class="hljs oxygene"><span class="hljs-function"><span class="hljs-keyword">Method</span> <span class="hljs-title">Request</span>-<span class="hljs-title">URL</span> <span class="hljs-title">HTTP</span>-<span class="hljs-title">Version</span> <span class="hljs-title">CRLF</span></span>
+<span class="hljs-function"><span class="hljs-title">GET</span> <span class="hljs-title">index</span>.<span class="hljs-title">html</span> <span class="hljs-title">HTTP</span>/1.1</span></code></pre>
+
+<p>常用的方法有：GET, POST, PUT, DELETE, OPTIONS, HEAD</p>
+<p>5.服务器处理这里可说可不说</p>
+<p><img src="https://img2.jimu98.cn/blog/20200731164923.png" srcset="/img/loading.gif" alt="image-20200731164923701"></p>
+<p>6.后端从在固定的端口接收到TCP报文开始，这一部分对应于编程语言中的socket。它会对TCP连接进行处理，对HTTP协议进行解析，并按照报文格式进一步封装成HTTP Request对象，供上层使用。HTTP响应报文也是由三部分组成: 状态码, 响应报头和响应体。</p>
+<p>7.浏览器是一个边解析边渲染的过程。首先浏览器解析HTML文件构建DOM树，然后解析CSS文件构建渲染树，等到渲染树构建完成后，浏览器开始布局渲染树并将其绘制到屏幕上。</p>
+<p><img src="https://img2.jimu98.cn/blog/20200731165020.png" srcset="/img/loading.gif" alt="image-20200731165020227"></p>
+<h2 id="向淘宝请求首页，怎么提高性能"><a href="#向淘宝请求首页，怎么提高性能" class="headerlink" title="向淘宝请求首页，怎么提高性能"></a>向淘宝请求首页，怎么提高性能</h2><blockquote>
+<p>从请求、传输、渲染3个方面提升</p>
+</blockquote>
+<h3 id="一、请求"><a href="#一、请求" class="headerlink" title="一、请求"></a>一、请求</h3><p>浏览器为了减少请求传输，实现了自己的缓存机制。浏览器缓存就是把一个已经请求过的Web资源拷贝一份副本存储在浏览器中，当再次请求相同的URL时，先去查看缓存，如果有本地缓存，浏览器缓存机制会根据验证机制（Etag）和过期机制(Last-Modified)进行判断是使用缓存，还是从服务器传输资源文件。具体流程如下图所示：</p>
+<p><img src="http://college.creditease.cn/resources/upload/image/20170925/1506321631051056382.png" srcset="/img/loading.gif" alt="img"></p>
+<p>浏览器的请求有些是并发的，有些是阻塞的，比如：图片、CSS、接口的请求是并发；JS文件是阻塞的。请求JS的时候，浏览器会中断渲染进程，等待JS文件加载解析完毕，再重新渲染。所以要把JS文件放在页面的最后。</p>
+<p>JS也可以通过两种方式由阻塞改成并行：一种是通过创建script标签，插入DOM中；另一种是在Script标签中增加async属性。</p>
+<p>每种浏览器对同一域名并发的数量有限制，IE6/7是2，IE9是10，其他常见的浏览器是6，所以减少资源请求数量和使用多域名配置资源文件，能大大提高网站性能。</p>
+<p>减少资源请求数量的方法，大致有以下几种：</p>
+<p>1、通过打包工具，合并资源，减少资源数量。就是开发版本是很多个资源文件，部署的时候，按类合并成几个文件来输出。在实现模块管理的同时，实现统一输出。</p>
+<p>2、CSS中，使用css sprite减少图片请求数量。</p>
+<p>3、通过延迟加载技术，在用户无感知的情况下请求资源。</p>
+<p>4、通过服务器配置，实现一次请求，返回多个资源文件，如淘宝CDN那样。</p>
+<p>除了减少请求数量，也可以使用CDN镜像，来减少网络节点，实现快速响应。使用了CDN的请求，会根据用户所处的地理位置，找寻最近的CDN节点，如果请求是新的，则从资源服务器拷贝到节点，然后再返回给客户端。如果请求已经存在，则直接从节点返回客户端。</p>
+<p>通过上面我们了解的缓存机制，如果我们部署上线的时候，是需要刷新缓存的。普通缓存通过强刷就能改过来，而CDN缓存则需要通过改变URL来实现。同时我们不可能要求用户按着Ctrl来刷新，所以通过打包工具，在部署的时候，统一更改URL是最有效的方式。而不常变更的库文件，比如echart、jquery，则不建议更改。</p>
+<h3 id="二、传输"><a href="#二、传输" class="headerlink" title="二、传输"></a>二、传输</h3><p>从服务器往客户端传输，可以开启gzip压缩来提高传输效率。</p>
+<p>Gzip有从1-10的十个等级。越高压缩的越小，但压缩使用的服务器硬件资源就越多。根据实践，等级为5的时候最均衡，此时压缩效果是100k可以压缩成20k。</p>
+<h3 id="三、渲染"><a href="#三、渲染" class="headerlink" title="三、渲染"></a>三、渲染</h3><p>浏览器在加载了html后，就会一边解析，一边根据解析出来的结果进行资源请求，并生成DOM树。而加载完毕的CSS，则被渲染引擎根据生成好的DOM树，来生成渲染树。等所有资源解析完毕计算好layout后，向浏览器界面绘制。随着用户操作，JS会修改DOM节点或样式，重新绘制和重新排列。重新绘制指的是绘制DOM节点对应的渲染节点，重新排列是指重新计算这些节点在浏览器界面的位置。很显然，重排是非常耗性能的。我们要做的是减少重排的次数。</p>
+<p>生成DOM树的时候，我们可以通过减少DOM节点来优化性能。最初都是用table布局，节点深度和数量相当复杂，性能很差。同样CSS作为层叠样式表，层级也不可太深，不然遍历的成本很高。另外CSS的expression属性相当耗性能，能不用则不用。动画效果能用CSS写的就不用JS写，渲染引擎不一样，性能损耗也不一样。</p>
+<p>上面说的是解析渲染的过程，我们再接着说说用户交互操作的过程。用户操作就会导致重绘和重排，重排一定会引起重绘，而重绘不一定会引起重排。到底怎样会引起重排呢？简单的定义，DOM结构的变化，以及DOM样式中几何属性的变化，就会导致重排。几何属性顾名思义，就是宽、高、边框、外补丁、内补丁等俗称盒模型的属性。同时还有offset之类的边距属性。</p>
+<p>重排是最耗能的，减少重排的方法有：</p>
+<p>1、如果需要多次改变DOM，则先在内存中改变，最后一次性的插入到DOM中。</p>
+<p>2、同上一条，如果多次改变样式，合成一条，再插入DOM中。</p>
+<p>3、由于position的值为absoute和fixed时候，是脱离文档流的，操作此类DOM节点，不会引起整页重排。所以动画元素设置position使其脱离文档流。</p>
+<p>4、当DOM节点的display等于none的时候，是不会存在于渲染树的，所以如果有比较复杂的操作，先使其display等于none，等待所有操作完毕后，再将display设成block，这样就只重排两次。</p>
+<p>5、获取会导致重排的属性值时，存入变量，再次使用时就不会再次重排。获取这些属性会导致重排：offsetTop、offsetLeft、offsetWidth、offsetHeight、scrollTop、scrollLeft、scrollWidth、scrollHeight、clientTop、clientLeft、clientWidth、clientHeight</p>
+<p>以上就是浏览器如何把资源变成肉眼所见的页面的，除了上述根据浏览器流程而总结出来的性能优化，我们还需要看看javascript作为程序，需要的优化。先来看看javascript的垃圾回收机制。</p>
+<p>Javascript的引擎会在固定的时间间隔，将不再使用的局部变量注销掉，释放其所占的内存。而闭包的存在，将使引用一直存在，无法被释放掉。全局变量的生命周期直至浏览器卸载页面才会结束。所以一般来讲，内存溢出就是由于全局变量的不释放和闭包引起。为了防止内存溢出，我们可以做的方法有:</p>
+<p>1、业务代码放在匿名立即执行函数里面，执行完毕会立即释放掉。</p>
+<p>2、少用全局变量，同时用完的变量手动注销掉。</p>
+<p>3、使用回调来代替闭包访问内部属性</p>
+<p>4、当不可避免使用闭包时，慎重的对待其中的细节。不用的时候注销掉。</p>
+<p>5、通过浏览器自带的工具profiles，来检查内存活动情况。如果是波浪型的，说明正常。如果是倾斜式渐进上涨的，说明有内存不会被释放，需要检查相应的函数。</p>
+<p>最后再说一点，函数里返回异步取的值，经常有人这么：</p>
+<pre><code class="hljs routeros">Var getList = function()&#123; $.ajax().then(function(data)&#123;
+
+  Return data;
+
+&#125;) &#125;;
+
+Var<span class="hljs-built_in"> users </span>= getList();</code></pre>
+
+<p>毫无疑问，由于函数内的返回是异步的，所以返回只能是undefined，而不是想要的data。于是为了实现返回data，就把ajax的async属性设置成了false，由异步改为同步，来获取到data。然而最大的问题来了，同步是会中断渲染进程的，也就是请求返回的等待中，整个页面是卡死的，用户操作也不会有响应。这个问题真正的解决方案是返回promise对象，而不是把异步改成同步。</p>
 
             </article>
             <hr>
