@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img2.jimu98.cn/blog/20200729222712.png">
+  <link rel="icon" type="image/png" href="https://img2.jimu98.cn/blog/20200729222712.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
+  <meta name="author" content="积木">
+  <meta name="keywords" content="积木,jimu98,java,后端,jimu">
+  <title>【java总结】数据库-Mysql - 积木 | 互联网的一只小菜鸡</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script data-ad-client="ca-pub-2806771379080352" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jimu98</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/list/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                导航
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://img2.jimu98.cn/blog/20200729222405.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-01 22:55">
+      2020年8月1日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      61
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="【java总结】数据库-Mysql"><a href="#【java总结】数据库-Mysql" class="headerlink" title="【java总结】数据库-Mysql"></a>【java总结】数据库-Mysql</h1><h1 id="mysql基础"><a href="#mysql基础" class="headerlink" title="mysql基础"></a>mysql基础</h1><h2 id="Join七种连接"><a href="#Join七种连接" class="headerlink" title="Join七种连接"></a>Join七种连接</h2><p><img src="https://img2.jimu98.cn/blog/20200801150158.png" srcset="/img/loading.gif" alt="image-20200801150158255"></p>
+<h2 id="Mysql的执行的流程"><a href="#Mysql的执行的流程" class="headerlink" title="Mysql的执行的流程"></a>Mysql的执行的流程</h2><p>当执行一条查询的SQl的时候大概发生了一下的步骤：</p>
+<ol>
+<li>客户端发送查询语句给服务器。</li>
+<li>服务器首先检查缓存中是否存在该查询，若存在，返回缓存中存在的结果。若是不存在就进行下一步。</li>
+<li>服务器进行SQl的解析、语法检测和预处理，再由优化器生成对应的执行计划。</li>
+<li>Mysql的执行器根据优化器生成的执行计划执行，调用存储引擎的接口进行查询。</li>
+<li>服务器将查询的结果返回客户端。</li>
+</ol>
+<p>Mysql的执行的流程图如下图所示：</p>
+<p><img src="https://img2.jimu98.cn/blog/20200801175847.png" srcset="/img/loading.gif" alt="image-20200801175847040"></p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>触发器，是一类由数据库操作事件(插入、删除、修改)驱动的特殊过程，一旦由某个用户定义，任何用户对该触发器指定的数据进行增删改操作时，系统将自动激活响应的触发动作，在数据库服务器上进行集中的完整性控制。触发器的定义包括两部分内容：</p>
+<ul>
+<li>指明触发器的触发事件</li>
+<li>指明触发器执行的动作<br>触发器的类型：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>触发方式</th>
+<th>For each statement</th>
+<th>For each row</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>before选项</td>
+<td>语句前触发器，在执行触发语句前激活触发器一次</td>
+<td>行前触发器，在执行触发语句所影响的每一行前，激活触发器一次</td>
+</tr>
+<tr>
+<td>after选项</td>
+<td>语句前触发器，在执行触发语句后激活触发器一次</td>
+<td>行前触发器，在执行触发语句所影响的每一行后，激活触发器一次</td>
+</tr>
+</tbody></table>
+<p>优点：</p>
+<ul>
+<li>安全性：可以基于数据库的值使用户具有操作数据库的某种权利。可以基于时间限制用户的操作，例如不允许下班后和节假日修改数据库数据；可以基于数据库中的数据限制用户的操作，例如不允许股票的价格的升幅一次超过10%</li>
+<li>审计：可以跟踪用户对数据库的操作。审计用户操作数据库的语句；把用户对数据库的更新写入审计表。</li>
+<li>实现复杂的数据完整性规则：实现非标准的数据完整性检查和约束。触发器可产生比规则更为复杂的限制。与规则不同，触发器可以引用列或数据库对象。例如，触发器可回退任何企图吃进超过自己保证金的期货。提供可变的缺省值。</li>
+<li>同步实时地复制表中的数据。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>消耗资源</li>
+<li>延长响应时间</li>
+</ul>
+<h1 id="MyISAM与InnoDb"><a href="#MyISAM与InnoDb" class="headerlink" title="MyISAM与InnoDb"></a>MyISAM与InnoDb</h1><h2 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h2><blockquote>
+<p>它是基于传统的ISAM类型，ISAM是Indexed Sequential Access Method (有索引的顺序访问方法) 的缩写，它是存储记录和文件的标准方法。不是事务安全的，而且不支持外键，如果执行大量的select，insert MyISAM比较适合。</p>
+</blockquote>
+<h2 id="InnoDb"><a href="#InnoDb" class="headerlink" title="InnoDb"></a>InnoDb</h2><blockquote>
+<p>支持事务安全的引擎，支持外键、行锁、事务是他的最大特点。如果有大量的update和insert，建议使用InnoDB，特别是针对多个并发和QPS较高的情况。</p>
+</blockquote>
+<h2 id="MyISAM和InnoDb的区别"><a href="#MyISAM和InnoDb的区别" class="headerlink" title="MyISAM和InnoDb的区别"></a>MyISAM和InnoDb的区别</h2><h3 id="事务支持"><a href="#事务支持" class="headerlink" title="事务支持"></a>事务支持</h3><p>MyISAM不支持事务，而InnoDB支持。InnoDB的AUTOCOMMIT默认是打开的，即每条SQL语句会默认被封装成一个事务，自动提交，这样会影响速度，所以最好是把多条SQL语句显示放在begin和commit之间，组成一个事务去提交。<br>MyISAM是非事务安全型的，而InnoDB是事务安全型的，默认开启自动提交，宜合并事务，一同提交，减小数据库多次提交导致的开销，大大提高性能。InnoDB：提供事务支持事务，外部键等高级数据库功能。 具有事务(commit)、回滚(rollback)和崩溃修复能力(crash recovery capabilities)的事务安全(transaction-safe (ACID compliant))型表。</p>
+<h3 id="表锁差异"><a href="#表锁差异" class="headerlink" title="表锁差异"></a>表锁差异</h3><p>MyISAM：<strong>只支持表级锁</strong>，用户在操作myisam表时，select，update，delete，insert语句都会给表自动加锁，如果加锁以后的表满足insert并发的情况下，可以在表的尾部插入新的数据。也可以通过lock table命令来锁表，这样操作主要是可以模仿事务，但是消耗非常大，一般只在实验演示中使用。</p>
+<p>InnoDb：支持事务和行级锁，是innodb的最大特色。是innodb的最大特色。行锁大幅度提高了多用户并发操作的新能。但是InnoDB的行锁，只有支持WHERE的主键是有效的情况，非主键的WHERE都会锁全表。</p>
+<p>MyISAM锁的粒度是表级，而InnoDB支持行级锁定。简单来说就是,InnoDB支持数据行锁定，而MyISAM不支持行锁定，只支持锁定整个表。即MyISAM同一个表上的读锁和写锁是互斥的，MyISAM并发读写时如果等待队列中既有读请求又有写请求，默认写请求的优先级高，即使读请求先到，所以MyISAM不适合于有大量查询和修改并存的情况，那样查询进程会长时间阻塞。因为MyISAM是锁表，所以某项读操作比较耗时会使其他写进程饿死。</p>
+<h3 id="数据库文件差异"><a href="#数据库文件差异" class="headerlink" title="数据库文件差异"></a>数据库文件差异</h3><p>MyISAM：myisam属于堆表,每个MyISAM在磁盘上存储成三个文件。第一个文件的名字以表的名字开始，扩展名指出文件类型。.frm文件存储表定义。数据文件的扩展名为.MYD (MYData)。索引文件的扩展名是.MYI (MYIndex)。</p>
+<p>myisam表还支持三种不同的存储格式：</p>
+<blockquote>
+<p>静态表(默认，但是注意数据末尾不能有空格，会被去掉)<br>动态表<br>压缩表</p>
+</blockquote>
+<p> InnoDB：innodb属于索引组织表，innodb有两种存储方式，共享表空间存储和多表空间存储，两种存储方式的表结构和myisam一样，以表名开头，扩展名是.frm。</p>
+<p>如果使用共享表空间，那么所有表的数据文件和索引文件都保存在一个表空间里，一个表空间可以有多个文件，通过innodb_data_file_path和innodb_data_home_dir参数设置共享表空间的位置和名字，一般共享表空间的名字叫ibdata1-n。</p>
+<p>如果使用多表空间，那么每个表都有一个表空间文件用于存储每个表的数据和索引，文件名以表名开头，以.ibd为扩展名。</p>
+<h3 id="关于自动增长"><a href="#关于自动增长" class="headerlink" title="关于自动增长"></a>关于自动增长</h3><p>myisam引擎的自动增长列必须是索引，如果是组合索引，自动增长可以不是第一列，他可以根据前面几列进行排序后递增。</p>
+<p>innodb引擎的自动增长列必须是索引，如果是组合索引也必须是组合索引的第一列。MyISAM的2倍。</p>
+<h3 id="关于主键"><a href="#关于主键" class="headerlink" title="关于主键"></a>关于主键</h3><p>myisam允许没有任何索引和主键的表存在，myisam的索引都是保存行的地址。</p>
+<p>innodb引擎如果没有设定主键或者非空唯一索引，就会自动生成一个6字节的主键(用户不可见)，innodb的数据是主索引的一部分，附加索引保存的是主索引的值。</p>
+<h3 id="关于count-函数"><a href="#关于count-函数" class="headerlink" title="关于count()函数"></a>关于count()函数</h3><p>MyISAM：保存有表的总行数，如果select count(星号) from table;会直接取出出该值。<br>InnoDB：没有保存表的总行数(只能遍历)，如果使用select count(星号) from table；就会遍历整个表，消耗相当大，但是在加了wehre条件后，myisam和innodb处理的方式都一样。</p>
+<h3 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h3><p>MyISAM：支持(FULLTEXT类型的)全文索引。<br>InnoDB：不支持(FULLTEXT类型的)全文索引，Mysql5.7版本以后支持全文索引，另外innodb可以使用sphinx插件支持全文索引，并且效果更好。</p>
+<h3 id="CURD"><a href="#CURD" class="headerlink" title="CURD"></a>CURD</h3><p>MyISAM：如果执行大量的SELECT，MyISAM是更好的选择。<br>InnoDB：如果你的数据执行大量的INSERT或UPDATE，出于性能方面的考虑，应该使用InnoDB表。DELETE 从性能上InnoDB更优，但DELETE FROM table时，InnoDB不会重新建立表，而是一行一行的删除，在innodb上如果要清空保存有大量数据的表，最好使用truncate table这个命令。</p>
+<h3 id="可移植性、备份及恢复"><a href="#可移植性、备份及恢复" class="headerlink" title="可移植性、备份及恢复"></a>可移植性、备份及恢复</h3><p>MyISAM：数据是以文件的形式存储，所以在跨平台的数据转移中会很方便。在备份和恢复时可单独针对某个表进行操作。<br>InnoDB：免费的方案可以是拷贝数据文件、备份 binlog，或者用 mysqldump，在数据量达到几十G的时候就相对痛苦了。</p>
+<h3 id="索引保存位置"><a href="#索引保存位置" class="headerlink" title="索引保存位置"></a>索引保存位置</h3><p>myisam的索引以表名+.MYI文件分别保存。</p>
+<p>innodb的索引和数据一起保存在表空间里。</p>
+<h3 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h3><p>MyISAM：不支持。<br>InnoDB：支持。</p>
+<h3 id="查询效率"><a href="#查询效率" class="headerlink" title="查询效率"></a>查询效率</h3><p>没有where的count(星号)使用MyISAM要比InnoDB快得多。因为MyISAM内置了一个计数器，count(星号)时它直接从计数器中读，而InnoDB必须扫描全表。所以在InnoDB上执行count(星号)时一般要伴随where，且where中要包含主键以外的索引列。为什么这里特别强调“主键以外”？因为InnoDB中primary index是和raw data存放在一起的，而secondary index则是单独存放，然后有个指针指向primary key。所以只是count(星号)的话使用secondary index扫描更快，而primary key则主要在扫描索引同时要返回raw data时的作用较大。MyISAM相对简单，所以在效率上要优于InnoDB，小型应用可以考虑使用MyISAM。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<li>MyISAM管理非事务表。它提供高速存储和检索，以及全文搜索能力。如果应用中需要执行大量的SELECT查询，那么MyISAM是更好的选择。</li>
+<li>InnoDB用于事务处理应用程序，具有众多特性，包括ACID事务支持。如果应用中需要执行大量的INSERT或UPDATE操作，则应该使用InnoDB，这样可以提高多用户并发操作的性能。</li>
+</ul>
+<h1 id="索引原理及优化分析"><a href="#索引原理及优化分析" class="headerlink" title="索引原理及优化分析"></a>索引原理及优化分析</h1><h2 id="索引的本质"><a href="#索引的本质" class="headerlink" title="索引的本质"></a>索引的本质</h2><p>MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：索引是数据结构。是存储引擎一种用于快速查找记录的数据结构。</p>
+<p>其中聚集索引，次要索引，覆盖索引，复合索引，前缀索引，唯一索引默认都是使用B+树索引，统称索引，当然，除了B+树，还有哈希索引hash index等</p>
+<ul>
+<li><p>优势</p>
+<ul>
+<li><p>提高数据检索的效率，降低数据库的IO成本</p>
+</li>
+<li><p>降低数据排序的成本，降低了CPU的消耗</p>
+</li>
+</ul>
+</li>
+<li><p>劣势</p>
+<ul>
+<li><p>实际上索引也是一张表，所以索引列也是要占用空间的</p>
+</li>
+<li><p>虽然索引大大提高了查询速度，同时却会降低更新表的速度，如对表进行insert，update和delete，因为更新表时，MySQL不仅要保存数据，还要保存一下索引文件每次更新添加了索引列的字段，都会调整因为更新锁带来的键值变化后的索引信息</p>
+</li>
+<li><p>索引只是提高效率的一个因素，如果你的MySQL又大量数据的表，就需要花时间研究建立最优秀的索引，或优化查询速度</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="常见的查询算法"><a href="#常见的查询算法" class="headerlink" title="常见的查询算法"></a>常见的查询算法</h2><p>我们知道，数据库查询是数据库的最主要功能之一。我们都希望查询数据的速度能尽可能的快，因此数据库系统的设计者会从查询算法的角度进行优化。最基本的查询算法当然是顺序查找（linear search），还有例如二分查找（binary search）、二叉排序树查找（binary tree search），哈希散列法(哈希表)，分块查找等。</p>
+<h2 id="B-Tree和B-Tree"><a href="#B-Tree和B-Tree" class="headerlink" title="B-Tree和B+Tree"></a>B-Tree和B+Tree</h2><p>目前大部分数据库系统及文件系统都采用B-Tree或其变种B+Tree作为索引结构。</p>
+<h3 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h3><p>上面讲到了二叉树，它的搜索时间复杂度为<code>O(log2N)</code>，所以它的搜索效率和树的深度有关，如果要提高查询速度，那么就要降低树的深度。要降低树的深度，很自然的方法就是采用多叉树，再结合平衡二叉树的思想，我们可以构建一个平衡多叉树结构，然后就可以在上面构建平衡多路查找算法，提高大数据量下的搜索效率。</p>
+<p>B树（Balance Tree）又叫做B- 树（其实B-是由B-tree翻译过来，所以B-树和B树是一个概念） ，它就是一种平衡多路查找树。下图就是一个典型的B树： </p>
+<p><img src="https://img2.jimu98.cn/blog/20200801162611.png" srcset="/img/loading.gif" alt="image-20200801162611554"></p>
+<h3 id="B-Tree-1"><a href="#B-Tree-1" class="headerlink" title="B+Tree"></a>B+Tree</h3><p>其实B-Tree有许多变种，其中最常见的是B+Tree，比如MySQL就普遍使用B+Tree实现其索引结构。B-Tree相比，B+Tree有以下不同点：</p>
+<ul>
+<li>每个节点的指针上限为2d而不是2d+1；</li>
+<li>内节点不存储data，只存储key；</li>
+<li>叶子节点不存储指针；</li>
+</ul>
+<p><img src="https://img2.jimu98.cn/blog/20200801163511.png" srcset="/img/loading.gif" alt="image-20200801163511789"></p>
+<p>在B+Tree的每个叶子节点增加一个指向相邻叶子节点的指针，就形成了带有顺序访问指针的B+Tree。做这个优化的目的是为了提高区间访问的性能，例如图4中如果要查询key为从18到49的所有数据记录，当找到18后，只需顺着节点和指针顺序遍历就可以一次性访问到所有数据节点，极大提到了区间查询效率。</p>
+<h2 id="MySql索引"><a href="#MySql索引" class="headerlink" title="MySql索引"></a>MySql索引</h2><h3 id="B-Tree-索引"><a href="#B-Tree-索引" class="headerlink" title="B+Tree 索引"></a>B+Tree 索引</h3><p>是大多数 MySQL 存储引擎的默认索引类型。</p>
+<p>因为不再需要进行全表扫描，只需要对树进行搜索即可，所以查找速度快很多。</p>
+<p>因为 B+ Tree 的有序性，所以除了用于查找，还可以用于排序和分组。</p>
+<p>可以指定多个列作为索引列，多个索引列共同组成键。</p>
+<p>适用于全键值、键值范围和键前缀查找，其中键前缀查找只适用于最左前缀查找。如果不是按照索引列的顺序进行查找，则无法使用索引。</p>
+<p>InnoDB 的 B+Tree 索引分为主索引和辅助索引。主索引的叶子节点 data 域记录着完整的数据记录，这种索引方式被称为聚簇索引。因为无法把数据行存放在两个不同的地方，所以一个表只能有一个聚簇索引。</p>
+<h3 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h3><p>哈希索引就是采用一定的<strong>哈希算法</strong>，把键值换算成新的哈希值，检索时不需要类似B+树那样从根节点到叶子节点逐级查找，只需一次哈希算法即可<strong>立刻定位到相应的位置，速度非常快</strong>。</p>
+<p>哈希索引能以 O(1) 时间进行查找，但是失去了有序性：</p>
+<ul>
+<li>哈希索引也没办法利用索引完成<strong>排序</strong></li>
+<li>不支持<strong>最左匹配原则</strong></li>
+<li>在有大量重复键值情况下，哈希索引的效率也是极低的—-&gt;<strong>哈希碰撞</strong>问题。</li>
+<li><strong>不支持范围查询</strong></li>
+</ul>
+<p>InnoDB 存储引擎有一个特殊的功能叫“自适应哈希索引”，当某个索引值被使用的非常频繁时，会在 B+Tree 索引之上再创建一个哈希索引，这样就让 B+Tree 索引具有哈希索引的一些优点，比如快速的哈希查找。</p>
+<h3 id="全文索引-1"><a href="#全文索引-1" class="headerlink" title="全文索引"></a>全文索引</h3><p>MyISAM 存储引擎支持全文索引，用于查找文本中的关键词，而不是直接比较是否相等。</p>
+<p>查找条件使用 MATCH AGAINST，而不是普通的 WHERE。</p>
+<p>全文索引使用倒排索引实现，它记录着关键词到其所在文档的映射。</p>
+<p>InnoDB 存储引擎在 MySQL 5.6.4 版本中也开始支持全文索引。</p>
+<h3 id="空间数据索引"><a href="#空间数据索引" class="headerlink" title="空间数据索引"></a>空间数据索引</h3><p>MyISAM 存储引擎支持空间数据索引（R-Tree），可以用于地理数据存储。空间数据索引会从所有维度来索引数据，可以有效地使用任意维度来进行组合查询。</p>
+<p>必须使用 GIS 相关的函数来维护数据。</p>
+<h2 id="MySQL索引实现"><a href="#MySQL索引实现" class="headerlink" title="MySQL索引实现"></a>MySQL索引实现</h2><p>在MySQL中，索引属于存储引擎级别的概念，不同存储引擎对索引的实现方式是不同的，本文主要讨论MyISAM和InnoDB两个存储引擎的索引实现方式。</p>
+<h3 id="MyISAM索引实现"><a href="#MyISAM索引实现" class="headerlink" title="MyISAM索引实现"></a>MyISAM索引实现</h3><p>MyISAM引擎使用B+Tree作为索引结构，叶节点的data域存放的是数据记录的地址。</p>
+<h3 id="InnoDB索引实现"><a href="#InnoDB索引实现" class="headerlink" title="InnoDB索引实现"></a>InnoDB索引实现</h3><p>虽然InnoDB也使用B+Tree作为索引结构，但具体实现方式却与MyISAM截然不同。</p>
+<p>第一个重大区别是InnoDB的数据文件本身就是索引文件。从上文知道，MyISAM索引文件和数据文件是分离的，索引文件仅保存数据记录的地址。而在InnoDB中，表数据文件本身就是按B+Tree组织的一个索引结构，这棵树的叶节点data域保存了完整的数据记录。这个索引的key是数据表的主键，因此InnoDB表数据文件本身就是主索引。</p>
+<p>第二个与MyISAM索引的不同是InnoDB的辅助索引data域存储相应记录主键的值而不是地址。换句话说，InnoDB的所有辅助索引都引用主键作为data域。</p>
+<h2 id="主键与唯一性索引的区别"><a href="#主键与唯一性索引的区别" class="headerlink" title="主键与唯一性索引的区别"></a>主键与唯一性索引的区别</h2><ul>
+<li>主键一定是唯一性索引，唯一性索引并不一定就是主键</li>
+<li>一个表中可以有多个唯一性索引，但只能有一个主键</li>
+<li>主键列不允许空值，而唯一性索引列允许空值</li>
+<li>主键可以被其他字段作外键引用，而索引不能作为外键引用</li>
+</ul>
+<h2 id="索引使用策略及优化"><a href="#索引使用策略及优化" class="headerlink" title="索引使用策略及优化"></a>索引使用策略及优化</h2><blockquote>
+<ul>
+<li>全值匹配我最爱，最左前缀要遵守；</li>
+<li>带头大哥不能死，中间兄弟不能断；</li>
+<li>索引列上少计算，范围之后全失效；</li>
+<li>Like百分写最右，覆盖索引不写星；</li>
+<li>不等非空还有or，索引失效要少用；</li>
+<li>VAR引号不可丢，SQL高级也不难！</li>
+</ul>
+</blockquote>
+<p>MySQL的优化主要分为结构优化（Scheme optimization）和查询优化（Query optimization）。</p>
+<h3 id="索引优化策略1"><a href="#索引优化策略1" class="headerlink" title="索引优化策略1"></a>索引优化策略1</h3><h4 id="避免对列的操作"><a href="#避免对列的操作" class="headerlink" title="避免对列的操作"></a>避免对列的操作</h4><h4 id="避免不必要的类型转换"><a href="#避免不必要的类型转换" class="headerlink" title="避免不必要的类型转换"></a>避免不必要的类型转换</h4><h4 id="增加查询的范围限制"><a href="#增加查询的范围限制" class="headerlink" title="增加查询的范围限制"></a>增加查询的范围限制</h4><h4 id="尽量去掉”IN”、”OR”"><a href="#尽量去掉”IN”、”OR”" class="headerlink" title="尽量去掉”IN”、”OR”"></a>尽量去掉”IN”、”OR”</h4><h4 id="尽量去掉-“-lt-gt-”"><a href="#尽量去掉-“-lt-gt-”" class="headerlink" title="尽量去掉 “&lt;&gt;”"></a>尽量去掉 “&lt;&gt;”</h4><h4 id="去掉Where子句中的IS-NULL和IS-NOT-NULL"><a href="#去掉Where子句中的IS-NULL和IS-NOT-NULL" class="headerlink" title="去掉Where子句中的IS NULL和IS NOT NULL"></a>去掉Where子句中的IS NULL和IS NOT NULL</h4><h4 id="索引提高数据分布不均匀时查询效率"><a href="#索引提高数据分布不均匀时查询效率" class="headerlink" title="索引提高数据分布不均匀时查询效率"></a>索引提高数据分布不均匀时查询效率</h4><h4 id="利用HINT强制指定索引"><a href="#利用HINT强制指定索引" class="headerlink" title="利用HINT强制指定索引"></a>利用HINT强制指定索引</h4><h4 id="利用HINT强制指定索引-1"><a href="#利用HINT强制指定索引-1" class="headerlink" title="利用HINT强制指定索引"></a>利用HINT强制指定索引</h4><h4 id="屏蔽无用索引"><a href="#屏蔽无用索引" class="headerlink" title="屏蔽无用索引"></a>屏蔽无用索引</h4><h4 id="分解复杂查询，用常量代替变量"><a href="#分解复杂查询，用常量代替变量" class="headerlink" title="分解复杂查询，用常量代替变量"></a>分解复杂查询，用常量代替变量</h4><h4 id="like子句尽量前端匹配"><a href="#like子句尽量前端匹配" class="headerlink" title="like子句尽量前端匹配"></a>like子句尽量前端匹配</h4><h4 id="用Case语句合并多重扫描"><a href="#用Case语句合并多重扫描" class="headerlink" title="用Case语句合并多重扫描"></a>用Case语句合并多重扫描</h4><h4 id="使用nls-date-format"><a href="#使用nls-date-format" class="headerlink" title="使用nls_date_format"></a>使用nls_date_format</h4><h4 id="使用基于函数的索引"><a href="#使用基于函数的索引" class="headerlink" title="使用基于函数的索引"></a>使用基于函数的索引</h4><h4 id="基于函数的索引要求等式匹配"><a href="#基于函数的索引要求等式匹配" class="headerlink" title="基于函数的索引要求等式匹配"></a>基于函数的索引要求等式匹配</h4><h4 id="使用分区索引"><a href="#使用分区索引" class="headerlink" title="使用分区索引"></a>使用分区索引</h4><h4 id="使用位图索引"><a href="#使用位图索引" class="headerlink" title="使用位图索引"></a>使用位图索引</h4><h4 id="决定使用全表扫描还是使用索引"><a href="#决定使用全表扫描还是使用索引" class="headerlink" title="决定使用全表扫描还是使用索引"></a>决定使用全表扫描还是使用索引</h4><h3 id="索引优化策略2"><a href="#索引优化策略2" class="headerlink" title="索引优化策略2"></a>索引优化策略2</h3><h4 id="独立的列"><a href="#独立的列" class="headerlink" title="独立的列"></a>独立的列</h4><p>在进行查询时，索引列不能是表达式的一部分，也不能是函数的参数，否则无法使用索引。</p>
+<p>例如下面的查询不能使用 actor_id 列的索引：</p>
+<pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> actor_id <span class="hljs-keyword">FROM</span> sakila.actor <span class="hljs-keyword">WHERE</span> actor_id + <span class="hljs-number">1</span> = <span class="hljs-number">5</span>;</code></pre>
+
+<h4 id="多列索引"><a href="#多列索引" class="headerlink" title="多列索引"></a>多列索引</h4><p>在需要使用多个列作为条件进行查询时，使用多列索引比使用多个单列索引性能更好。例如下面的语句中，最好把 actor_id 和 film_id 设置为多列索引。</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> film_id, actor_ <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> sakila.film_actor
+<span class="hljs-keyword">WHERE</span> actor_id = <span class="hljs-number">1</span> <span class="hljs-keyword">AND</span> film_id = <span class="hljs-number">1</span>;</code></pre>
+
+<h4 id="索引列的顺序"><a href="#索引列的顺序" class="headerlink" title="索引列的顺序"></a>索引列的顺序</h4><p>让选择性最强的索引列放在前面。</p>
+<p>索引的选择性是指：不重复的索引值和记录总数的比值。最大值为 1，此时每个记录都有唯一的索引与其对应。选择性越高，每个记录的区分度越高，查询效率也越高。</p>
+<p>例如下面显示的结果中 customer_id 的选择性比 staff_id 更高，因此最好把 customer_id 列放在多列索引的前面。</p>
+<pre><code class="hljs oxygene"><span class="hljs-keyword">SELECT</span> COUNT(<span class="hljs-keyword">DISTINCT</span> staff_id)/COUNT<span class="hljs-comment">(*) AS staff_id_selectivity,</span>
+<span class="hljs-comment">COUNT(DISTINCT customer_id)/COUNT(*)</span> <span class="hljs-keyword">AS</span> customer_id_selectivity,
+COUNT<span class="hljs-comment">(*)</span>
+<span class="hljs-comment">FROM payment;</span>
+<span class="hljs-comment">   staff_id_selectivity: 0.0001</span>
+<span class="hljs-comment">customer_id_selectivity: 0.0373</span>
+<span class="hljs-comment">               COUNT(*)</span>: <span class="hljs-number">16049</span></code></pre>
+
+<h4 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a>前缀索引</h4><p>对于 BLOB、TEXT 和 VARCHAR 类型的列，必须使用前缀索引，只索引开始的部分字符。</p>
+<p>前缀长度的选取需要根据索引选择性来确定。</p>
+<h4 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h4><p>索引包含所有需要查询的字段的值。</p>
+<p>具有以下优点：</p>
+<ul>
+<li>索引通常远小于数据行的大小，只读取索引能大大减少数据访问量。</li>
+<li>一些存储引擎（例如 MyISAM）在内存中只缓存索引，而数据依赖于操作系统来缓存。因此，只访问索引可以不使用系统调用（通常比较费时）。</li>
+<li>对于 InnoDB 引擎，若辅助索引能够覆盖查询，则无需访问主索引。</li>
+</ul>
+<h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><p>我们很多时候编写完一条SQL语句，往往想知道这条SQL语句执行是否高效。或者说，我们建立好的索引在这条SQL语句中是否使用到了，就可以使用<code>explain</code>命令来分析一下！</p>
+<p>explain命令输出的结果有10列：<code>id、select_type、table、type、possible_keys、key、key_len、ref、rows、Extra</code></p>
+<h3 id="1-id"><a href="#1-id" class="headerlink" title="1.id"></a>1.id</h3><blockquote>
+<p>包含一组数字，表示查询中执行SELECT子句或操作表的<strong>顺序</strong>。</p>
+</blockquote>
+<p>在id列上也会有几种情况：</p>
+<ul>
+<li><p>如果id相同执行顺序由上至下。</p>
+</li>
+<li><p>如果id不相同，id的序号会递增，id值越大优先级越高，越先被执行。</p>
+</li>
+<li><ul>
+<li>(一般有子查询的SQL语句id就会不同)</li>
+</ul>
+</li>
+</ul>
+<p><img src="C:%5CUsers%5Ckaibo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200802145639682.png" srcset="/img/loading.gif" alt="image-20200802145639682"></p>
+<h3 id="2-select-type"><a href="#2-select-type" class="headerlink" title="2.select_type"></a>2.select_type</h3><blockquote>
+<p>表示select查询的类型</p>
+</blockquote>
+<p>select_type属性下有好几种类型：</p>
+<ul>
+<li><strong>SIMPLLE</strong>：简单查询，该查询不包含 UNION 或子查询</li>
+<li><strong>PRIMARY</strong>：如果查询包含UNION 或子查询，则<strong>最外层的查询</strong>被标识为PRIMARY</li>
+<li>UNION：表示此查询是 UNION 中的第二个或者随后的查询</li>
+<li>DEPENDENT：UNION 满足 UNION 中的第二个或者随后的查询，其次取决于外面的查询</li>
+<li>UNION RESULT：UNION 的结果</li>
+<li><strong>SUBQUERY</strong>：子查询中的第一个select语句(该子查询不在from子句中)</li>
+<li>DEPENDENT SUBQUERY：子查询中的 第一个 select，同时取决于外面的查询</li>
+<li><strong>DERIVED</strong>：包含在from子句中子查询(也称为派生表)</li>
+<li>UNCACHEABLE SUBQUERY：满足是子查询中的第一个 select 语句，同时意味着 select 中的某些特性阻止结果被缓存于一个 Item_cache 中</li>
+<li>UNCACHEABLE UNION：满足此查询是 UNION 中的第二个或者随后的查询，同时意味着 select 中的某些特性阻止结果被缓存于一个 Item_cache 中</li>
+</ul>
+<blockquote>
+<p>类型有点多啊，加粗的是最常见的，起码要看得懂加粗的部分。</p>
+</blockquote>
+<h1 id="事务机制"><a href="#事务机制" class="headerlink" title="事务机制"></a>事务机制</h1><p>事务简单来说：<strong>一个Session中所进行所有的操作，要么同时成功，要么同时失败</strong></p>
+<h1 id="MySql锁机制"><a href="#MySql锁机制" class="headerlink" title="MySql锁机制"></a>MySql锁机制</h1><h1 id="查询截取分析"><a href="#查询截取分析" class="headerlink" title="查询截取分析"></a>查询截取分析</h1><h1 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h1><h1 id="MySql的架构与集群"><a href="#MySql的架构与集群" class="headerlink" title="MySql的架构与集群"></a>MySql的架构与集群</h1><h1 id="MySql场景"><a href="#MySql场景" class="headerlink" title="MySql场景"></a>MySql场景</h1>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/java%E6%80%BB%E7%BB%93/">java总结</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/mysql/">mysql</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/31/java/%E3%80%90Java%E6%80%BB%E7%BB%93%E3%80%91Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">
+                        <span class="hidden-mobile">【java总结】Git常用操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "NFojgagn3zsFUjT0FGVVHUTM-gzGzoHsz",
+          app_key: "9R1L32c7WEvSGSP48NAnfStY",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: true,
+          serverURLs: "https://nfojgagn.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+  <p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+   <div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("07/18/2020 18:00:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+      document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+  }
+  setInterval("createtime()",250);
+  </script>
+</div>
+    <div>
+      &copy;2019 - 2020 By Jimu98
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+		
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">冀ICP备19035627号</a>
+    
+  </div>
+
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1278280985" style="display: none"></span>
+    
+  </div>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【java总结】数据库-Mysql&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 95,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1278280985&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
+</body>
+</html>
