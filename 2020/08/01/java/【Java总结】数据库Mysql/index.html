@@ -188,7 +188,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      11.1k 字
+      11.2k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      118
+      119
        分钟
     </span>
   
@@ -229,7 +229,11 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="【java总结】数据库-Mysql"><a href="#【java总结】数据库-Mysql" class="headerlink" title="【java总结】数据库-Mysql"></a>【java总结】数据库-Mysql</h1><h1 id="mysql基础"><a href="#mysql基础" class="headerlink" title="mysql基础"></a>mysql基础</h1><h2 id="Join七种连接"><a href="#Join七种连接" class="headerlink" title="Join七种连接"></a>Join七种连接</h2><p><img src="https://img2.jimu98.cn/blog/20200801150158.png" srcset="/img/loading.gif" alt="image-20200801150158255"></p>
+              <h1 id="【java总结】数据库-Mysql"><a href="#【java总结】数据库-Mysql" class="headerlink" title="【java总结】数据库-Mysql"></a>【java总结】数据库-Mysql</h1><h1 id="mysql基础"><a href="#mysql基础" class="headerlink" title="mysql基础"></a>mysql基础</h1><h2 id="数据库三范式"><a href="#数据库三范式" class="headerlink" title="数据库三范式"></a>数据库三范式</h2><p><strong>第一范式(确保每列保持原子性)</strong></p>
+<p><strong>第二范式(确保表中的每列都和主键相关)</strong></p>
+<p><strong>第三范式(确保每列都和主键列直接相关,而不是间接相关)</strong></p>
+<p>与第二范式区别在于其他非主键不依赖其他非主键<strong>消除传递依赖</strong></p>
+<h2 id="Join七种连接"><a href="#Join七种连接" class="headerlink" title="Join七种连接"></a>Join七种连接</h2><p><img src="https://img2.jimu98.cn/blog/20200801150158.png" srcset="/img/loading.gif" alt="image-20200801150158255"></p>
 <h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>触发器，是一类由数据库操作事件(插入、删除、修改)驱动的特殊过程，一旦由某个用户定义，任何用户对该触发器指定的数据进行增删改操作时，系统将自动激活响应的触发动作，在数据库服务器上进行集中的完整性控制。触发器的定义包括两部分内容：</p>
 <ul>
 <li>指明触发器的触发事件</li>
@@ -323,11 +327,11 @@
 </li>
 </ul>
 <h2 id="常见的查询算法"><a href="#常见的查询算法" class="headerlink" title="常见的查询算法"></a>常见的查询算法</h2><p>我们知道，数据库查询是数据库的最主要功能之一。我们都希望查询数据的速度能尽可能的快，因此数据库系统的设计者会从查询算法的角度进行优化。最基本的查询算法当然是顺序查找（linear search），还有例如二分查找（binary search）、二叉排序树查找（binary tree search），哈希散列法(哈希表)，分块查找等。</p>
-<h2 id="B-Tree和B-Tree"><a href="#B-Tree和B-Tree" class="headerlink" title="B-Tree和B+Tree"></a>B-Tree和B+Tree</h2><p>目前大部分数据库系统及文件系统都采用B-Tree或其变种B+Tree作为索引结构。</p>
-<h3 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h3><p>上面讲到了二叉树，它的搜索时间复杂度为<code>O(log2N)</code>，所以它的搜索效率和树的深度有关，如果要提高查询速度，那么就要降低树的深度。要降低树的深度，很自然的方法就是采用多叉树，再结合平衡二叉树的思想，我们可以构建一个平衡多叉树结构，然后就可以在上面构建平衡多路查找算法，提高大数据量下的搜索效率。</p>
+<h3 id="B-Tree和B-Tree"><a href="#B-Tree和B-Tree" class="headerlink" title="B-Tree和B+Tree"></a>B-Tree和B+Tree</h3><p>目前大部分数据库系统及文件系统都采用B-Tree或其变种B+Tree作为索引结构。</p>
+<h4 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h4><p>上面讲到了二叉树，它的搜索时间复杂度为<code>O(log2N)</code>，所以它的搜索效率和树的深度有关，如果要提高查询速度，那么就要降低树的深度。要降低树的深度，很自然的方法就是采用多叉树，再结合平衡二叉树的思想，我们可以构建一个平衡多叉树结构，然后就可以在上面构建平衡多路查找算法，提高大数据量下的搜索效率。</p>
 <p>B树（Balance Tree）又叫做B- 树（其实B-是由B-tree翻译过来，所以B-树和B树是一个概念） ，它就是一种平衡多路查找树。下图就是一个典型的B树： </p>
 <p><img src="https://img2.jimu98.cn/blog/20200801162611.png" srcset="/img/loading.gif" alt="image-20200801162611554"></p>
-<h3 id="B-Tree-1"><a href="#B-Tree-1" class="headerlink" title="B+Tree"></a>B+Tree</h3><p>其实B-Tree有许多变种，其中最常见的是B+Tree，比如MySQL就普遍使用B+Tree实现其索引结构。B-Tree相比，B+Tree有以下不同点：</p>
+<h4 id="B-Tree-1"><a href="#B-Tree-1" class="headerlink" title="B+Tree"></a>B+Tree</h4><p>其实B-Tree有许多变种，其中最常见的是B+Tree，比如MySQL就普遍使用B+Tree实现其索引结构。B-Tree相比，B+Tree有以下不同点：</p>
 <ul>
 <li>每个节点的指针上限为2d而不是2d+1；</li>
 <li>内节点不存储data，只存储key；</li>
@@ -335,13 +339,13 @@
 </ul>
 <p><img src="https://img2.jimu98.cn/blog/20200801163511.png" srcset="/img/loading.gif" alt="image-20200801163511789"></p>
 <p>在B+Tree的每个叶子节点增加一个指向相邻叶子节点的指针，就形成了带有顺序访问指针的B+Tree。做这个优化的目的是为了提高区间访问的性能，例如图4中如果要查询key为从18到49的所有数据记录，当找到18后，只需顺着节点和指针顺序遍历就可以一次性访问到所有数据节点，极大提到了区间查询效率。</p>
-<h2 id="MySql索引"><a href="#MySql索引" class="headerlink" title="MySql索引"></a>MySql索引</h2><h3 id="B-Tree-索引"><a href="#B-Tree-索引" class="headerlink" title="B+Tree 索引"></a>B+Tree 索引</h3><p>是大多数 MySQL 存储引擎的默认索引类型。</p>
+<h3 id="MySql索引类型"><a href="#MySql索引类型" class="headerlink" title="MySql索引类型"></a>MySql索引类型</h3><h4 id="B-Tree-索引"><a href="#B-Tree-索引" class="headerlink" title="B+Tree 索引"></a>B+Tree 索引</h4><p>是大多数 MySQL 存储引擎的默认索引类型。</p>
 <p>因为不再需要进行全表扫描，只需要对树进行搜索即可，所以查找速度快很多。</p>
 <p>因为 B+ Tree 的有序性，所以除了用于查找，还可以用于排序和分组。</p>
 <p>可以指定多个列作为索引列，多个索引列共同组成键。</p>
 <p>适用于全键值、键值范围和键前缀查找，其中键前缀查找只适用于最左前缀查找。如果不是按照索引列的顺序进行查找，则无法使用索引。</p>
 <p>InnoDB 的 B+Tree 索引分为主索引和辅助索引。主索引的叶子节点 data 域记录着完整的数据记录，这种索引方式被称为聚簇索引。因为无法把数据行存放在两个不同的地方，所以一个表只能有一个聚簇索引。</p>
-<h3 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h3><p>哈希索引就是采用一定的<strong>哈希算法</strong>，把键值换算成新的哈希值，检索时不需要类似B+树那样从根节点到叶子节点逐级查找，只需一次哈希算法即可<strong>立刻定位到相应的位置，速度非常快</strong>。</p>
+<h4 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h4><p>哈希索引就是采用一定的<strong>哈希算法</strong>，把键值换算成新的哈希值，检索时不需要类似B+树那样从根节点到叶子节点逐级查找，只需一次哈希算法即可<strong>立刻定位到相应的位置，速度非常快</strong>。</p>
 <p>哈希索引能以 O(1) 时间进行查找，但是失去了有序性：</p>
 <ul>
 <li>哈希索引也没办法利用索引完成<strong>排序</strong></li>
@@ -350,12 +354,19 @@
 <li><strong>不支持范围查询</strong></li>
 </ul>
 <p>InnoDB 存储引擎有一个特殊的功能叫“自适应哈希索引”，当某个索引值被使用的非常频繁时，会在 B+Tree 索引之上再创建一个哈希索引，这样就让 B+Tree 索引具有哈希索引的一些优点，比如快速的哈希查找。</p>
-<h3 id="全文索引-1"><a href="#全文索引-1" class="headerlink" title="全文索引"></a>全文索引</h3><p>MyISAM 存储引擎支持全文索引，用于查找文本中的关键词，而不是直接比较是否相等。</p>
+<h4 id="全文索引-1"><a href="#全文索引-1" class="headerlink" title="全文索引"></a>全文索引</h4><p>MyISAM 存储引擎支持全文索引，用于查找文本中的关键词，而不是直接比较是否相等。</p>
 <p>查找条件使用 MATCH AGAINST，而不是普通的 WHERE。</p>
 <p>全文索引使用倒排索引实现，它记录着关键词到其所在文档的映射。</p>
 <p>InnoDB 存储引擎在 MySQL 5.6.4 版本中也开始支持全文索引。</p>
-<h3 id="空间数据索引"><a href="#空间数据索引" class="headerlink" title="空间数据索引"></a>空间数据索引</h3><p>MyISAM 存储引擎支持空间数据索引（R-Tree），可以用于地理数据存储。空间数据索引会从所有维度来索引数据，可以有效地使用任意维度来进行组合查询。</p>
+<h4 id="空间数据索引"><a href="#空间数据索引" class="headerlink" title="空间数据索引"></a>空间数据索引</h4><p>MyISAM 存储引擎支持空间数据索引（R-Tree），可以用于地理数据存储。空间数据索引会从所有维度来索引数据，可以有效地使用任意维度来进行组合查询。</p>
 <p>必须使用 GIS 相关的函数来维护数据。</p>
+<h3 id="五大索引类型"><a href="#五大索引类型" class="headerlink" title="五大索引类型"></a>五大索引类型</h3><ul>
+<li>主键索引</li>
+<li>唯一索引</li>
+<li>普通索引</li>
+<li>组合索引</li>
+<li>全文索引</li>
+</ul>
 <h2 id="MySQL索引实现"><a href="#MySQL索引实现" class="headerlink" title="MySQL索引实现"></a>MySQL索引实现</h2><p>在MySQL中，索引属于存储引擎级别的概念，不同存储引擎对索引的实现方式是不同的，本文主要讨论MyISAM和InnoDB两个存储引擎的索引实现方式。</p>
 <h3 id="MyISAM索引实现"><a href="#MyISAM索引实现" class="headerlink" title="MyISAM索引实现"></a>MyISAM索引实现</h3><p>MyISAM引擎使用B+Tree作为索引结构，叶节点的data域存放的是数据记录的地址。</p>
 <h3 id="InnoDB索引实现"><a href="#InnoDB索引实现" class="headerlink" title="InnoDB索引实现"></a>InnoDB索引实现</h3><p>虽然InnoDB也使用B+Tree作为索引结构，但具体实现方式却与MyISAM截然不同。</p>
@@ -500,6 +511,7 @@ COUNT<span class="hljs-comment">(*)</span>
 <li>Serializable(序列化)最高隔离级别。所有事务操作依次顺序执行。注意这会导致并发度下降，性能最差。通常会用其他并发级别加上相应的并发锁机制来取代它。大部分人质疑该隔离级别存在一定的性能问题，但是根据某大牛指出，某些情况下 Serializable 性能更优<br>上述四中隔离级别可以逐个解决读脏、不可重复读、幻读这几类问题。</li>
 </ol>
 <p>产生的问题</p>
+<p>丢失更新</p>
 <p><img src="https://img2.jimu98.cn/blog/20200802161628.png" srcset="/img/loading.gif" alt="image-20200802161627911"></p>
 <h1 id="MySql锁机制"><a href="#MySql锁机制" class="headerlink" title="MySql锁机制"></a>MySql锁机制</h1><p>在mysql中的锁<strong>看起来</strong>是很复杂的，因为有<strong>一大堆的东西和名词</strong>：排它锁，共享锁，表锁，页锁，间隙锁，意向排它锁，意向共享锁，行锁，读锁，写锁，乐观锁，悲观锁，死锁。这些名词有的博客又直接写锁的英文的简写—&gt;X锁，S锁，IS锁，IX锁，MMVC…</p>
 <p>锁的相关知识又跟存储引擎，索引，事务的隔离级别都是关联的….</p>
@@ -728,6 +740,12 @@ COUNT<span class="hljs-comment">(*)</span>
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/08/03/java/%E3%80%90Java%E6%80%BB%E7%BB%93%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93Redis/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【java总结】数据库-Redis</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">
