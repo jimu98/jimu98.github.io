@@ -188,7 +188,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      11.2k 字
+      13.9k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      119
+      149
        分钟
     </span>
   
@@ -707,6 +707,127 @@ COUNT<span class="hljs-comment">(*)</span>
 <p>delete 操作后返回删除的记录数，而 truncate 返回的是0或者-1（成功则返回0，失败返回-1）；</p>
 <p>delete 与 delete from 区别：<br>如果只针对一张表进行删除，则效果一样；如果需要联合其他表，则需要使用from ：</p>
 <p>delete tb1 from tb1 m where id in (select id from tb2)</p>
+<h1 id="Mysql日志"><a href="#Mysql日志" class="headerlink" title="Mysql日志"></a>Mysql日志</h1><p>innodb事务日志包括redo log和undo log。redo log是重做日志，提供前滚操作，undo log是回滚日志，提供回滚操作。</p>
+<p>1.redo log通常是<strong>物理日志</strong>，记录的是数据页的物理修改，而不是某一行或某几行修改成怎样怎样，它用来恢复提交后的物理数据页(恢复数据页，且只能恢复到最后一次提交的位置)。</p>
+<p>2.undo用来回滚行记录到某个版本。undo log一般是<strong>逻辑日志</strong>，根据每行记录进行记录。</p>
+<h2 id="undo日志"><a href="#undo日志" class="headerlink" title="undo日志"></a>undo日志</h2><p>undo日志用于存放数据修改被修改前的值，假设修改 tba 表中 id=2的行数据，把Name=’B’ 修改为Name = ‘B2’ ，那么undo日志就会用来存放Name=’B’的记录，如果这个修改出现异常，可以使用undo日志来实现回滚操作，保证事务的一致性。</p>
+<p>对数据的变更操作，主要来自 INSERT UPDATE DELETE，而UNDO LOG中分为两种类型，一种是 INSERT_UNDO（INSERT操作），记录插入的唯一键值；一种是 UPDATE_UNDO（包含UPDATE及DELETE操作），记录修改的唯一键值以及old column记录。</p>
+<p>MySQL跟undo有关的参数设置有这些：</p>
+<pre><code class="hljs shell"><span class="hljs-meta">mysql&gt;</span><span class="bash"> show global variables like <span class="hljs-string">'%undo%'</span>;</span>
++--------------------------+------------+
+| Variable_name            | Value      |
++--------------------------+------------+
+| innodb_max_undo_log_size | 1073741824 |
+| innodb_undo_directory    | ./         |
+| innodb_undo_log_truncate | OFF        |
+| innodb_undo_logs         | 128        |
+| innodb_undo_tablespaces  | 3          |
++--------------------------+------------+
+
+<span class="hljs-meta">mysql&gt;</span><span class="bash"> show global variables like <span class="hljs-string">'%truncate%'</span>;</span>
++--------------------------------------+-------+
+| Variable_name                        | Value |
++--------------------------------------+-------+
+| innodb_purge_rseg_truncate_frequency | 128   |
+| innodb_undo_log_truncate             | OFF   |
++--------------------------------------+-------+</code></pre>
+
+<ul>
+<li><p><strong>innodb_max_undo_log_size</strong></p>
+<p>控制最大undo tablespace文件的大小，当启动了innodb_undo_log_truncate 时，undo tablespace 超过innodb_max_undo_log_size 阀值时才会去尝试truncate。该值默认大小为1G，truncate后的大小默认为10M。</p>
+</li>
+<li><p><strong>innodb_undo_tablespaces</strong> </p>
+<p>设置undo独立表空间个数，范围为0-128， 默认为0，0表示表示不开启独立undo表空间 且 undo日志存储在ibdata文件中。该参数只能在最开始初始化MySQL实例的时候指定，如果实例已创建，这个参数是不能变动的，如果在数据库配置文 件 .cnf 中指定innodb_undo_tablespaces 的个数大于实例创建时的指定个数，则会启动失败，提示该参数设置有误。</p>
+</li>
+</ul>
+<p><img src="https://img2.jimu98.cn/blog/20200805164427.png" srcset="/img/loading.gif" alt="image-20200805164427671"></p>
+<p>  如果设置了该参数为n（n&gt;0），那么就会在undo目录下创建n个undo文件（undo001，undo002 …… undo n），每个文件默认大小为10M.</p>
+<p><img src="https://img2.jimu98.cn/blog/20200805164455.png" srcset="/img/loading.gif" alt="image-20200805164455318"></p>
+<p><strong>什么时候需要来设置这个参数呢？</strong></p>
+<p>  当DB写压力较大时，可以设置独立UNDO表空间，把UNDO LOG从ibdata文件中分离开来，指定 innodb_undo_directory目录存放，可以制定到高速磁盘上，加快UNDO LOG 的读写性能。</p>
+<ul>
+<li><p><strong>innodb_undo_log_truncate</strong></p>
+<p>InnoDB的purge线程，根据innodb_undo_log_truncate设置开启或关闭、innodb_max_undo_log_size的参数值，以及truncate的频率来进行空间回收和 undo file 的重新初始化。</p>
+</li>
+</ul>
+<p><strong>该参数生效的前提是，已设置独立表空间且独立表空间个数大于等于2个。</strong></p>
+<p>  purge线程在truncate undo log file的过程中，需要检查该文件上是否还有活动事务，如果没有，需要把该undo log file标记为不可分配，这个时候，undo log 都会记录到其他文件上，所以至少需要2个独立表空间文件，才能进行truncate 操作，标注不可分配后，会创建一个独立的文件undo_<space_id><em>trunc.log，记录现在正在truncate 某个undo log文件，然后开始初始化undo log file到10M，操作结束后，删除表示truncate动作的 undo</em><space_id>_trunc.log 文件，这个文件保证了即使在truncate过程中发生了故障重启数据库服务，重启后，服务发现这个文件，也会继续完成truncate操作，删除文件结束后，标识该undo log file可分配。</p>
+<ul>
+<li><p><strong>innodb_purge_rseg_truncate_frequency</strong></p>
+<p>用于控制purge回滚段的频度，默认为128。假设设置为n，则说明，当Innodb Purge操作的协调线程 purge事务128次时，就会触发一次History purge，检查当前的undo log 表空间状态是否会触发truncate。</p>
+</li>
+<li><p><strong>innodb_max_undo_log_size</strong></p>
+</li>
+</ul>
+<h2 id="redo日志"><a href="#redo日志" class="headerlink" title="redo日志"></a>redo日志</h2><p>1.定义：</p>
+<p>redo log 是 MySQL 的物理日志，也叫重做日志，记录存储引擎 InnoDB 的事务日志。</p>
+<p>MySQL 每执行一条 SQL 更新语句，不是每次数据更改都立刻写到磁盘，而是先将记录写到 redo log 里面，并更新内存（这时内存与磁盘的数据不一致，将这种有差异的数据称为脏页），一段时间后，再一次性将多个操作记录写到到磁盘上，这样可以减少磁盘 io 成本，提高操作速度。<strong>先写日志，再写磁盘</strong>，这就是 MySQL 里经常说到的 WAL 技术，即 Write-Ahead Logging，又叫预写日志。MySQL 通过 WAL 技术保证事务的持久性。</p>
+<p>2.记录方式</p>
+<p>InnoDB 的 redo log 大小是固定的，采用循环写的方式记录，当写到结尾时，会回到开头循环写日志。如下图：</p>
+<p><img src="https://img2.jimu98.cn/blog/20200805165535.png" srcset="/img/loading.gif" alt="image-20200805165535360"></p>
+<p>write pos 是当前记录的位置，一边写以便后移，写到3号文件末尾就回到0号文件开头。check point是当前要擦除的位置，也是往后推移并循环的，擦除记录前要把记录更新到数据文件。</p>
+<p>write pos和check point 之间的是粉板上还空着的部分（write pos到3号文件末尾再加上0号文件开头到check point的部分），可以用来记录新的操作。如果write pos追上check point，表示粉板满了，这个时候不能再执行新的更新，得停下来先擦掉一些记录，把check point推进一下。</p>
+<p>有了redo log，InnoDB就可以保证即使数据库发生异常重启，之前提交的记录都不会丢失，这个能力称为crash-safe。</p>
+<p>要理解crash-safe这个概念，可以想想前面赊账记录的例子。只要赊账记录记在了粉板上或者写在了账本上，之后即使掌柜忘记了，依然可以通过账本和粉板上的数据明确赊账账目。</p>
+<h2 id="二进制日志（binlog）"><a href="#二进制日志（binlog）" class="headerlink" title="二进制日志（binlog）"></a>二进制日志（binlog）</h2><p>1.定义</p>
+<p>binlog 是 MySQL 的逻辑日志，也叫二进制日志、归档日志，由 MySQL Server 来记录。</p>
+<p>用于记录用户对数据库操作的SQL语句（除了查询语句）信息，以二进制的形式保存在磁盘中。</p>
+<p>2.记录方式</p>
+<p>binlog 通过追加的方式写入的，可通过配置参数 max_binlog_size 设置每个 binlog 文件的大小，当文件大小大于给定值后，日志会发生滚动，之后的日志记录到新的文件上。</p>
+<p>3.格式 </p>
+<p>binlog 日志有三种格式，分别为 STATMENT、ROW 和 MIXED。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>STATMENT</th>
+<th>ROW</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>说明</td>
+<td>基于SQL语句的复制(statement-based replication, SBR)，每一条会修改数据的sql语句会记录到binlog中。是bin log的默认格式。</td>
+<td>基于行的复制(row-based replication, RBR)：不记录每一条SQL语句的上下文信息，仅保存哪条记录被修改。</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>不需要记录每一条SQL语句与每行的数据变化，减少了bin log的日志量，节约了磁盘IO，提高性能。</td>
+<td>会非常清楚的记录下每一行数据修改的细节，不会出现某些特定情况下的存储过程、或function、或trigger的调用和触发无法被正确复制的问题。</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>在某些情况下会导致master-slave中的数据不一致，如sleep()函数， last_insert_id()，以及user-defined functions(udf)等会出现问题。</td>
+<td>会产生大量的日志，尤其是alter table的时候会让日志暴涨。</td>
+</tr>
+</tbody></table>
+<p>MIXED模式是基于 STATMENT 和 ROW 两种模式的混合复制(mixed-based replication, MBR)，一般的复制使用STATEMENT模式保存 binlog，对于 STATEMENT 模式无法复制的操作使用ROW模式保存 binlog，MySQL 会根据执行的 SQL 语句选择日志保存方式。</p>
+<h3 id="redo-log和二进制日志的区别"><a href="#redo-log和二进制日志的区别" class="headerlink" title="redo log和二进制日志的区别"></a>redo log和二进制日志的区别</h3><blockquote>
+<p>物理日志：redo log</p>
+</blockquote>
+<p>不知道你还记不记得《孔乙己》这篇文章，酒店掌柜有一个粉板，专门用来记录客人的赊账记录。如果赊账的人不多，那么他就可以把顾客名和账目写在板上。但是如果赊账的人多了，粉板总会有记不下的时候，这个时候掌柜一定还有一个专门记录赊账的账本。</p>
+<p>如果有人要赊账或者还账的话，掌柜一般有两种做法：</p>
+<ol>
+<li>直接把账本翻出来，把这次赊的账加上去或者扣除掉。</li>
+<li>先在粉板上记下这次账，等打烊以后再把账本翻出来核算。</li>
+</ol>
+<p>在生意红火柜台很忙时，掌柜一定会选择后者，因为前者操作实在太麻烦了。首先，得找到这个人的赊账总额那条记录。找到之后再拿出算盘计算，最后再将结果写回到账本上。相比之下，还是先在粉板上记一下方便。</p>
+<blockquote>
+<p>逻辑日志：binlog</p>
+</blockquote>
+<p>上一篇文章说过，MySQL整体来看，其实就有两块：一块是Server层，它主要做的是MySQL功能层面的事情；还有一块是引擎层，负责存储相关的具体事宜。上面聊到的粉板redo log 是InnoDB引擎特有的日志，而Server层也有自己的日志，称为binlog（归档日志）。</p>
+<p>binlog有两种模式，statement模式记录的是SQL语句，row模式记录的是行的内容，记录两条更新前的行内容与更新后的行内容。</p>
+<p>有两份日志的原因是最开始MySQL里并没有InnoDB引擎。MySQL自带的引擎是MyISAM，但是MyISAM没有crash-safe的能力，binlog日志只能用于归档。而InnoDB是另一个公司以插件形式引入MySQL的，既然只依靠binlog是没有crash-safe能力的，所以InnoDB使用另一套日志系统也就是说redo log 来实现crash-safe能力。</p>
+<ol>
+<li>这两种日志有以下三点不同：<ol>
+<li>redo log 是InnoDB引擎特有的；binlog是MySQL的Server层实现的，所有引擎都可以使用。</li>
+<li>redo log 是物理日志，记录的是“在某个数据页上做了什么修改”；binlog是逻辑日志，记录的是这个语句的原始逻辑，比如“给ID=2这行的c字段加1“。</li>
+<li>redo log是循环写的，空间固定会用完；binlog是可以追加写入的。“追加写”是指binlog文件写到一定大小后会切换到下一个，并不会覆盖以前的日志。</li>
+</ol>
+</li>
+</ol>
+<h3 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h3><p>当执行一条 SQL 更新语句时，过程如下：</p>
+<p><img src="https://img2.jimu98.cn/blog/20200805170731.png" srcset="/img/loading.gif" alt="image-20200805170731137"></p>
+<p>可以看到，在“两阶段提交”阶段，将 redo log 的写入分成了两步：prepare 和 commit。在 redo log 状态为 prepare 时记录 binlog 可以保证两个日志的记录一致。</p>
 
             </article>
             <hr>
