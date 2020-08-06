@@ -35,12 +35,10 @@
 <!-- 主题依赖的图标库，不要自行修改 -->
 
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
-<link rel="stylesheet" href="/.css">
 
 
 
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-<link rel="stylesheet" href="/.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -190,7 +188,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.9k 字
+      7.7k 字
     </span>
   
 
@@ -200,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      69
+      93
        分钟
     </span>
   
@@ -303,6 +301,7 @@
 <p>Context模块构建于核心模块之上，扩展了BeanFactory的功能，包括国际化、Bean生命周期控制、框架事件体系、资源加载透明化等功能；还提供了众多企业级服务的支持，如邮件服务、任务调度、JNDI、EJB、远程访问等。ApplicationContext是Context模块的核心接口。</p>
 <p>表达式语言（Expression Language）是统一表达式语言的一个扩展，用于查询和管理运行期的对象，支持设置和获取对象属性，调用对象方法，操作数组、集合等。使用它可以很方便的通过表达式和Spring IoC容器进行交互。</p>
 </blockquote>
+<h4 id="什么是SpringIOC容器？"><a href="#什么是SpringIOC容器？" class="headerlink" title="什么是SpringIOC容器？"></a>什么是SpringIOC容器？</h4><p>SpringIOC负责创建对象，管理对象（通过依赖注入（DI），装配对象，配置对象，并且管 理这些对象的整个生命周期。</p>
 <h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><p>AOP（Aspect Oriented Programing）即面向切面编程，适用于那些具有横切逻辑的应用场合，是OOP的重要补充。通过 spring 的 AOP 技术，就可以在不修改 代码的情况下完成需求。</p>
 <p>AOP有几个重要的概念：</p>
 <ol>
@@ -321,25 +320,14 @@
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="Spring配置文件"><a href="#Spring配置文件" class="headerlink" title="Spring配置文件"></a>Spring配置文件</h3><blockquote>
 <p>Spring配置文件是个XML文件，这个文件包含了类信息，描述了如何配置它们，以及如何相 互调用。</p>
 </blockquote>
-<h3 id="什么是SpringIOC容器？"><a href="#什么是SpringIOC容器？" class="headerlink" title="什么是SpringIOC容器？"></a>什么是SpringIOC容器？</h3><p>SpringIOC负责创建对象，管理对象（通过依赖注入（DI），装配对象，配置对象，并且管 理这些对象的整个生命周期。</p>
+<h3 id="什么是SpringIOC容器？-1"><a href="#什么是SpringIOC容器？-1" class="headerlink" title="什么是SpringIOC容器？"></a>什么是SpringIOC容器？</h3><p>SpringIOC负责创建对象，管理对象（通过依赖注入（DI），装配对象，配置对象，并且管 理这些对象的整个生命周期。</p>
 <h3 id="什么是Spring-inner-beans？"><a href="#什么是Spring-inner-beans？" class="headerlink" title="什么是Spring inner beans？"></a>什么是Spring inner beans？</h3><h2 id="其他介绍"><a href="#其他介绍" class="headerlink" title="其他介绍"></a>其他介绍</h2><h3 id="为什么说Spring是一个容器？"><a href="#为什么说Spring是一个容器？" class="headerlink" title="为什么说Spring是一个容器？"></a>为什么说Spring是一个容器？</h3><p>用来形容它用来存储单例的bean对象这个特性。</p>
-<h3 id="Spring-Bean的生命周期？"><a href="#Spring-Bean的生命周期？" class="headerlink" title="Spring Bean的生命周期？"></a>Spring Bean的生命周期？</h3><p>在一个bean实例被初始化时，需要执行一系列的初始化 操作以达到可用的状态。同样的，当一个bean不在被调用时需要进行相关的析构操作，并从 bean容器中移除。</p>
-<p>Spring bean factory 负责管理在spring容器中被创建的bean的生命周期。Bean的生命周期由 两组回调（call back）方法组成。</p>
-<p>1.初始化之后调用的回调方法。</p>
-<p>2.销毁之前调用的回调方法。</p>
-<p>Spring框架提供了以下四种方式来管理bean的生命周期事件：</p>
-<blockquote>
-<p>InitializingBean和DisposableBean回调接口</p>
-<p>针对特殊行为的其他Aware接口</p>
-<p>Bean配置文件中的Custom init()方法和destroy()方法</p>
-<p> @PostConstruct和@PreDestroy注解方式 使用customInit()和 customDestroy()方法管理bean生命周期的代码样例如下：</p>
+<h3 id="Spring-Bean的生命周期？"><a href="#Spring-Bean的生命周期？" class="headerlink" title="Spring Bean的生命周期？"></a>Spring Bean的生命周期？</h3><blockquote>
+<p>① Spring IoC容器找到关于Bean的定义并实例化该Bean。<br> ② Spring IoC容器对Bean进行依赖注入。<br> ③ 如果Bean实现了BeanNameAware接口，则将该Bean的id传给setBeanName方法。<br> ④ 如果Bean实现了BeanFactoryAware接口，则将BeanFactory对象传给setBeanFactory方法。<br> ⑤ 如果Bean实现了BeanPostProcessor接口，则调用其postProcessBeforeInitialization方法。<br> ⑥ 如果Bean实现了InitializingBean接口，则调用其afterPropertySet方法。<br> ⑦ 如果有和Bean关联的BeanPostProcessors对象，则这些对象的postProcessAfterInitialization方法被调用。<br> ⑧ 当销毁Bean实例时，如果Bean实现了DisposableBean接口，则调用其destroy方法。</p>
 </blockquote>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">beans</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"demoBean"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cn.jimu98.DemoBean"</span> <span class="hljs-attr">init-method</span>=<span class="hljs-string">"customInit"</span> <span class="hljs-attr">destroy-metho</span></span>
-&lt;/beans&gt;</code></pre>
-
-
-
+<p><img src="https://img2.jimu98.cn/blog/20200806223614.png" srcset="/img/loading.gif" alt="image-20200806223614200"></p>
+<h3 id="哪些是重要的bean生命周期方法？你能重载它们吗？"><a href="#哪些是重要的bean生命周期方法？你能重载它们吗？" class="headerlink" title="哪些是重要的bean生命周期方法？你能重载它们吗？"></a>哪些是重要的bean生命周期方法？你能重载它们吗？</h3><p>有两个重要的bean生命周期方法，第一个是setup，它是在容器加载bean的时候被调用。第 二个方法是teardown它是在容器卸载类的时候被调用。 Thebean标签有两个重要的属性（init-method和destroy-method）。用它们你可以自己定制 初始化和注销方法。它们也有相应的注解（@PostConstruct和@PreDestroy）。</p>
+<h3 id="可以在Spring中注入一个null和一个空字符串吗？"><a href="#可以在Spring中注入一个null和一个空字符串吗？" class="headerlink" title="可以在Spring中注入一个null和一个空字符串吗？"></a>可以在Spring中注入一个null和一个空字符串吗？</h3><p>可以</p>
 <h1 id="Spring使用"><a href="#Spring使用" class="headerlink" title="Spring使用"></a>Spring使用</h1><h2 id="构建流程"><a href="#构建流程" class="headerlink" title="构建流程"></a>构建流程</h2><p>首先编写pojo类，工厂</p>
 <pre><code class="hljs java"><span class="hljs-comment">//定义一个宠物接口类</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Pet</span> </span>&#123;
@@ -590,11 +578,159 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">context:exclude-filter</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"annotation"</span> <span class="hljs-attr">expression</span>=<span class="hljs-string">"org.springframework.stereotype.Controller"</span>/&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">context:component-scan</span>&gt;</span></code></pre>
 
+<h4 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h4><h5 id="方式一：通过xml文件实现自动装配"><a href="#方式一：通过xml文件实现自动装配" class="headerlink" title="方式一：通过xml文件实现自动装配"></a>方式一：通过xml文件实现自动装配</h5><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"people"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cn.jimu98.pojo.Peopel"</span> <span class="hljs-attr">autowire</span>=<span class="hljs-string">"byName"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"张三"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+
+<p> 使用autowire关键字声明bean的自动装配方式。其可选值为<strong>byName、byType、constructor，default，no</strong>；这里讲前边两个。</p>
+<h6 id="1-byName"><a href="#1-byName" class="headerlink" title="1.byName"></a>1.byName</h6><p>设置autowire属性为byName，那么Spring会根据class属性找到实体类，然后查询实体类中所有setter方法的名字，根据setter方法后面的名字（例如SetDog，则setter方法后面的名字为dog）再到配置文件中寻找一个与该名字相同id的Bean，注入进来。如图：</p>
+<p><img src="https://img2.jimu98.cn/blog/20200806213044.png" srcset="/img/loading.gif" alt="image-20200806213043989"></p>
+<h6 id="2-byType"><a href="#2-byType" class="headerlink" title="2.byType"></a>2.byType</h6><p>设置autowire属性为byType，那么Spring会自动寻找一个与该属性类型相同的Bean，注入进来。</p>
+<p><img src="https://img2.jimu98.cn/blog/20200806213100.png" srcset="/img/loading.gif" alt="image-20200806213100822"></p>
+<p>注意：使用byType这种方式，必须保证配置文件中所有bean的class属性的值是唯一的，否则就会报错</p>
+<p>例如：下边这种方式是错误的，因为两个bean中的class属性的值重复了，会报错</p>
+<p><img src="https://img2.jimu98.cn/blog/20200806213136.png" srcset="/img/loading.gif" alt="image-20200806213136630"></p>
+<h5 id="方式二：通过注解实现自动装配"><a href="#方式二：通过注解实现自动装配" class="headerlink" title="方式二：通过注解实现自动装配"></a>方式二：通过注解实现自动装配</h5><p>注解是通过反射来实现的。</p>
+<p><strong>1.使用注解前的准备：</strong></p>
+<p>要使用注解，xml文件要使用如下的文件头：</p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans</span></span>
+<span class="hljs-tag"><span class="hljs-string">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span>
+<span class="hljs-tag"><span class="hljs-string">        http://www.springframework.org/schema/context</span></span>
+<span class="hljs-tag"><span class="hljs-string">        https://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">context:annotation-config</span>/&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+
+<p>注意：<br>&lt;context:annotation-config/&gt;  必须要写在xml中，这是用来开启注解的支持，如果不加上注解就无效。</p>
+<p>2.1  Autowired注解【常用】<br>首先xml配置文件如下：</p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans</span></span>
+<span class="hljs-tag"><span class="hljs-string">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span>
+<span class="hljs-tag"><span class="hljs-string">        http://www.springframework.org/schema/context</span></span>
+<span class="hljs-tag"><span class="hljs-string">        https://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">context:annotation-config</span>/&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"cat"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.kuang.pojo.Cat"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dog"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.kuang.pojo.Dog"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"people"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.kuang.pojo.Peopel"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"张三"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+
+<p>然后在实体类的对应属性上添加@Autowired注解（也可以把注解放到对应属性的setter上），people类中依赖Dog类和Cat类。所以在people类中的dog和cat属性上要加上@Autowired，实现自动装配。</p>
+<p>例如：</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Peopel</span> </span>&#123;
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> Cat cat;
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> Dog dog;
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Cat <span class="hljs-title">getCat</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> cat;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setCat</span><span class="hljs-params">(Cat cat)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.cat = cat;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Dog <span class="hljs-title">getDog</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> dog;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDog</span><span class="hljs-params">(Dog dog)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.dog = dog;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Peopel&#123;"</span> +
+                <span class="hljs-string">"cat="</span> + cat +
+                <span class="hljs-string">", dog="</span> + dog +
+                <span class="hljs-string">", name='"</span> + name + <span class="hljs-string">'\''</span> +
+                <span class="hljs-string">'&#125;'</span>;
+    &#125;
+&#125;</code></pre>
+
+<p>重点：</p>
+<p>（1）注解方法装配属性的过程：spring会默认优先根据（被注解修饰的）属性类型去容器中找对应的组件（bean），找到就赋值；若找到多个相同类型的组件，再将属性的名称作为组件（bean）的id去容器中查找。</p>
+<p> （2）@Qualifier注解可以和使用Autowired搭配使用：@Qualifier指定需要装配的组件的id，而不是使用属性名。例如下边例子，spring就会优先在容器中查找id为“abcd”的组件。</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Peopel</span> </span>&#123;
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-meta">@Qualifier</span>(value = <span class="hljs-string">"cat"</span>)
+    <span class="hljs-keyword">private</span> Cat cat;
+&#125;</code></pre>
 
 
 
+<p>什么情况会使用到@Qualifier注解：当ioc容器根据属性类型去容器中找找到多个相同类型的组件，再将属性的名称作为组件（bean）的id去容器中查找找不到时就是用这两个注解搭配，指定需要装配的bean的id。</p>
+<p>（3）在默认情况下使用 @Autowired 注释进行自动注入时，Spring 容器中匹配的候选 Bean 数目必须有且仅有一个。当找不到一个匹配的 Bean 时，Spring 容器将抛出 BeanCreationException 异常，并指出必须至少拥有一个匹配的 Bean。当不能确定 Spring 容器中一定拥有某个类的 Bean 时，可以在需要自动注入该类 Bean 的地方可以使用@Autowired(required= false)。这等于告诉 Spring：在找不到匹配 Bean 时也不报错。</p>
+<p><strong>2.2. Resource注解【不常用】</strong></p>
+<p>@Resource:可以和@Autowired一样实现自动装配功能，但是跟@Autowired不一样的是，它默认是按照组件名称进行装配的，按照组件名称找不到在根据属性类型去查找，再找不到就报错；他们另一个不同的地方就是@Autowired是Spring定义的； @Resource是java规范。</p>
+<h4 id="什么是Spring-inner-beans？-1"><a href="#什么是Spring-inner-beans？-1" class="headerlink" title="什么是Spring inner beans？"></a>什么是Spring inner beans？</h4><p>在Spring框架中，无论何时bean被使用时，当仅被调用了一个属性。一个明智的做法是将这 个bean声明为内部bean。内部bean可以用setter注入“属性”和构造方法注入“构造参数”的方式来实现。 比如，在我们的应用程序中，一个Customer类引用了一个Person类，我们的要做的是创建 一个Person的实例，然后在Customer内部使用。</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span></span>&#123;
+ <span class="hljs-keyword">private</span> Person person;
+ <span class="hljs-comment">//Setters and Getters</span>
+&#125;
 
-<h3 id="IOC-1"><a href="#IOC-1" class="headerlink" title="IOC"></a>IOC</h3><p>从注入方法上看，IoC可以分为：构造函数注入、属性注入、接口注入</p>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>&#123;
+ <span class="hljs-keyword">private</span> String name;
+ <span class="hljs-keyword">private</span> String address;
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;
+ <span class="hljs-comment">//Setters and Getters</span>
+&#125;</code></pre>
+
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"CustomerBean"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.somnus.common.Customer"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"person"</span>&gt;</span>
+ <span class="hljs-comment">&lt;!-- This is inner bean --&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.howtodoinjava.common.Person"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"lokesh"</span> /&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"address"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"India"</span> /&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"age"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"34"</span> /&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+
+<blockquote>
+<p>pring框架中的单例bean不是线程安全的。</p>
+</blockquote>
+<h4 id="请举例说明-Qualiier注解？"><a href="#请举例说明-Qualiier注解？" class="headerlink" title="请举例说明@Qualiier注解？"></a>请举例说明@Qualiier注解？</h4><blockquote>
+<p>@Qualiier注解意味着可以在被标注bean的字段上可以自动装配。Qualiier注解可以用来取 消Spring不能取消的bean应用。 下面的示例将会在Customer的person属性中自动装配 person的值。</p>
+</blockquote>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"customer"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cn.jimu98.common.Customer"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"personA"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cn.jimu98.common.Person"</span> &gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"lokesh"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"personB"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cn.jimu98.common.Person"</span> &gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"alex"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span></span>&#123;
+ <span class="hljs-meta">@Autowired</span>
+ <span class="hljs-keyword">private</span> Person person;
+&#125;</code></pre>
+
+<p>//这样就会报错，因为不知道该使用哪个bean</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span></span>&#123;
+ <span class="hljs-meta">@Autowired</span>
+ <span class="hljs-meta">@Qualifier</span>(<span class="hljs-string">"personA"</span>)
+ <span class="hljs-keyword">private</span> Person person;
+&#125;</code></pre>
+
+<p>//使用@Qualiier注解就ok了</p>
+<h4 id="IOC-1"><a href="#IOC-1" class="headerlink" title="IOC"></a>IOC</h4><p>从注入方法上看，IoC可以分为：构造函数注入、属性注入、接口注入</p>
 <h5 id="构造函数注入"><a href="#构造函数注入" class="headerlink" title="构造函数注入"></a>构造函数注入</h5><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">KFCCombo</span> </span>&#123;
     <span class="hljs-keyword">private</span> Burger burger;
     <span class="hljs-keyword">private</span> Drink drink;
@@ -653,7 +789,38 @@
 <p>2.基于注解的配置 </p>
 <p>3.基于Java的配置</p>
 </blockquote>
-<h4 id="如何用基于XML配置的方式配置Spring？"><a href="#如何用基于XML配置的方式配置Spring？" class="headerlink" title="如何用基于XML配置的方式配置Spring？"></a>如何用基于XML配置的方式配置Spring？</h4><h4 id="如何用基于Java配置的方式配置Spring？"><a href="#如何用基于Java配置的方式配置Spring？" class="headerlink" title="如何用基于Java配置的方式配置Spring？"></a>如何用基于Java配置的方式配置Spring？</h4><h4 id="怎样用注解的方式配置Spring？"><a href="#怎样用注解的方式配置Spring？" class="headerlink" title="怎样用注解的方式配置Spring？"></a>怎样用注解的方式配置Spring？</h4><h1 id="Spring面试题"><a href="#Spring面试题" class="headerlink" title="Spring面试题"></a>Spring面试题</h1><h2 id="Spring-框架中用到了哪些设计模式"><a href="#Spring-框架中用到了哪些设计模式" class="headerlink" title="Spring 框架中用到了哪些设计模式?"></a>Spring 框架中用到了哪些设计模式?</h2><blockquote>
+<h4 id="如何用基于XML配置的方式配置Spring？"><a href="#如何用基于XML配置的方式配置Spring？" class="headerlink" title="如何用基于XML配置的方式配置Spring？"></a>如何用基于XML配置的方式配置Spring？</h4><h4 id="如何用基于Java配置的方式配置Spring？"><a href="#如何用基于Java配置的方式配置Spring？" class="headerlink" title="如何用基于Java配置的方式配置Spring？"></a>如何用基于Java配置的方式配置Spring？</h4><p>定义一个配置类</p>
+<h4 id="怎样用注解的方式配置Spring？"><a href="#怎样用注解的方式配置Spring？" class="headerlink" title="怎样用注解的方式配置Spring？"></a>怎样用注解的方式配置Spring？</h4><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringIdolConfig</span> </span>&#123;
+	<span class="hljs-comment">// Bean declaration methods go here</span>
+&#125;</code></pre>
+
+<p>声明一个简单的Bean</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Performer <span class="hljs-title">duke</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Juggler();
+&#125;</code></pre>
+
+<p>使用Spring的基于java的配置进行注入。</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Performer <span class="hljs-title">duke15</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Juggler(<span class="hljs-number">15</span>);
+&#125;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-meta">@Bean</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Performer <span class="hljs-title">kenny</span><span class="hljs-params">()</span> </span>&#123;
+    Instrumentalist kenny = <span class="hljs-keyword">new</span> Instrumentalist();
+    kenny.setSong(<span class="hljs-string">"Jingle Bells"</span>);
+    <span class="hljs-keyword">return</span> kenny;
+&#125;</code></pre>
+
+
+
+<h1 id="Spring面试题"><a href="#Spring面试题" class="headerlink" title="Spring面试题"></a>Spring面试题</h1><h2 id="Spring支持的事务管理类型"><a href="#Spring支持的事务管理类型" class="headerlink" title="Spring支持的事务管理类型"></a>Spring支持的事务管理类型</h2><p>Spring支持两种类型的事务管理： </p>
+<p>编程式事务管理：这意味你通过编程的方式管理事务，给你带来极大的灵活性，但是难维 护。 </p>
+<p>声明式事务管理：这意味着你可以将业务代码和事务管理分离，你只需用注解和XML配置 来管理事务。</p>
+<h2 id="Spring-框架中用到了哪些设计模式"><a href="#Spring-框架中用到了哪些设计模式" class="headerlink" title="Spring 框架中用到了哪些设计模式?"></a>Spring 框架中用到了哪些设计模式?</h2><blockquote>
 <p>代理模式—在 AOP 和 remoting 中被用的比较多。<br>单例模式：在 spring 配置文件中定义的 bean 默认为单例模式。<br>模板方法：用来解决代码重复的问题。比如. RestTemplate, JmsTemplate, JpaTemplate。<br>前端控制器：Spring 提供了 DispatcherServlet 来对请求进行分发。<br>视图帮助(View Helper )：Spring 提供了一系列的 JSP 标签，高效宏来辅助将分散的代码 整合在视图里。<br>依赖注入：贯穿于 BeanFactory / ApplicationContext 接口的核心理念。<br>工厂模式：BeanFactory 用来创建对象的实例。</p>
 </blockquote>
 
@@ -687,6 +854,12 @@
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/09/30/other/%E8%B6%85%E7%BA%A7%E5%A4%A7%E7%A4%BC%E5%8C%85/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一年cn域名+一年服务器免费送了</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">
