@@ -188,7 +188,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5k 字
+      5.2k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      52
+      54
        分钟
     </span>
   
@@ -269,6 +269,10 @@
 </blockquote>
 <h3 id="TCP-与-UDP"><a href="#TCP-与-UDP" class="headerlink" title="TCP 与 UDP"></a>TCP 与 UDP</h3><p>它们都属于传输层协议,</p>
 <h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>TCP（Transmission Control Protocol，传输控制协议）是面向连接的协议，也就是说，在收发数据前，必须和对方建立可靠的连接。一个TCP连接必须有三次握手、四次挥手。</p>
+<p><img src="https://img2.jimu98.cn/blog/20200810232133.png" srcset="/img/loading.gif" alt="image-20200810232133417"></p>
+<blockquote>
+<p>① URG: 表示紧急指针是否有效<br>② ACK: 表示确认号是否有效(携带ACK标志的TCP报文段称为确认报文段)<br>③ PSH: 提示接收端应用程序要立即从TCP接收缓冲区读走数据，以腾出空间接收后续的数据。(若应用程序不读走数据，数据会一直留在TCP模块的接收缓冲区)<br>④ RST: 表示要求对方重新建立连接(携带RST标志的TCP报文段为复位报文段)<br>⑤ SYN: 表示请求建立一个连接(携带SYN标志的TCP报文段称为同步报文段)<br>⑥ FIN: 表示通知对方要关闭连接(携带FIN标志的TCP报文段为结束报文段)</p>
+</blockquote>
 <h5 id="TCP-三次握手"><a href="#TCP-三次握手" class="headerlink" title="TCP  三次握手"></a>TCP  三次握手</h5><blockquote>
 <p>这个好多人都吃过亏，感觉好复杂，我觉得码农翻身里面这一段解释的特别简单</p>
 <p>第一次：A跟B说话   B收到了 B知道A发送消息没问题</p>
