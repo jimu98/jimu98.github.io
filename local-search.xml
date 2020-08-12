@@ -44,6 +44,19 @@
   
   
   <entry>
+    <title>java/asdfsd</title>
+    <link href="/2020/08/12/java/asdfsd/"/>
+    <url>/2020/08/12/java/asdfsd/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【java总结】框架之SpringCloud</title>
     <link href="/2020/08/10/java/%E3%80%90Java%E6%80%BB%E7%BB%93%E3%80%91SpringCloud/"/>
     <url>/2020/08/10/java/%E3%80%90Java%E6%80%BB%E7%BB%93%E3%80%91SpringCloud/</url>
@@ -1463,11 +1476,11 @@
   
   
   <entry>
-    <title>【剑指Offer】数组中出现次数超过一半的数字</title>
-    <link href="/2020/07/21/jianzhi-offer/39.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/"/>
-    <url>/2020/07/21/jianzhi-offer/39.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/</url>
+    <title>【剑指Offer】最小的k个数</title>
+    <link href="/2020/07/21/jianzhi-offer/40.%20%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/"/>
+    <url>/2020/07/21/jianzhi-offer/40.%20%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/</url>
     
-    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。</p><p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p><p>示例 1:</p><p>输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]<br>输出: 2</p><p>限制：</p><p>1 &lt;= 数组长度 &lt;= 50000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;        <span class="hljs-keyword">int</span> x=nums[<span class="hljs-number">0</span>];        <span class="hljs-keyword">int</span> y=<span class="hljs-number">1</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;nums.length;i++)&#123;            <span class="hljs-keyword">if</span>(y==<span class="hljs-number">0</span>)&#123;                x=nums[i];                y=<span class="hljs-number">1</span>;                <span class="hljs-keyword">continue</span>;            &#125;            <span class="hljs-keyword">if</span>(x!=nums[i])&#123;                y--;            &#125;<span class="hljs-keyword">else</span>                y++;        &#125;        <span class="hljs-keyword">return</span> x;    &#125;&#125;</code></pre>]]></content>
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。</p><p>示例 1：</p><p>输入：arr = [3,2,1], k = 2<br>输出：[1,2] 或者 [2,1]<br>示例 2：</p><p>输入：arr = [0,1,2,1], k = 1<br>输出：[0]</p><p>限制：</p><p>0 &lt;= k &lt;= arr.length &lt;= 10000<br>0 &lt;= arr[i] &lt;= 10000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote><p>这道题直接排序即可，但是还是多写几次快排吧，毕竟太难记了</p></blockquote><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] getLeastNumbers(<span class="hljs-keyword">int</span>[] arr, <span class="hljs-keyword">int</span> k) &#123;        <span class="hljs-keyword">if</span> (k == <span class="hljs-number">0</span> || arr.length == <span class="hljs-number">0</span>) &#123;            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];        &#125;        <span class="hljs-comment">// 最后一个参数表示我们要找的是下标为k-1的数</span>        <span class="hljs-keyword">return</span> quickSearch(arr, <span class="hljs-number">0</span>, arr.length - <span class="hljs-number">1</span>, k - <span class="hljs-number">1</span>);    &#125;    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span>[] quickSearch(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> lo, <span class="hljs-keyword">int</span> hi, <span class="hljs-keyword">int</span> k) &#123;        <span class="hljs-comment">// 每快排切分1次，找到排序后下标为j的元素，如果j恰好等于k就返回j以及j左边所有的数；</span>        <span class="hljs-keyword">int</span> j = partition(nums, lo, hi);        <span class="hljs-keyword">if</span> (j == k) &#123;            <span class="hljs-keyword">return</span> Arrays.copyOf(nums, j + <span class="hljs-number">1</span>);        &#125;        <span class="hljs-comment">// 否则根据下标j与k的大小关系来决定继续切分左段还是右段。</span>        <span class="hljs-keyword">return</span> j &gt; k? quickSearch(nums, lo, j - <span class="hljs-number">1</span>, k): quickSearch(nums, j + <span class="hljs-number">1</span>, hi, k);    &#125;    <span class="hljs-comment">// 快排切分，返回下标j，使得比nums[j]小的数都在j的左边，比nums[j]大的数都在j的右边。</span>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">partition</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> lo, <span class="hljs-keyword">int</span> hi)</span> </span>&#123;        <span class="hljs-keyword">int</span> v = nums[lo];        <span class="hljs-keyword">int</span> i = lo, j = hi + <span class="hljs-number">1</span>;        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;            <span class="hljs-keyword">while</span> (++i &lt;= hi &amp;&amp; nums[i] &lt; v);            <span class="hljs-keyword">while</span> (--j &gt;= lo &amp;&amp; nums[j] &gt; v);            <span class="hljs-keyword">if</span> (i &gt;= j) &#123;                <span class="hljs-keyword">break</span>;            &#125;            <span class="hljs-keyword">int</span> t = nums[j];            nums[j] = nums[i];            nums[i] = t;        &#125;        nums[lo] = nums[j];        nums[j] = v;        <span class="hljs-keyword">return</span> j;    &#125;&#125;</code></pre>]]></content>
     
     
     <categories>
@@ -1492,11 +1505,11 @@
   
   
   <entry>
-    <title>【剑指Offer】最小的k个数</title>
-    <link href="/2020/07/21/jianzhi-offer/40.%20%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/"/>
-    <url>/2020/07/21/jianzhi-offer/40.%20%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/</url>
+    <title>【剑指Offer】数组中出现次数超过一半的数字</title>
+    <link href="/2020/07/21/jianzhi-offer/39.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/"/>
+    <url>/2020/07/21/jianzhi-offer/39.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/</url>
     
-    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。</p><p>示例 1：</p><p>输入：arr = [3,2,1], k = 2<br>输出：[1,2] 或者 [2,1]<br>示例 2：</p><p>输入：arr = [0,1,2,1], k = 1<br>输出：[0]</p><p>限制：</p><p>0 &lt;= k &lt;= arr.length &lt;= 10000<br>0 &lt;= arr[i] &lt;= 10000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote><p>这道题直接排序即可，但是还是多写几次快排吧，毕竟太难记了</p></blockquote><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] getLeastNumbers(<span class="hljs-keyword">int</span>[] arr, <span class="hljs-keyword">int</span> k) &#123;        <span class="hljs-keyword">if</span> (k == <span class="hljs-number">0</span> || arr.length == <span class="hljs-number">0</span>) &#123;            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];        &#125;        <span class="hljs-comment">// 最后一个参数表示我们要找的是下标为k-1的数</span>        <span class="hljs-keyword">return</span> quickSearch(arr, <span class="hljs-number">0</span>, arr.length - <span class="hljs-number">1</span>, k - <span class="hljs-number">1</span>);    &#125;    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span>[] quickSearch(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> lo, <span class="hljs-keyword">int</span> hi, <span class="hljs-keyword">int</span> k) &#123;        <span class="hljs-comment">// 每快排切分1次，找到排序后下标为j的元素，如果j恰好等于k就返回j以及j左边所有的数；</span>        <span class="hljs-keyword">int</span> j = partition(nums, lo, hi);        <span class="hljs-keyword">if</span> (j == k) &#123;            <span class="hljs-keyword">return</span> Arrays.copyOf(nums, j + <span class="hljs-number">1</span>);        &#125;        <span class="hljs-comment">// 否则根据下标j与k的大小关系来决定继续切分左段还是右段。</span>        <span class="hljs-keyword">return</span> j &gt; k? quickSearch(nums, lo, j - <span class="hljs-number">1</span>, k): quickSearch(nums, j + <span class="hljs-number">1</span>, hi, k);    &#125;    <span class="hljs-comment">// 快排切分，返回下标j，使得比nums[j]小的数都在j的左边，比nums[j]大的数都在j的右边。</span>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">partition</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> lo, <span class="hljs-keyword">int</span> hi)</span> </span>&#123;        <span class="hljs-keyword">int</span> v = nums[lo];        <span class="hljs-keyword">int</span> i = lo, j = hi + <span class="hljs-number">1</span>;        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;            <span class="hljs-keyword">while</span> (++i &lt;= hi &amp;&amp; nums[i] &lt; v);            <span class="hljs-keyword">while</span> (--j &gt;= lo &amp;&amp; nums[j] &gt; v);            <span class="hljs-keyword">if</span> (i &gt;= j) &#123;                <span class="hljs-keyword">break</span>;            &#125;            <span class="hljs-keyword">int</span> t = nums[j];            nums[j] = nums[i];            nums[i] = t;        &#125;        nums[lo] = nums[j];        nums[j] = v;        <span class="hljs-keyword">return</span> j;    &#125;&#125;</code></pre>]]></content>
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。</p><p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p><p>示例 1:</p><p>输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]<br>输出: 2</p><p>限制：</p><p>1 &lt;= 数组长度 &lt;= 50000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;        <span class="hljs-keyword">int</span> x=nums[<span class="hljs-number">0</span>];        <span class="hljs-keyword">int</span> y=<span class="hljs-number">1</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;nums.length;i++)&#123;            <span class="hljs-keyword">if</span>(y==<span class="hljs-number">0</span>)&#123;                x=nums[i];                y=<span class="hljs-number">1</span>;                <span class="hljs-keyword">continue</span>;            &#125;            <span class="hljs-keyword">if</span>(x!=nums[i])&#123;                y--;            &#125;<span class="hljs-keyword">else</span>                y++;        &#125;        <span class="hljs-keyword">return</span> x;    &#125;&#125;</code></pre>]]></content>
     
     
     <categories>
@@ -2637,9 +2650,9 @@
       
       <tag>SpringCloud</tag>
       
-      <tag>Redis</tag>
-      
       <tag>微服务</tag>
+      
+      <tag>Redis</tag>
       
       <tag>bean</tag>
       
@@ -2668,9 +2681,9 @@
       
       <tag>SpringCloud</tag>
       
-      <tag>微服务</tag>
-      
       <tag>Sentinel</tag>
+      
+      <tag>微服务</tag>
       
     </tags>
     
