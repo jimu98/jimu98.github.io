@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.9k 字
+      3.1k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      29
+      32
        分钟
     </span>
   
@@ -352,7 +352,29 @@
 <blockquote>
 <p>其实每种方式的本质都是一样的，那就是创建Thread对象，只不过使用到的构造方法不同罢了。</p>
 </blockquote>
-<h2 id="线程池原理，参数？"><a href="#线程池原理，参数？" class="headerlink" title="线程池原理，参数？"></a>线程池原理，参数？</h2><h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><h2 id="SpringMVC执行流程图"><a href="#SpringMVC执行流程图" class="headerlink" title="SpringMVC执行流程图"></a>SpringMVC执行流程图</h2><p><img src="https://img2.jimu98.cn/blog/20200808165459.png" srcset="/img/loading.gif" alt="image-20200808165458277"></p>
+<h2 id="线程池原理，参数？"><a href="#线程池原理，参数？" class="headerlink" title="线程池原理，参数？"></a>线程池原理，参数？</h2><p>程序启动一个新线程成本是比较高的，因为它涉及到要与操作系统进行交互<br> 而使用线程池可以很好的提高性能，尤其是当程序中要创建大量生存期很短的线程时<br> 更应该考虑使用线程池</p>
+<p><strong>线程池里的每个线程代码结束后并不会死亡</strong><br> 而是再次回到线程池中成为空闲状态，等待下一个对象再来使用</p>
+<ul>
+<li><p>底层有七个参数</p>
+<ul>
+<li><p>corePoolSize 线程池种的常驻核心线程数</p>
+</li>
+<li><p>maximumPoolSize 线程池种能够容纳最大线程数</p>
+</li>
+<li><p>keepAliveTime  多余的空闲线程的存活时间</p>
+</li>
+<li><p>unit keepAliveTime的单位</p>
+</li>
+<li><p>workQueue 任务队列</p>
+</li>
+<li><p>threadFactory 表示生成线程池中工作线程的线程工厂，</p>
+</li>
+<li><p>handler 拒绝策略，表示当队列满了，如何拒绝</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><h2 id="SpringMVC执行流程图"><a href="#SpringMVC执行流程图" class="headerlink" title="SpringMVC执行流程图"></a>SpringMVC执行流程图</h2><p><img src="https://img2.jimu98.cn/blog/20200808165459.png" srcset="/img/loading.gif" alt="image-20200808165458277"></p>
 <h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><h3 id="如果遇到数据库字段和pojo不一致怎么办？"><a href="#如果遇到数据库字段和pojo不一致怎么办？" class="headerlink" title="如果遇到数据库字段和pojo不一致怎么办？"></a>如果遇到数据库字段和pojo不一致怎么办？</h3><blockquote>
 <ul>
 <li>1.sql语句写别名</li>
