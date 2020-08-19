@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      44
+      45
        分钟
     </span>
   
@@ -349,6 +349,9 @@ sudo systemctl restart docker</code></pre>
 <p><strong>docker wait :</strong> 阻塞运行直到容器停止，然后打印出它的退出代码</p>
 <p><strong>docker export :</strong>将文件系统作为一个tar归档文件导出到STDOUT</p>
 <p><strong>docker port :</strong>列出指定的容器的端口映射，或者查找将PRIVATE_PORT NAT到面向公众的端口</p>
+<p>docker ps -a | awk ‘{print $1}’     查询</p>
+<p>docker ps -a | awk ‘{print $1}’|xargs docker stop      批量停止</p>
+<p>docker ps -a | awk ‘{print $1}’|xargs docker rm  删除</p>
 </blockquote>
 <h3 id="容器rootfs命令"><a href="#容器rootfs命令" class="headerlink" title="容器rootfs命令"></a>容器rootfs命令</h3><blockquote>
 <p><strong>docker commit :</strong>从容器创建一个新的镜像（提交镜像）</p>
