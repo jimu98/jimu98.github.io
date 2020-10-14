@@ -46,46 +46,6 @@
   </entry>
   
   <entry>
-    <title>一年cn域名+一年服务器免费送了</title>
-    <link href="https://www.jimu98.cn/2020/09/30/other/%E8%B6%85%E7%BA%A7%E5%A4%A7%E7%A4%BC%E5%8C%85/"/>
-    <id>https://www.jimu98.cn/2020/09/30/other/%E8%B6%85%E7%BA%A7%E5%A4%A7%E7%A4%BC%E5%8C%85/</id>
-    <published>2020-09-30T04:06:03.000Z</published>
-    <updated>2020-08-06T15:41:38.459Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;动机&quot;&gt;&lt;a href=&quot;#动机&quot; class=&quot;headerlink&quot; title=&quot;动机&quot;&gt;&lt;/a&gt;动机&lt;/h1&gt;&lt;h2 id=&quot;一年cn域名-一年服务器-企鹅公仔-好莱坞会员！！！&quot;&gt;&lt;a href=&quot;#一年cn域名-一年服务器-企鹅公仔-好莱坞会员！！！&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="其他笔记" scheme="https://www.jimu98.cn/categories/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="HEXO" scheme="https://www.jimu98.cn/tags/HEXO/"/>
-    
-    <category term="博客" scheme="https://www.jimu98.cn/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mianshi/volatile是什么</title>
-    <link href="https://www.jimu98.cn/2020/09/16/mianshi/volatile%E6%98%AF%E4%BB%80%E4%B9%88/"/>
-    <id>https://www.jimu98.cn/2020/09/16/mianshi/volatile%E6%98%AF%E4%BB%80%E4%B9%88/</id>
-    <published>2020-09-16T13:20:01.903Z</published>
-    <updated>2020-09-16T13:20:36.279Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>【三天两夜】SpringCloud+Jenkins+Docker持续部署积木学堂</title>
     <link href="https://www.jimu98.cn/2020/08/19/xiangmu/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B/"/>
     <id>https://www.jimu98.cn/2020/08/19/xiangmu/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B/</id>
@@ -484,35 +444,6 @@
   </entry>
   
   <entry>
-    <title>【java知识点】单例模式八种写法</title>
-    <link href="https://www.jimu98.cn/2020/07/29/java/jichu/%E3%80%90java%E7%9F%A5%E8%AF%86%E7%82%B9%E3%80%91%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://www.jimu98.cn/2020/07/29/java/jichu/%E3%80%90java%E7%9F%A5%E8%AF%86%E7%82%B9%E3%80%91%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</id>
-    <published>2020-07-29T12:06:03.000Z</published>
-    <updated>2020-08-15T09:52:05.709Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;【java知识点】单例模式八种写法&quot;&gt;&lt;a href=&quot;#【java知识点】单例模式八种写法&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="java知识点" scheme="https://www.jimu98.cn/categories/java%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
-    
-    
-    <category term="Java" scheme="https://www.jimu98.cn/tags/Java/"/>
-    
-    <category term="Java SE" scheme="https://www.jimu98.cn/tags/Java-SE/"/>
-    
-    <category term="基础篇" scheme="https://www.jimu98.cn/tags/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【java总结】面试题整理</title>
     <link href="https://www.jimu98.cn/2020/07/29/java/%E3%80%90Java%E6%80%BB%E7%BB%93%E3%80%91%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/"/>
     <id>https://www.jimu98.cn/2020/07/29/java/%E3%80%90Java%E6%80%BB%E7%BB%93%E3%80%91%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/</id>
@@ -538,6 +469,35 @@
     <category term="Java SE" scheme="https://www.jimu98.cn/tags/Java-SE/"/>
     
     <category term="面试题" scheme="https://www.jimu98.cn/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【java知识点】单例模式八种写法</title>
+    <link href="https://www.jimu98.cn/2020/07/29/java/jichu/%E3%80%90java%E7%9F%A5%E8%AF%86%E7%82%B9%E3%80%91%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://www.jimu98.cn/2020/07/29/java/jichu/%E3%80%90java%E7%9F%A5%E8%AF%86%E7%82%B9%E3%80%91%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</id>
+    <published>2020-07-29T12:06:03.000Z</published>
+    <updated>2020-08-15T09:52:05.709Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;【java知识点】单例模式八种写法&quot;&gt;&lt;a href=&quot;#【java知识点】单例模式八种写法&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="java知识点" scheme="https://www.jimu98.cn/categories/java%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    
+    
+    <category term="Java" scheme="https://www.jimu98.cn/tags/Java/"/>
+    
+    <category term="Java SE" scheme="https://www.jimu98.cn/tags/Java-SE/"/>
+    
+    <category term="基础篇" scheme="https://www.jimu98.cn/tags/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
     
   </entry>
   
@@ -571,6 +531,67 @@
     <category term="HEXO" scheme="https://www.jimu98.cn/tags/HEXO/"/>
     
     <category term="随机排序" scheme="https://www.jimu98.cn/tags/%E9%9A%8F%E6%9C%BA%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【项目笔记】Object的概念与区别</title>
+    <link href="https://www.jimu98.cn/2020/07/27/xiangmu/Object%E5%88%92%E5%88%86/"/>
+    <id>https://www.jimu98.cn/2020/07/27/xiangmu/Object%E5%88%92%E5%88%86/</id>
+    <published>2020-07-27T12:06:03.000Z</published>
+    <updated>2020-07-27T12:30:02.443Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;【项目笔记】Object的概念与区别&quot;&gt;&lt;a href=&quot;#【项目笔记】Object的概念与区别&quot; class=&quot;headerlink&quot; title=&quot;【项目笔记】Object的概念与区别&quot;&gt;&lt;/a&gt;【项目笔记】Object的概念与区别&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;首先来一张图，简单看一下&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="项目笔记" scheme="https://www.jimu98.cn/categories/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Object" scheme="https://www.jimu98.cn/tags/Object/"/>
+    
+    <category term="POJO" scheme="https://www.jimu98.cn/tags/POJO/"/>
+    
+    <category term="DTO" scheme="https://www.jimu98.cn/tags/DTO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【剑指Offer】II. 二叉树的最近公共祖先</title>
+    <link href="https://www.jimu98.cn/2020/07/27/jianzhi-offer/68%20-%20II.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/"/>
+    <id>https://www.jimu98.cn/2020/07/27/jianzhi-offer/68%20-%20II.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/</id>
+    <published>2020-07-27T06:27:04.000Z</published>
+    <updated>2020-07-27T06:27:38.464Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h3&gt;&lt;p&gt;给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。&lt;/p&gt;
+&lt;p&gt;百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”&lt;/p&gt;
+&lt;p&gt;例如，给定如下二叉树:  root =</summary>
+        
+      
+    
+    
+    
+    <category term="算法" scheme="https://www.jimu98.cn/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="剑指Offer" scheme="https://www.jimu98.cn/tags/%E5%89%91%E6%8C%87Offer/"/>
+    
+    <category term="算法" scheme="https://www.jimu98.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
