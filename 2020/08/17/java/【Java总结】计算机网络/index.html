@@ -292,7 +292,7 @@
 <p>暂时只看绿色部分的三次握手（状态大家可以百度一下TCP11种状态，我感觉直接翻译可能更乱）</p>
 <blockquote>
 <p>1.第一次握手：建立连接。客户端发送连接请求报文段，将<code>SYN</code>位置为1，<code>Sequence Number</code>为x（也就是随机值）；然后，客户端进入<code>SYN_SEND</code>状态，等待服务器的确认；</p>
-<p>2.第二次握手：服务器收到<code>SYN</code>报文段。服务器收到客户端的<code>SYN</code>报文段，需要对这个<code>SYN</code>报文段进行确认，设置<code>Acknowledgment Number</code>为x+1(<code>Sequence Number</code>+1)；同时，自己自己还要发送<code>SYN</code>请求信息，将<code>SYN</code>位置为1，<code>Sequence Number</code>为y；服务器端将上述所有信息放到一个报文段（即<code>SYN+ACK</code>报文段）中，一并发送给客户端，此时服务器进入<code>SYN_RECV</code>状态；</p>
+<p>2.第二次握手：服务器收到<code>SYN</code>报文段。服务器收到客户端的<code>SYN</code>报文段，需要对这个<code>SYN</code>报文段进行确认，设置<code>Acknowledgment Number</code>为x+1(<code>Sequence Number</code>+1)；同时，自己自己还要发送<code>SYN</code>请求信息，将<code>SYN</code>位置为1，<code>Sequence Number</code>为y；服务器端将上述所有信息放到一个报文段（即<code>SYN+ACK</code>报文段）中，一并发送给客户端，此时服务器进入<code>SYN_RCVD</code>状态；</p>
 <p>3.第三次握手：客户端收到服务器的<code>SYN+ACK</code>报文段。然后将<code>Acknowledgment Number</code>设置为y+1，向服务器发送<code>ACK</code>报文段，这个报文段发送完毕以后，客户端和服务器端都进入<code>ESTABLISHED</code>状态，完成TCP三次握手。</p>
 </blockquote>
 <p><img src="https://img2.jimu98.cn/blog/20200729161601.png" srcset="/img/loading.gif" alt="image-20200729161600822"></p>
