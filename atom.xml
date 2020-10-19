@@ -473,35 +473,6 @@
   </entry>
   
   <entry>
-    <title>【java知识点】单例模式八种写法</title>
-    <link href="https://www.jimu98.cn/post/3316/"/>
-    <id>https://www.jimu98.cn/post/3316/</id>
-    <published>2020-07-29T12:06:03.000Z</published>
-    <updated>2020-10-19T10:19:38.632Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;【java知识点】单例模式八种写法&quot;&gt;&lt;a href=&quot;#【java知识点】单例模式八种写法&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="java知识点" scheme="https://www.jimu98.cn/categories/java%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
-    
-    
-    <category term="Java" scheme="https://www.jimu98.cn/tags/Java/"/>
-    
-    <category term="Java SE" scheme="https://www.jimu98.cn/tags/Java-SE/"/>
-    
-    <category term="基础篇" scheme="https://www.jimu98.cn/tags/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【java总结】面试题整理</title>
     <link href="https://www.jimu98.cn/post/80df/"/>
     <id>https://www.jimu98.cn/post/80df/</id>
@@ -527,6 +498,35 @@
     <category term="Java SE" scheme="https://www.jimu98.cn/tags/Java-SE/"/>
     
     <category term="面试题" scheme="https://www.jimu98.cn/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【java知识点】单例模式八种写法</title>
+    <link href="https://www.jimu98.cn/post/3316/"/>
+    <id>https://www.jimu98.cn/post/3316/</id>
+    <published>2020-07-29T12:06:03.000Z</published>
+    <updated>2020-10-19T10:19:38.632Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;【java知识点】单例模式八种写法&quot;&gt;&lt;a href=&quot;#【java知识点】单例模式八种写法&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="java知识点" scheme="https://www.jimu98.cn/categories/java%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    
+    
+    <category term="Java" scheme="https://www.jimu98.cn/tags/Java/"/>
+    
+    <category term="Java SE" scheme="https://www.jimu98.cn/tags/Java-SE/"/>
+    
+    <category term="基础篇" scheme="https://www.jimu98.cn/tags/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
     
   </entry>
   
