@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img2.jimu98.cn/blog/20200729222712.png">
+  <link rel="icon" type="image/png" href="https://img2.jimu98.cn/blog/20200729222712.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
+  <meta name="author" content="积木">
+  <meta name="keywords" content="积木,jimu98,java,后端,jimu">
+  <title>HEXO友链随机排序 - 积木 | 互联网的一只小菜鸡</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script data-ad-client="ca-pub-2806771379080352" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="积木 | 互联网的一只小菜鸡" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jimu98</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/list/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                导航
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://img2.jimu98.cn/blog/20200729222405.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-28 12:06">
+      2020年7月28日 中午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><blockquote>
+<p>最近做博客做的很有乐趣，到处找人换友链</p>
+<p>然后我就发现排在前面和排在后面点击效果比较好</p>
+<p>这对排在中间的朋友们极其不公平。</p>
+<p>我就想搞个随机友链</p>
+</blockquote>
+<h1 id="找出目录"><a href="#找出目录" class="headerlink" title="找出目录"></a>找出目录</h1><blockquote>
+<p>首先我们思考一下hexo原理，他是把你的配置文件还有静态资源通过各种类似脚本的方式生成静态页面</p>
+<p>那么就要去找到友链所对应的脚本或者资源</p>
+</blockquote>
+<p>首先打开主题文件夹，友链无非就那几个关键字 link，links，friend，反正看到类似的就可以</p>
+<p>我的是在 <code>layout/links.ejs文件下面</code></p>
+<h2 id="原来的代码"><a href="#原来的代码" class="headerlink" title="原来的代码"></a>原来的代码</h2><pre><code class="hljs ejs">&lt;%
+page.layout &#x3D; &quot;links&quot;
+page.title &#x3D; theme.links.title || __(&#39;links.title&#39;)
+page.subtitle &#x3D; theme.links.subtitle || __(&#39;links.subtitle&#39;)
+page.banner_img &#x3D; theme.links.banner_img
+page.banner_img_height &#x3D; theme.links.banner_img_height
+page.banner_mask_alpha &#x3D; theme.links.banner_mask_alpha
+%&gt;
+
+  &lt;% for(const each of theme.links.items) &#123; %&gt;
+    &lt;% if (!each.title || !each.link) continue %&gt;
+    &lt;div class&#x3D;&quot;card col-lg-4 col-md-6 col-sm-12&quot;&gt;
+      &lt;a href&#x3D;&quot;&lt;%&#x3D; url_for(each.link) %&gt;&quot; class&#x3D;&quot;card-body hover-with-bg&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener&quot;&gt;
+        &lt;div class&#x3D;&quot;card-content&quot;&gt;
+          &lt;% if (each.image) &#123; %&gt;
+            &lt;div class&#x3D;&quot;link-avatar my-auto&quot;&gt;
+              &lt;img src&#x3D;&quot;&lt;%&#x3D; each.image %&gt;&quot; alt&#x3D;&quot;&lt;%&#x3D; each.title %&gt;&quot; &#x2F;&gt;
+            &lt;&#x2F;div&gt;
+          &lt;% &#125; %&gt;
+          &lt;div class&#x3D;&quot;link-text&quot;&gt;
+            &lt;div class&#x3D;&quot;link-title&quot;&gt;&lt;%- each.title %&gt;&lt;&#x2F;div&gt;
+            &lt;div class&#x3D;&quot;link-intro&quot;&gt;&lt;%- each.intro %&gt;&lt;&#x2F;div&gt;
+          &lt;&#x2F;div&gt;
+        &lt;&#x2F;div&gt;
+      &lt;&#x2F;a&gt;
+    &lt;&#x2F;div&gt;
+  &lt;% &#125; %&gt;
+&lt;&#x2F;div&gt;</code></pre>
+
+<p>看到这几个for循环，感觉亲切了许多是吧。</p>
+<p>theme.links.items应该就是存放友链的数组了</p>
+<blockquote>
+<p>继续思考</p>
+</blockquote>
+<blockquote>
+<p>hexo是生成静态页面的，我们打开看一下生成的public文件夹，很明显，每一条数据都直接固定写成了html</p>
+<p>那说明这里只是拼接html的脚本</p>
+<p>我有两种想法</p>
+<p>通过js操作dom来修改html数据（太过于繁琐，放弃）</p>
+<p>直接在生成前，把数组打乱（so easy，就他了）</p>
+<p>大家看上面的&lt;%  %&gt;了吗  很明显，这里是动态获取数据的地方</p>
+<p>那我们就开始写了</p>
+<p>打乱数组：</p>
+<p>其实我们可以使用js的sort，然后给他一个随机对比</p>
+<p>这样</p>
+<p>function randomsort(a, b) {<br> return Math.random()&gt;.5 ? -1 : 1;<br>}<br>theme.links.items.sort(randomsort);</p>
+<p>//这是一种最简单的方法，但是你可想一下  前面的在前面的概率比较大，后面的在后面的概率比较大，对不对</p>
+<p>（比如先给你加友链的小伙伴，很大的改了可以在前面对不对）</p>
+<p>//当然，我们还是的采用更公平的随机算法：随机洗牌算法</p>
+<p>Array.prototype.shuffle = function() {<br>var input = this;<br>    for (var i = input.length-1; i &gt;=0; i–) {<br>        var randomIndex = Math.floor(Math.random()*(i+1));<br>        var itemAtIndex = input[randomIndex];<br>        input[randomIndex] = input[i];<br>        input[i] = itemAtIndex;<br>    }<br>    return input;<br>}<br>theme.links.items.shuffle();</p>
+</blockquote>
+<h2 id="修改后的代码"><a href="#修改后的代码" class="headerlink" title="修改后的代码"></a>修改后的代码</h2><pre><code class="hljs ejs">&lt;%
+page.layout &#x3D; &quot;links&quot;
+page.title &#x3D; theme.links.title || __(&#39;links.title&#39;)
+page.subtitle &#x3D; theme.links.subtitle || __(&#39;links.subtitle&#39;)
+page.banner_img &#x3D; theme.links.banner_img
+page.banner_img_height &#x3D; theme.links.banner_img_height
+page.banner_mask_alpha &#x3D; theme.links.banner_mask_alpha
+
+function randomsort(a, b) &#123;
+    return Math.random()&gt;.5 ? -1 : 1;
+    &#x2F;&#x2F;用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
+&#125;
+theme.links.items.sort(randomsort);
+%&gt;
+  &lt;% for(const each of theme.links.items) &#123; %&gt;
+    &lt;% if (!each.title || !each.link) continue %&gt;
+    &lt;div class&#x3D;&quot;card col-lg-4 col-md-6 col-sm-12&quot;&gt;
+      &lt;a href&#x3D;&quot;&lt;%&#x3D; url_for(each.link) %&gt;&quot; class&#x3D;&quot;card-body hover-with-bg&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener&quot;&gt;
+        &lt;div class&#x3D;&quot;card-content&quot;&gt;
+          &lt;% if (each.image) &#123; %&gt;
+            &lt;div class&#x3D;&quot;link-avatar my-auto&quot;&gt;
+              &lt;img src&#x3D;&quot;&lt;%&#x3D; each.image %&gt;&quot; alt&#x3D;&quot;&lt;%&#x3D; each.title %&gt;&quot; &#x2F;&gt;
+            &lt;&#x2F;div&gt;
+          &lt;% &#125; %&gt;
+          &lt;div class&#x3D;&quot;link-text&quot;&gt;
+            &lt;div class&#x3D;&quot;link-title&quot;&gt;&lt;%- each.title %&gt;&lt;&#x2F;div&gt;
+            &lt;div class&#x3D;&quot;link-intro&quot;&gt;&lt;%- each.intro %&gt;&lt;&#x2F;div&gt;
+          &lt;&#x2F;div&gt;
+        &lt;&#x2F;div&gt;
+      &lt;&#x2F;a&gt;
+    &lt;&#x2F;div&gt;
+  &lt;% &#125; %&gt;
+&lt;&#x2F;div&gt;</code></pre>
+
+<blockquote>
+<p>好像这个主题友链没带加评论，也没有自我介绍</p>
+<p>那让想要添加我的小伙伴操作起来多么繁琐，找到代码  加上去</p>
+</blockquote>
+<pre><code class="hljs ejs">&lt;%
+page.layout &#x3D; &quot;links&quot;
+page.title &#x3D; theme.links.title || __(&#39;links.title&#39;)
+page.subtitle &#x3D; theme.links.subtitle || __(&#39;links.subtitle&#39;)
+page.banner_img &#x3D; theme.links.banner_img
+page.banner_img_height &#x3D; theme.links.banner_img_height
+page.banner_mask_alpha &#x3D; theme.links.banner_mask_alpha
+
+
+function randomsort(a, b) &#123;
+    return Math.random()&gt;.5 ? -1 : 1;
+    &#x2F;&#x2F;用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
+&#125;
+theme.links.items.sort(randomsort);
+
+%&gt;
+
+ &lt;a href&#x3D;&quot;https:&#x2F;&#x2F;www.jimu98.cn&#x2F;img&#x2F;avatar.png&quot;&gt;本站友情链接顺序随机&lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+&lt;div class&#x3D;&quot;content-tab-content  &quot; data-tab-index&#x3D;&quot;2&quot;&gt;名称：积木&lt;br&gt;网址：&lt;a href&#x3D;&quot;https:&#x2F;&#x2F;www.jimu98.cn&quot;&gt;https:&#x2F;&#x2F;www.jimu98.cn&lt;&#x2F;a&gt;&lt;br&gt;头像：&lt;a href&#x3D;&quot;https:&#x2F;&#x2F;www.jimu98.cn&#x2F;img&#x2F;avatar.png&quot;&gt;https:&#x2F;&#x2F;www.jimu98.cn&#x2F;img&#x2F;avatar.png&lt;&#x2F;a&gt;&lt;br&gt;描述：积木-互联网的一只小菜鸡。&lt;&#x2F;div&gt;
+&lt;div class&#x3D;&quot;row links&quot;&gt;
+
+	
+
+  &lt;% for(const each of theme.links.items) &#123; %&gt;
+    &lt;% if (!each.title || !each.link) continue %&gt;
+    &lt;div class&#x3D;&quot;card col-lg-4 col-md-6 col-sm-12&quot;&gt;
+      &lt;a href&#x3D;&quot;&lt;%&#x3D; url_for(each.link) %&gt;&quot; class&#x3D;&quot;card-body hover-with-bg&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener&quot;&gt;
+        &lt;div class&#x3D;&quot;card-content&quot;&gt;
+          &lt;% if (each.image) &#123; %&gt;
+            &lt;div class&#x3D;&quot;link-avatar my-auto&quot;&gt;
+              &lt;img src&#x3D;&quot;&lt;%&#x3D; each.image %&gt;&quot; alt&#x3D;&quot;&lt;%&#x3D; each.title %&gt;&quot; &#x2F;&gt;
+            &lt;&#x2F;div&gt;
+          &lt;% &#125; %&gt;
+          &lt;div class&#x3D;&quot;link-text&quot;&gt;
+            &lt;div class&#x3D;&quot;link-title&quot;&gt;&lt;%- each.title %&gt;&lt;&#x2F;div&gt;
+            &lt;div class&#x3D;&quot;link-intro&quot;&gt;&lt;%- each.intro %&gt;&lt;&#x2F;div&gt;
+          &lt;&#x2F;div&gt;
+        &lt;&#x2F;div&gt;
+      &lt;&#x2F;a&gt;
+    &lt;&#x2F;div&gt;
+  &lt;% &#125; %&gt;
+&lt;&#x2F;div&gt;
+              &lt;div class&#x3D;&quot;comments&quot; id&#x3D;&quot;comments&quot;&gt;
+                &lt;% var type &#x3D; &#39;_partial&#x2F;comments&#x2F;&#39; + theme.post.comments.type %&gt;
+                &lt;%- partial(type) %&gt;
+              &lt;&#x2F;div&gt;</code></pre>
+
+
+
+<blockquote>
+<p>当然这种随机，每次更新文章从新上传的时候，他会随机生成。</p>
+<p>但是有小伙伴需要刷新一次页面生成一次，</p>
+<p>那这种想法很明显，html代码写死了</p>
+<p>所以你要么写js代码，每次动态修改html</p>
+<p>要么直接把友链数据写到js里面渲染</p>
+</blockquote>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%85%B6%E4%BB%96%E7%AC%94%E8%AE%B0/">其他笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/HEXO/">HEXO</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9A%8F%E6%9C%BA%E6%8E%92%E5%BA%8F/">随机排序</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/13078/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【java知识点】单例模式八种写法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/posts/35360/">
+                        <span class="hidden-mobile">【项目笔记】Object的概念与区别</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "NFojgagn3zsFUjT0FGVVHUTM-gzGzoHsz",
+          app_key: "9R1L32c7WEvSGSP48NAnfStY",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: true,
+          serverURLs: "https://nfojgagn.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+  <p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+   <div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("07/18/2020 18:00:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+      document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+  }
+  setInterval("createtime()",250);
+  </script>
+</div>
+    <div>
+      &copy;2019 - 2020 By Jimu98
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+		
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">冀ICP备19035627号</a>
+    
+  </div>
+
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1278280985" style="display: none"></span>
+    
+  </div>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "HEXO友链随机排序&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 95,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1278280985&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
+</body>
+</html>
