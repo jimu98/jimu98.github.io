@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img2.jimu98.cn/blog/20200729222712.png">
+  <link rel="icon" type="image/png" href="https://img2.jimu98.cn/blog/20200729222712.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
+  <meta name="author" content="积木">
+  <meta name="keywords" content="积木,jimu98,java,后端,jimu">
+  <title>RESTful风格 - 积木 | 互联网的一只小菜鸡</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script data-ad-client="ca-pub-2806771379080352" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="积木 | 互联网的一只小菜鸡" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jimu98</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/list/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                导航
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://img2.jimu98.cn/blog/20200729222405.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-07 23:06">
+      2020年8月7日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      39
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="【项目笔记】RESTful风格"><a href="#【项目笔记】RESTful风格" class="headerlink" title="【项目笔记】RESTful风格"></a>【项目笔记】RESTful风格</h1><p>REST：Representational State Transfer（表象层状态转变），你一定以为是rest这个单词，其实他是这三个单词的缩写。</p>
+<h2 id="什么是RESTful？"><a href="#什么是RESTful？" class="headerlink" title="什么是RESTful？"></a>什么是RESTful？</h2><p>RESTful是一种帮助计算机系统通过 Internet 进行通信的架构风格，而不是具体的协议。它代表着分布式服务的架构风格，这使得微服务更容易理解和实现。如果一个架构符合REST原则，就称它为RESTful架构。</p>
+<blockquote>
+<p><strong>URL定位资源，用HTTP动词（GET,POST,DELETE,DETC）描述操作。</strong></p>
+<p>看Url就知道要什么<br>看http method就知道干什么<br>看http status code就知道结果如何</p>
+</blockquote>
+<p>每一个URI代表一种资源；<br>客户端和服务器之间，传递这种资源的某种表现层；<br>客户端通过四个HTTP动词，对服务器端资源进行操作，实现”表现层状态转化”。</p>
+<blockquote>
+<p>GET /rest/api/getDogs –&gt; GET /rest/api/dogs 获取所有小狗狗  </p>
+<p>GET /rest/api/addDogs –&gt; POST /rest/api/dogs 添加一个小狗狗  </p>
+<p>GET /rest/api/editDogs/:dog_id –&gt; PUT /rest/api/dogs/:dog_id 修改一个小狗狗  </p>
+<p>GET /rest/api/deleteDogs/:dog_id –&gt; DELETE /rest/api/dogs/:dog_id 删除一个小狗狗 </p>
+</blockquote>
+<p>左边的这种设计，很明显不符合REST风格，上面已经说了，URI 只负责准确无误的暴露资源，而 getDogs/addDogs…已经包含了对资源的操作，这是不对的。相反右边却满足了，它的操作是使用标准的HTTP动词来体现。</p>
+<h2 id="RESTful6大原则"><a href="#RESTful6大原则" class="headerlink" title="RESTful6大原则"></a>RESTful6大原则</h2><p>REST之父Roy Fielding在论文中阐述REST架构的6大基本原则，它们分别是：</p>
+<h3 id="1-C-S架构"><a href="#1-C-S架构" class="headerlink" title="1. C-S架构"></a>1. C-S架构</h3><p>数据的存储在Server端，Client端只需使用就行。两端彻底分离的好处使client端代码的可移植性变强，Server端的拓展性变强。两端单独开发，互不干扰。</p>
+<h3 id="2-无状态"><a href="#2-无状态" class="headerlink" title="2. 无状态"></a>2. 无状态</h3><p>http请求本身就是无状态的，基于C-S架构，客户端的每一次请求带有充分的信息能够让服务端识别。请求所需的一些信息都包含在URL的查询参数、header、div，服务端能够根据请求的各种参数，无需保存客户端的状态，将响应正确返回给客户端。无状态的特征大大提高的服务端的健壮性和可拓展性。</p>
+<p>当然，这种无状态性的约束也是有缺点的，客户端的每一次请求都必须带上相同重复的信息确定自己的身份和状态，造成传输数据的冗余性，但这种确定对于性能和使用来说，几乎是忽略不计的。</p>
+<h3 id="3-统一的接口"><a href="#3-统一的接口" class="headerlink" title="3.统一的接口"></a>3.统一的接口</h3><p>REST架构的核心内容，统一的接口对于RESTful服务非常重要。客户端只需要关注实现接口就可以，接口的可读性加强，使用人员方便调用。</p>
+<p>REST接口约束定义为：资源识别; 请求动作; 响应信息; 它表示通过uri标出你要操作的资源，通过请求动作（http method）标识要执行的操作，通过返回的状态码来表示这次请求的执行结果。</p>
+<h3 id="4-一致的数据格式"><a href="#4-一致的数据格式" class="headerlink" title="4.一致的数据格式"></a>4.一致的数据格式</h3><p>服务端返回的数据格式要么是XML，要么是Json（获取数据），或者直接返回状态码，一些知名网站的开放平台的操作数据的api，post、put、patch都是返回的一个状态码 。</p>
+<p>如请求一条微博信息，服务端响应信息应该包含这条微博相关的其他URL，客户端可以进一步利用这些URL发起请求获取感兴趣的信息，再如分页可以从第一页的返回数据中获取下一页的URT也是基于这个原理。</p>
+<h3 id="5-可缓存"><a href="#5-可缓存" class="headerlink" title="5.可缓存"></a>5.可缓存</h3><p>在万维网上，客户端可以缓存页面的响应内容。因此响应都应隐式或显式的定义为可缓存的，若不可缓存则要避免客户端在多次请求后用旧数据或脏数据来响应。管理得当的缓存会部分地或完全地除去客户端和服务端之间的交互，进一步改善性能和延展性。</p>
+<h3 id="6-按需编码、可定制代码"><a href="#6-按需编码、可定制代码" class="headerlink" title="6.按需编码、可定制代码"></a>6.按需编码、可定制代码</h3><p>服务端可选择临时给客户端下发一些功能代码让客户端来执行，从而定制和扩展客户端的某些功能。比如服务端可以返回一些 Javascript 代码让客户端执行，去实现某些特定的功能。提示：REST架构中的设计准则中，只有按需编码为可选项。如果某个服务违反了其他任意一项准则，严格意思上不能称之为RESTful风格。</p>
+<h2 id="REST常见问题"><a href="#REST常见问题" class="headerlink" title="REST常见问题"></a>REST常见问题</h2><h3 id="RESTful-API"><a href="#RESTful-API" class="headerlink" title="RESTful API"></a>RESTful API</h3><p>实用的是如何正确地理解 RESTful架构和设计好RESTful API。</p>
+<h2 id="SpringBoot中使用"><a href="#SpringBoot中使用" class="headerlink" title="SpringBoot中使用"></a>SpringBoot中使用</h2><h3 id="Spring-Boot-构建-RESTful-风格应用"><a href="#Spring-Boot-构建-RESTful-风格应用" class="headerlink" title="Spring Boot 构建 RESTful 风格应用"></a>Spring Boot 构建 RESTful 风格应用</h3><h4 id="1-创建工程"><a href="#1-创建工程" class="headerlink" title="1.创建工程"></a>1.创建工程</h4><h4 id="2-导入依赖"><a href="#2-导入依赖" class="headerlink" title="2.导入依赖"></a>2.导入依赖</h4><h4 id="3-配置数据库"><a href="#3-配置数据库" class="headerlink" title="3.配置数据库"></a>3.配置数据库</h4><h4 id="4-编写实体类"><a href="#4-编写实体类" class="headerlink" title="4.编写实体类"></a>4.编写实体类</h4><pre><code class="hljs java"><span class="hljs-meta">@Entity</span>(name = <span class="hljs-string">"t_book"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Book</span> </span>&#123;
+    <span class="hljs-meta">@Id</span>
+    <span class="hljs-meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-meta">@Column</span>(name = <span class="hljs-string">"book_name"</span>)
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String author;
+    <span class="hljs-comment">//省略 getter/setter</span>
+&#125;</code></pre>
+
+<h4 id="5-编写controller"><a href="#5-编写controller" class="headerlink" title="5.编写controller"></a>5.编写controller</h4><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">BookRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">JpaRepository</span>&lt;<span class="hljs-title">Book</span>,<span class="hljs-title">Long</span>&gt; </span>&#123;
+&#125;</code></pre>
+
+<p>此时，一个标准的RESTful风格的项目就写完了。</p>
+<h5 id="根据-id-查询接口"><a href="#根据-id-查询接口" class="headerlink" title="根据 id 查询接口"></a>根据 id 查询接口</h5><ul>
+<li><a href="http://127.0.0.1:8080/books/{id}" target="_blank" rel="noopener">http://127.0.0.1:8080/books/{id}</a></li>
+</ul>
+<h5 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h5><ul>
+<li><a href="http://127.0.0.1:8080/books" target="_blank" rel="noopener">http://127.0.0.1:8080/books</a></li>
+</ul>
+<p>查询结果中，除了该有的数据之外，也包含了分页数据：</p>
+<p><img src="https://img2.jimu98.cn/blog/20200807204822.png" srcset="/img/loading.gif" alt="image-20200807204822481"></p>
+<p>如果要分页或者排序查询，可以使用 _links 中的链接。<code>http://127.0.0.1:8080/books?page=1&amp;size=3&amp;sort=id,desc</code> 。</p>
+<p><img src="https://img2.jimu98.cn/blog/20200807204853.png" srcset="/img/loading.gif" alt="image-20200807204852929"></p>
+<h4 id="查询定制"><a href="#查询定制" class="headerlink" title="查询定制"></a>查询定制</h4><p>最广泛的定制，就是查询，因为增删改操作的变化不像查询这么丰富。对于查询的定制，非常容易，只需要提供相关的方法即可。例如根据作者查询书籍：</p>
+<pre><code class="hljs routeros">public<span class="hljs-built_in"> interface </span>BookRepository extends JpaRepository&lt;Book,Long&gt; &#123;
+    List&lt;Book&gt; findBookByAuthorContaining(@Param(<span class="hljs-string">"author"</span>) String author);
+&#125;</code></pre>
+
+<p>注意，方法的定义，参数要有 @Param 注解。</p>
+<p><img src="https://img2.jimu98.cn/blog/20200807204932.png" srcset="/img/loading.gif" alt="image-20200807204932718"></p>
+<h2 id="SpringBoot常用web注解"><a href="#SpringBoot常用web注解" class="headerlink" title="SpringBoot常用web注解"></a>SpringBoot常用web注解</h2><h3 id="web注解"><a href="#web注解" class="headerlink" title="web注解"></a>web注解</h3><pre><code class="hljs java"><span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"users"</span>) <span class="hljs-comment">//等价于 @RequestMapping(value="/users",method=RequestMethod.GET)</span>
+<span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"users"</span>) <span class="hljs-comment">//等价于@RequestMapping(value="/users",method=RequestMethod.POST)</span>
+<span class="hljs-meta">@PutMapping</span>(<span class="hljs-string">"/users/&#123;userId&#125;"</span>) <span class="hljs-comment">//等价于@RequestMapping(value="/users/&#123;userId&#125;",method=RequestMethod.PUT)</span>
+<span class="hljs-meta">@DeleteMapping</span>(<span class="hljs-string">"/users/&#123;userId&#125;"</span>)  <span class="hljs-comment">//等价于@RequestMapping(value="/users/&#123;userId&#125;",method=RequestMethod.DELETE)</span>
+<span class="hljs-meta">@PatchMapping</span>(<span class="hljs-string">"/profile"</span>)  <span class="hljs-comment">//一般实际项目中，我们都是 PUT 不够用了之后才用 PATCH 请求去更新数据。</span>
+
+<span class="hljs-comment">//----------前后端传值---------------</span>
+<span class="hljs-meta">@PathVariable</span>  <span class="hljs-comment">//用于获取路径参数</span>
+<span class="hljs-meta">@RequestParam</span>  <span class="hljs-comment">//用于获取查询参数。</span></code></pre>
+
+<p>@ResponseBody  //将java对象转为json格式的数据然后返回。</p>
+<p>举个简单的例子：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"/klasses/&#123;klassId&#125;/teachers"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Teacher&gt; <span class="hljs-title">getKlassRelatedTeachers</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">         @PathVariable(<span class="hljs-string">"klassId"</span>)</span> Long klassId,</span>
+<span class="hljs-function">         @<span class="hljs-title">RequestParam</span><span class="hljs-params">(value = <span class="hljs-string">"type"</span>, required = <span class="hljs-keyword">false</span>)</span> String type ) </span>&#123;
+...
+&#125;</code></pre>
+
+<p>如果我们请求的 url 是：<code>/klasses/{123456}/teachers?type=web</code></p>
+<p>那么我们服务获取到的数据就是：<code>klassId=123456,type=web</code></p>
+<blockquote>
+<p>@PathVariable(“name”) String name  //这个注解甚至可以映射</p>
+<p>这一切的注解和花哨操作都是基于两个接口</p>
+<p><strong>HttpServletRequest</strong></p>
+<p><strong>HttpServletResponse</strong></p>
+</blockquote>
+<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoController</span> </span>&#123;
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/demo"</span>)
+    <span class="hljs-meta">@ResponseBody</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">print</span><span class="hljs-params">(HttpServletRequest request)</span></span>&#123;
+        String name = request.getParameter(<span class="hljs-string">"name"</span>);
+        System.out.println(<span class="hljs-string">"Hello，"</span> + name);
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+&#125;</code></pre>
+
+<p>关于 <strong>HttpServletRequest</strong> 接口是非常非常非常常用的。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>getRequestURL()</td>
+<td>返回客户端发出请求时的完整 URL。</td>
+</tr>
+<tr>
+<td>getRequestURI()</td>
+<td>返回请求行中的参数部分。</td>
+</tr>
+<tr>
+<td>getQueryString ()</td>
+<td>方法返回请求行中的参数部分（参数名 + 值）</td>
+</tr>
+<tr>
+<td>getRemoteHost()</td>
+<td>返回发出请求的客户机的完整主机名。</td>
+</tr>
+<tr>
+<td>getRemoteAddr()</td>
+<td>返回发出请求的客户机的 IP 地址。</td>
+</tr>
+<tr>
+<td>getPathInfo()</td>
+<td>返回请求 URL 中的额外路径信息。额外路径信息是请求 URL 中的位于 Servlet 的路径之后和查询参数之前的内容，它以 “/“ 开头。</td>
+</tr>
+<tr>
+<td>getRemotePort()</td>
+<td>返回客户机所使用的网络端口号。</td>
+</tr>
+<tr>
+<td>getLocalAddr()</td>
+<td>返回 WEB 服务器的 IP 地址。</td>
+</tr>
+<tr>
+<td>getLocalName()</td>
+<td>返回 WEB 服务器的主机名。</td>
+</tr>
+<tr>
+<td>getHeader(string name)</td>
+<td>以 String 的形式返回指定请求头的值。如果该请求不包含指定名称的头，则此方法返回 null。如果有多个具有相同名称的头，则此方法返回请求中的第一个头。头名称是不区分大小写的。可以将此方法与任何请求头一起使用</td>
+</tr>
+<tr>
+<td>getParameter(String name)</td>
+<td><strong>根据 name 获取请求参数 (常用)</strong></td>
+</tr>
+</tbody></table>
+<pre><code class="hljs java"><span class="hljs-meta">@RequestBody</span>  <span class="hljs-comment">//用于读取 Request 请求（可能是 POST,PUT,DELETE,GET 请求）的 body 部分并且Content-Type 为 application/json 格式的数据</span>
+<span class="hljs-meta">@Valid</span>  <span class="hljs-comment">//用于验证接收参数是否符合pojo定义的要求</span>
+<span class="hljs-meta">@RequestParam</span>  <span class="hljs-comment">//将前台传过来的名称进行转换</span></code></pre>
+
+<p>我用一个简单的例子来给演示一下基本使用！</p>
+<p>我们有一个注册的接口：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/sign-up"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> ResponseEntity <span class="hljs-title">signUp</span><span class="hljs-params">(@RequestBody @Valid UserRegisterRequest userRegisterRequest)</span> </span>&#123;
+  userService.save(userRegisterRequest);
+  <span class="hljs-keyword">return</span> ResponseEntity.ok().build();
+&#125;</code></pre>
+<p>第二个例子</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoController</span> </span>&#123;
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/demo"</span>)
+    <span class="hljs-meta">@ResponseBody</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">print</span><span class="hljs-params">(@RequestParam(<span class="hljs-string">"nick"</span>)</span> String name)</span>&#123;
+        System.out.println(<span class="hljs-string">"Hello，"</span> + name);
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+&#125;</code></pre>
+
+<p><img src="https://img2.jimu98.cn/blog/20200807212106.png" srcset="/img/loading.gif" alt="image-20200807212106265"></p>
+<p><code>UserRegisterRequest</code>对象：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Data</span>
+<span class="hljs-meta">@AllArgsConstructor</span>
+<span class="hljs-meta">@NoArgsConstructor</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserRegisterRequest</span> </span>&#123;
+    <span class="hljs-meta">@NotBlank</span>
+    <span class="hljs-keyword">private</span> String userName;
+    <span class="hljs-meta">@NotBlank</span>
+    <span class="hljs-keyword">private</span> String password;
+    <span class="hljs-meta">@FullName</span>
+    <span class="hljs-meta">@NotBlank</span>
+    <span class="hljs-keyword">private</span> String fullName;
+&#125;</code></pre>
+
+<p>我们发送 post 请求到这个接口，并且 body 携带 JSON 数据：</p>
+<pre><code class="hljs json">&#123;<span class="hljs-attr">"userName"</span>:<span class="hljs-string">"coder"</span>,<span class="hljs-attr">"fullName"</span>:<span class="hljs-string">"shuangkou"</span>,<span class="hljs-attr">"password"</span>:<span class="hljs-string">"123456"</span>&#125;</code></pre>
+
+<p>这样我们的后端就可以直接把 json 格式的数据映射到我们的 <code>UserRegisterRequest</code> 类上。</p>
+<p>需要注意的是：<strong>一个请求方法只可以有一个<code>@RequestBody</code>，但是可以有多个<code>@RequestParam</code>和<code>@PathVariable</code></strong>。 如果你的方法必须要用两个 <code>@RequestBody</code>来接受数据的话，大概率是你的数据库设计或者系统设计出问题了！</p>
+<h3 id="JSR注解"><a href="#JSR注解" class="headerlink" title="JSR注解"></a>JSR注解</h3><pre><code class="hljs java"><span class="hljs-meta">@NotEmpty</span> <span class="hljs-comment">//被注释的字符串的不能为 null 也不能为空</span>
+<span class="hljs-meta">@NotBlank</span> <span class="hljs-comment">//被注释的字符串非 null，并且必须包含一个非空白字符</span>
+<span class="hljs-meta">@Null</span> <span class="hljs-comment">//被注释的元素必须为 null</span>
+<span class="hljs-meta">@NotNull</span> <span class="hljs-comment">//被注释的元素必须不为 null</span>
+<span class="hljs-meta">@AssertTrue</span> <span class="hljs-comment">//被注释的元素必须为 true</span>
+<span class="hljs-meta">@AssertFalse</span> <span class="hljs-comment">//被注释的元素必须为 false</span>
+<span class="hljs-meta">@Pattern</span>(regex=,flag=)  <span class="hljs-comment">//被注释的元素必须符合指定的正则表达式</span>
+<span class="hljs-meta">@Email</span> <span class="hljs-comment">//被注释的元素必须是 Email 格式。</span>
+<span class="hljs-meta">@Min</span>(value)  <span class="hljs-comment">//被注释的元素必须是一个数字，其值必须大于等于指定的最小值</span>
+<span class="hljs-meta">@Max</span>(value)  <span class="hljs-comment">//被注释的元素必须是一个数字，其值必须小于等于指定的最大值</span>
+<span class="hljs-meta">@DecimalMin</span>(value)  <span class="hljs-comment">//被注释的元素必须是一个数字，其值必须大于等于指定的最小值</span>
+<span class="hljs-meta">@DecimalMax</span>(value)  <span class="hljs-comment">//被注释的元素必须是一个数字，其值必须小于等于指定的最大值</span>
+<span class="hljs-meta">@Size</span>(max=, min=)  <span class="hljs-comment">//被注释的元素的大小必须在指定的范围内</span>
+<span class="hljs-meta">@Digits</span> (integer, fraction)  <span class="hljs-comment">//被注释的元素必须是一个数字，其值必须在可接受的范围内</span>
+<span class="hljs-meta">@Past</span>  <span class="hljs-comment">//被注释的元素必须是一个过去的日期</span>
+<span class="hljs-meta">@Future</span>   <span class="hljs-comment">//被注释的元素必须是一个将来的日期</span></code></pre>
+
+<h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4><p><code>@Entity</code>声明一个类对应一个数据库实体。</p>
+<p><code>@Table</code> 设置表明</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Entity</span>
+<span class="hljs-meta">@Table</span>(name = <span class="hljs-string">"role"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Role</span> </span>&#123;
+    <span class="hljs-meta">@Id</span>
+    <span class="hljs-meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String description;
+&#125;</code></pre>
+
+<h4 id="创建主键"><a href="#创建主键" class="headerlink" title="创建主键"></a>创建主键</h4><p><code>@Id</code> ：声明一个字段为主键。</p>
+<p>使用<code>@Id</code>声明之后，我们还需要定义主键的生成策略。我们可以使用 <code>@GeneratedValue</code> 指定主键生成策略。</p>
+<p><strong>1.通过</strong> <strong><code>@GeneratedValue</code>直接使用 JPA 内置提供的四种主键生成策略来指定主键生成策略。</strong></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Id</span>
+<span class="hljs-meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
+<span class="hljs-keyword">private</span> Long id;</code></pre>
+
+
+
+<p><strong>2.通过</strong> <strong><code>@GenericGenerator</code>声明一个主键策略，然后</strong> <strong><code>@GeneratedValue</code>使用这个策略</strong></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Id</span>
+<span class="hljs-meta">@GeneratedValue</span>(generator = <span class="hljs-string">"IdentityIdGenerator"</span>)
+<span class="hljs-meta">@GenericGenerator</span>(name = <span class="hljs-string">"IdentityIdGenerator"</span>, strategy = <span class="hljs-string">"identity"</span>)
+<span class="hljs-keyword">private</span> Long id;</code></pre>
+
+<p>等价于：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Id</span>
+<span class="hljs-meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
+<span class="hljs-keyword">private</span> Long id;</code></pre>
+
+<h4 id="设置字段类型"><a href="#设置字段类型" class="headerlink" title="设置字段类型"></a>设置字段类型</h4><p><code>@Column</code> 声明字段。</p>
+<p><strong>示例：</strong></p>
+<p>设置属性 userName 对应的数据库字段名为 user_name，长度为 32，非空</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Column</span>(name = <span class="hljs-string">"user_name"</span>, nullable = <span class="hljs-keyword">false</span>, length=<span class="hljs-number">32</span>)
+<span class="hljs-keyword">private</span> String userName;</code></pre>
+
+<p>设置字段类型并且加默认值，这个还是挺常用的。</p>
+<pre><code class="hljs java">Column(columnDefinition = <span class="hljs-string">"tinyint(1) default 1"</span>)
+<span class="hljs-keyword">private</span> Boolean enabled;</code></pre>
+
+<h4 id="指定不持久化特定字段"><a href="#指定不持久化特定字段" class="headerlink" title="指定不持久化特定字段"></a>指定不持久化特定字段</h4><p><code>@Transient</code> ：声明不需要与数据库映射的字段，在保存的时候不需要保存进数据库 。</p>
+<p>如果我们想让<code>secrect</code> 这个字段不被持久化，可以使用 <code>@Transient</code>关键字声明。</p>
+<pre><code class="hljs java">Entity(name=<span class="hljs-string">"USER"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;
+
+    ......
+    <span class="hljs-meta">@Transient</span>
+    <span class="hljs-keyword">private</span> String secrect; <span class="hljs-comment">// not persistent because of @Transient</span>
+
+&#125;</code></pre>
+
+<p>除了 <code>@Transient</code>关键字声明， 还可以采用下面几种方法：</p>
+<pre><code class="hljs java"><span class="hljs-keyword">static</span> String secrect; <span class="hljs-comment">// not persistent because of static</span>
+<span class="hljs-keyword">final</span> String secrect = “Satish”; <span class="hljs-comment">// not persistent because of final</span>
+<span class="hljs-keyword">transient</span> String secrect; <span class="hljs-comment">// not persistent because of transient</span></code></pre>
+
+<p>一般使用注解的方式比较多。</p>
+<h4 id="声明大字段"><a href="#声明大字段" class="headerlink" title="声明大字段"></a>声明大字段</h4><p><code>@Lob</code>:声明某个字段为大字段。</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Lob</span>
+<span class="hljs-keyword">private</span> String content;</code></pre>
+
+<p>更详细的声明：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Lob</span>
+<span class="hljs-comment">//指定 Lob 类型数据的获取策略， FetchType.EAGER 表示非延迟 加载，而 FetchType. LAZY 表示延迟加载 ；</span>
+<span class="hljs-meta">@Basic</span>(fetch = FetchType.EAGER)
+<span class="hljs-comment">//columnDefinition 属性指定数据表对应的 Lob 字段类型</span>
+<span class="hljs-meta">@Column</span>(name = <span class="hljs-string">"content"</span>, columnDefinition = <span class="hljs-string">"LONGTEXT NOT NULL"</span>)
+<span class="hljs-keyword">private</span> String content;</code></pre>
+
+<h4 id="创建枚举类型的字段"><a href="#创建枚举类型的字段" class="headerlink" title="创建枚举类型的字段"></a>创建枚举类型的字段</h4><p>可以使用枚举类型的字段，不过枚举字段要用<code>@Enumerated</code>注解修饰。</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> Gender &#123;
+    MALE(<span class="hljs-string">"男性"</span>),
+    FEMALE(<span class="hljs-string">"女性"</span>);
+
+    <span class="hljs-keyword">private</span> String value;
+    Gender(String str)&#123;
+        value=str;
+    &#125;
+&#125;
+
+<span class="hljs-meta">@Entity</span>
+<span class="hljs-meta">@Table</span>(name = <span class="hljs-string">"role"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Role</span> </span>&#123;
+    <span class="hljs-meta">@Id</span>
+    <span class="hljs-meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String description;
+    <span class="hljs-meta">@Enumerated</span>(EnumType.STRING)
+    <span class="hljs-keyword">private</span> Gender gender;
+    省略getter/setter......
+&#125;</code></pre>
+
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">项目笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/RESTful/">RESTful</a>
+                    
+                      <a class="hover-with-bg" href="/tags/web/">web</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/post/6d8d/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【java总结】框架之SpringMVC</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/post/9b62/">
+                        <span class="hidden-mobile">【java总结】框架之SpringBoot</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "NFojgagn3zsFUjT0FGVVHUTM-gzGzoHsz",
+          app_key: "9R1L32c7WEvSGSP48NAnfStY",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: true,
+          serverURLs: "https://nfojgagn.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+  <p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+   <div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("07/18/2020 18:00:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+      document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+  }
+  setInterval("createtime()",250);
+  </script>
+</div>
+    <div>
+      &copy;2019 - 2020 By Jimu98
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+		
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">冀ICP备19035627号</a>
+    
+  </div>
+
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1278280985" style="display: none"></span>
+    
+  </div>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "RESTful风格&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 95,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1278280985&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
+</body>
+</html>

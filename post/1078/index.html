@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img2.jimu98.cn/blog/20200729222712.png">
+  <link rel="icon" type="image/png" href="https://img2.jimu98.cn/blog/20200729222712.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="你会的越多,你不会的越多,我是积木,互联网的一只小菜鸡">
+  <meta name="author" content="积木">
+  <meta name="keywords" content="积木,jimu98,java,后端,jimu">
+  <title>【项目创建流程】前端业务总结 - 积木 | 互联网的一只小菜鸡</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="/.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="/.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script data-ad-client="ca-pub-2806771379080352" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="积木 | 互联网的一只小菜鸡" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>jimu98</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/list/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                导航
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://img2.jimu98.cn/blog/20200729222405.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-08 16:12">
+      2020年7月8日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="【项目创建流程】前端业务总结"><a href="#【项目创建流程】前端业务总结" class="headerlink" title="【项目创建流程】前端业务总结"></a>【项目创建流程】前端业务总结</h1><h2 id="前端基础"><a href="#前端基础" class="headerlink" title="前端基础"></a>前端基础</h2><h3 id="vscode"><a href="#vscode" class="headerlink" title="vscode"></a>vscode</h3><h4 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h4><p>为方便后续开发，建议安装如下插件</p>
+<p><img src="https://img2.jimu98.cn/blog/20200723155141.png" srcset="/img/loading.gif" alt="image-20200723155141680"></p>
+<p><img src="https://img2.jimu98.cn/blog/20200723155224.png" srcset="/img/loading.gif" alt="image-20200723155224355"></p>
+<p><img src="https://img2.jimu98.cn/blog/20200723155212.png" srcset="/img/loading.gif" alt="image-20200723155212540"></p>
+<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><h4 id="JavaScript引擎"><a href="#JavaScript引擎" class="headerlink" title="JavaScript引擎"></a>JavaScript引擎</h4><p>浏览器的内核包括两部分核心：</p>
+<ul>
+<li><p>DOM渲染引擎</p>
+</li>
+<li><p>JavaScript解析引擎</p>
+</li>
+<li><ul>
+<li>Chrome浏览器内置V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。</li>
+</ul>
+</li>
+</ul>
+<h4 id="什么是Node-js"><a href="#什么是Node-js" class="headerlink" title="什么是Node.js"></a>什么是Node.js</h4><p>脱离浏览器环境也可以运行JavaScript，只要有JavaScript引擎就可以。</p>
+<p>Node.js是一个基于Chrome V8引擎的JavaScript运行环境：即Node.js内置了Chrome的V8 引擎，可以在Node.js环境中直接运行JavaScript程序。</p>
+<ul>
+<li><p>在Node.js中写JavaScript和在Chrome浏览器中写JavaScript<strong>基本</strong>没有什么不一样。哪里不一样呢？</p>
+</li>
+<li><ul>
+<li>Node.js没有浏览器API，即document，window的等。</li>
+<li>加了许多Node.js 专属API，例如文件系统，进程，http功能。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Node-js有什么用"><a href="#Node-js有什么用" class="headerlink" title="Node.js有什么用"></a>Node.js有什么用</h4><ul>
+<li><p>如果你想开发类似JavaWeb的简单的后端程序，那么学习Node.js是一个非常好的选择。</p>
+</li>
+<li><p>如果你想部署一些高性能的服务，那么学习Node.js也是一个非常好的选择。</p>
+</li>
+<li><ul>
+<li>通常他会被用来作一个BFF层，即 Backend For Frontend（服务于前端的后端），通俗的说是一个专门用于为前端业务提供数据的后端程序</li>
+</ul>
+</li>
+</ul>
+<h4 id="BFF"><a href="#BFF" class="headerlink" title="BFF"></a>BFF</h4><h5 id="BFF-解决什么问题"><a href="#BFF-解决什么问题" class="headerlink" title="BFF 解决什么问题"></a>BFF 解决什么问题</h5><p>一个前端页面向 Service A、Service B 以及 Service C发送请求，不同的微服务返回的值用于渲染页面中不同的组件。此时，每次访问该页面都需要发送 3 个请求。我们需要一个服务来聚合Service A、Service B 以及 Service C响应的数据，这个服务层叫做BFF。</p>
+<p><img src="http://img1.jimu98.cn//blog/BFF0_2.png" srcset="/img/loading.gif" alt="img"></p>
+<p>手机、平板端、PC机等用户终端都需要向每个Service，例如Service A发送请求。对于同一个功能，不同的终端需要的数据格式和内容会有不同。此时 Service A 的一个接口，不能同时满足三个客户端的不同需求。我们可以在Service A中开发三个接口，也可以增加一个数据裁剪服务，将数据按照不同终端的不同要求进行裁剪，这个服务层叫做BFF。</p>
+<p><img src="http://img1.jimu98.cn//blog/BFF1_2.png" srcset="/img/loading.gif" alt="img"></p>
+<p>BFF层的作用是让前端有能力自由组装后台数据，减少大量的业务沟通成本，加快业务的迭代速度。无论是数据聚合还是数据剪裁，这类程序的特点是不需要太强大的服务器运算能力，但是对程序的灵活性有较高的要求，这两个特点都正好和Node.js的优势相吻合。</p>
+<h5 id="什么是BFF"><a href="#什么是BFF" class="headerlink" title="什么是BFF"></a>什么是BFF</h5><p>用户体验适配器</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>双击安装 node-v10.14.2-x64.msi</p>
+<blockquote>
+<p>查看版本 node -v</p>
+</blockquote>
+<h3 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a>Vue.js</h3><p>在为 AngularJS 工作之后，Vue 的作者尤雨溪开发出了这一框架。他声称自己的思路是提取 Angular 中为自己所喜欢的部分，构建出一款相当轻量的框架。Vue 最早发布于 2014 年 2 月。作者在 Hacker News、Echo JS 与 Reddit 的 javascript 版块发布了最早的版本。一天之内，Vue 就登上了这三个网站的首页。Vue 是 Github 上最受欢迎的开源项目之一。同时，在 JavaScript 框架/函数库中，Vue 所获得的星标数已超过 React，并高于 Backbone.js、Angular 2、jQuery 等项目。</p>
+<p>Vue.js 是一款流行的 JavaScript 前端框架，目的是简化 Web 开发。Vue 所关注的核心是 MVC 模式中的视图层，同时，它也能方便地获取数据更新，实现视图与模型的交互。</p>
+<h3 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h3><p>axios是独立于vue的一个项目，可以用于浏览器和node.js中发送ajax请求</p>
+<h3 id="element-ui"><a href="#element-ui" class="headerlink" title="element-ui"></a>element-ui</h3><h4 id="1、引入脚本库"><a href="#1、引入脚本库" class="headerlink" title="1、引入脚本库"></a>1、引入脚本库</h4><p><strong>在axios_pro文件夹中引入：</strong>element-ui\lib</p>
+<p><img src="http://img1.jimu98.cn//blog/49b60e78-20d8-4928-a8b6-0b2250de4a84.png" srcset="/img/loading.gif" alt="img"></p>
+<h4 id="2、引入css"><a href="#2、引入css" class="headerlink" title="2、引入css"></a>2、引入css</h4><p>在axios.html 的head中引入css</p>
+<pre><code class="hljs js">&lt;!-- <span class="hljs-keyword">import</span> CSS --&gt;
+&lt;link rel=<span class="hljs-string">"stylesheet"</span> href=<span class="hljs-string">"element-ui/lib/theme-chalk/index.css"</span>&gt;</code></pre>
+
+<h4 id="3、引入js"><a href="#3、引入js" class="headerlink" title="3、引入js"></a>3、引入js</h4><pre><code class="hljs js">&lt;script src=<span class="hljs-string">"element-ui/lib/index.js"</span>&gt;&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
+
+<h4 id="4、渲染讲师列表"><a href="#4、渲染讲师列表" class="headerlink" title="4、渲染讲师列表"></a>4、渲染讲师列表</h4><p>注意：项目中的版本是2.4，参考对应版本的文档</p>
+<pre><code class="hljs vue">&lt;div id&#x3D;&quot;app&quot;&gt;
+    &lt;el-button&gt;添加&lt;&#x2F;el-button&gt;
+    &lt;i class&#x3D;&quot;el-icon-delete&quot;&gt;&lt;&#x2F;i&gt;
+    &lt;el-button type&#x3D;&quot;primary&quot; icon&#x3D;&quot;el-icon-search&quot;&gt;搜索&lt;&#x2F;el-button&gt;
+    &lt;el-table
+              :data&#x3D;&quot;teacherList&quot;
+              stripe
+              border
+              style&#x3D;&quot;width: 100%&quot;&gt;
+
+        &lt;el-table-column
+              type&#x3D;&quot;selection&quot;
+              width&#x3D;&quot;55&quot;&gt;&lt;&#x2F;el-table-column&gt;
+
+        &lt;el-table-column
+              prop&#x3D;&quot;name&quot;
+              label&#x3D;&quot;姓名&quot;&gt;&lt;&#x2F;el-table-column&gt;
+
+        &lt;el-table-column
+              prop&#x3D;&quot;gmtCreate&quot;
+              label&#x3D;&quot;入驻日期&quot;&gt;&lt;&#x2F;el-table-column&gt;
+
+        &lt;el-table-column
+              label&#x3D;&quot;级别&quot;&gt;
+            &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;
+                &#123;&#123; scope.row.level &#x3D;&#x3D;&#x3D; 1?&#39;高级讲师&#39;:&#39;首席讲师&#39; &#125;&#125;
+            &lt;&#x2F;template&gt;
+        &lt;&#x2F;el-table-column&gt;
+    &lt;&#x2F;el-table&gt;
+&lt;&#x2F;div&gt;</code></pre>
+
+
+
+<h3 id="NPM包管理器"><a href="#NPM包管理器" class="headerlink" title="NPM包管理器"></a>NPM包管理器</h3><h4 id="什么是NPM"><a href="#什么是NPM" class="headerlink" title="什么是NPM"></a>什么是NPM</h4><p>NPM全称Node Package Manager，是Node.js包管理工具，是全球最大的模块生态系统，里面所有的模块都是开源免费的；也是Node.js的包管理工具，相当于前端的Maven 。</p>
+<pre><code class="hljs coffeescript"><span class="hljs-comment">#在命令提示符输入 npm -v 可查看当前npm版本</span>
+<span class="hljs-built_in">npm</span> -v</code></pre>
+
+<h4 id="1、项目初始化"><a href="#1、项目初始化" class="headerlink" title="1、项目初始化"></a><strong>1、项目初始化</strong></h4><pre><code class="hljs vala"><span class="hljs-meta">#建立一个空文件夹，在命令提示符进入该文件夹  执行命令初始化</span>
+npm init
+<span class="hljs-meta">#按照提示输入相关信息，如果是用默认值则直接回车即可。</span>
+<span class="hljs-meta">#name: 项目名称</span>
+<span class="hljs-meta">#version: 项目版本号</span>
+<span class="hljs-meta">#description: 项目描述</span>
+<span class="hljs-meta">#keywords: &#123;Array&#125;关键词，便于用户搜索到我们的项目</span>
+<span class="hljs-meta">#最后会生成package.json文件，这个是包的配置文件，相当于maven的pom.xml</span>
+<span class="hljs-meta">#我们之后也可以根据需要进行修改。</span></code></pre>
+
+
+
+<pre><code class="hljs coffeescript"><span class="hljs-comment">#如果想直接生成 package.json 文件，那么可以使用命令</span>
+<span class="hljs-built_in">npm</span> init -y</code></pre>
+
+<h4 id="2、修改npm镜像"><a href="#2、修改npm镜像" class="headerlink" title="2、修改npm镜像"></a><strong>2、修改npm镜像</strong></h4><p>NPM官方的管理的包都是从 <a href="http://npmjs.com下载的，但是这个网站在国内速度很慢。" target="_blank" rel="noopener">http://npmjs.com下载的，但是这个网站在国内速度很慢。</a></p>
+<p>这里推荐使用淘宝 NPM 镜像 <a href="http://npm.taobao.org/" target="_blank" rel="noopener">http://npm.taobao.org/</a> ，淘宝 NPM 镜像是一个完整 npmjs.com 镜像，同步频率目前为 10分钟一次，以保证尽量与官方服务同步。</p>
+<p><strong>设置镜像地址：</strong></p>
+<pre><code class="hljs tcl"><span class="hljs-comment">#经过下面的配置，以后所有的 npm install 都会经过淘宝的镜像地址下载</span>
+npm config <span class="hljs-keyword">set</span> <span class="hljs-keyword">registry</span> https://<span class="hljs-keyword">registry</span>.npm.taobao.org 
+
+<span class="hljs-comment">#查看npm配置信息</span>
+npm config <span class="hljs-keyword">list</span></code></pre>
+
+<h4 id="3、npm-install命令的使用"><a href="#3、npm-install命令的使用" class="headerlink" title="3、npm install命令的使用"></a><strong>3、npm install命令的使用</strong></h4><p>基本命令</p>
+<pre><code class="hljs vala"><span class="hljs-meta">#使用 npm install 安装依赖包的最新版，</span>
+<span class="hljs-meta">#模块安装的位置：项目目录\node_modules</span>
+<span class="hljs-meta">#同时package.json 文件中，依赖包会被添加到dependencies节点下，类似maven中的 &lt;dependencies&gt;</span>
+<span class="hljs-meta">#默认参数：--save  简写  -S  将当前依赖保存在dependencies节点下</span>
+npm install jquery</code></pre>
+
+<p>下载特定版本的依赖</p>
+<pre><code class="hljs angelscript">#如果安装时想指定特定的版本
+npm install <span class="hljs-symbol">jquery@</span><span class="hljs-number">2.1</span>.x</code></pre>
+
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>下载开发依赖</p>
+<pre><code class="hljs vala"><span class="hljs-meta">#devDependencies节点：开发时的依赖包，项目打包到生产环境的时候不包含的依赖</span>
+<span class="hljs-meta">#使用 -D参数将依赖添加到devDependencies节点</span>
+npm install --save-dev eslint
+<span class="hljs-meta">#或简写</span>
+npm i -D eslint</code></pre>
+
+<p>下载全局依赖</p>
+<pre><code class="hljs vala"><span class="hljs-meta">#全局安装</span>
+<span class="hljs-meta">#Node.js全局安装的npm包和工具的位置：用户目录\AppData\Roaming\npm\node_modules</span>
+<span class="hljs-meta">#一些命令行工具常使用全局安装的方式</span>
+npm install --global webpack
+<span class="hljs-meta">#或简写</span>
+npm install -g webpack</code></pre>
+
+<p>根据依赖下载安装包</p>
+<pre><code class="hljs cmake"><span class="hljs-comment">#npm管理的项目在备份和传输的时候一般不携带node_modules文件夹</span>
+<span class="hljs-comment">#安装会自动在项目目录下添加 package-lock.json文件，这个文件帮助锁定安装包的版本</span>
+npm <span class="hljs-keyword">install</span> <span class="hljs-comment">#根据package.json中的配置下载依赖，初始化项目</span></code></pre>
+
+<h4 id="4、其它命令"><a href="#4、其它命令" class="headerlink" title="4、其它命令"></a><strong>4、其它命令</strong></h4><pre><code class="hljs coffeescript"><span class="hljs-comment">#更新包（更新到最新版本）</span>
+<span class="hljs-built_in">npm</span> update 包名
+<span class="hljs-comment">#全局更新</span>
+<span class="hljs-built_in">npm</span> update -g 包名
+
+<span class="hljs-comment">#卸载包</span>
+<span class="hljs-built_in">npm</span> uninstall 包名
+<span class="hljs-comment">#全局卸载</span>
+<span class="hljs-built_in">npm</span> uninstall -g 包名</code></pre>
+
+
+
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/">项目构建</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/SpringCloud/">SpringCloud</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/axios/">axios</a>
+                    
+                      <a class="hover-with-bg" href="/tags/npm/">npm</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/post/cced/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【项目创建流程】前端项目开发流程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/post/d70/">
+                        <span class="hidden-mobile">【项目创建流程】非业务功能统一处理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "NFojgagn3zsFUjT0FGVVHUTM-gzGzoHsz",
+          app_key: "9R1L32c7WEvSGSP48NAnfStY",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: true,
+          serverURLs: "https://nfojgagn.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+  <p id="hitokoto">:D 获取中...</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+</script>
+   <div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("07/18/2020 18:00:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+      document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+  }
+  setInterval("createtime()",250);
+  </script>
+</div>
+    <div>
+      &copy;2019 - 2020 By Jimu98
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+		
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
+        
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">冀ICP备19035627号</a>
+    
+  </div>
+
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1278280985" style="display: none"></span>
+    
+  </div>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【项目创建流程】前端业务总结&nbsp;",
+      ],
+      cursorChar: "|",
+      typeSpeed: 95,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1278280985&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
+</body>
+</html>
