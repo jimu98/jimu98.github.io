@@ -5,6 +5,35 @@
   
   <entry>
     <title>晚会互动大屏项目总结</title>
+    <link href="/posts/59779/"/>
+    <url>/posts/59779/</url>
+    
+    <content type="html"><![CDATA[<h1 id="【项目笔记】晚会互动大屏项目总结"><a href="#【项目笔记】晚会互动大屏项目总结" class="headerlink" title="【项目笔记】晚会互动大屏项目总结"></a>【项目笔记】晚会互动大屏项目总结</h1><h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>河传助手是一款校园学习信息平台，提供超级课程表，情侣课表，教学通知，成绩查询，学生评教等一些校园功能。目前为校 区超过20000名学生提供服务，日活跃用户超过10000+。</p><h2 id="数据展示"><a href="#数据展示" class="headerlink" title="数据展示"></a>数据展示</h2><p><img src="https://img2.jimu98.cn/blog/20201020095355.png" srcset="/img/loading.gif" alt="image-20201020095355071"></p><h3 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h3><p><img src="https://img2.jimu98.cn/blog/20201020095623.png" srcset="/img/loading.gif" alt="image-20201020095623578"></p><h3 id="登录页"><a href="#登录页" class="headerlink" title="登录页"></a>登录页</h3><p><img src="https://img2.jimu98.cn/blog/20201020095707.png" srcset="/img/loading.gif" alt="image-20201020095706993"></p><h3 id="课程表"><a href="#课程表" class="headerlink" title="课程表"></a>课程表</h3><img src="https://img2.jimu98.cn/blog/20201020100239.png" srcset="/img/loading.gif" alt="image-20201020100239696" style="zoom:30%;" /><h3 id="成绩查询"><a href="#成绩查询" class="headerlink" title="成绩查询"></a>成绩查询</h3><p><img src="https://img2.jimu98.cn/blog/20201020095813.png" srcset="/img/loading.gif" alt="image-20201020095813568"></p><h3 id="微信矩阵"><a href="#微信矩阵" class="headerlink" title="微信矩阵"></a>微信矩阵</h3><p><img src="https://img2.jimu98.cn/blog/20201020100355.png" srcset="/img/loading.gif" alt="image-20201020100355631"></p><h3 id="下学期课表"><a href="#下学期课表" class="headerlink" title="下学期课表"></a>下学期课表</h3><p><img src="https://img2.jimu98.cn/blog/20201020100430.png" srcset="/img/loading.gif" alt="image-20201020100430790"></p><h3 id="体验"><a href="#体验" class="headerlink" title="体验"></a>体验</h3><p><img src="https://hcia.ywgzs.cn/api/img/xcxm.png" srcset="/img/loading.gif" alt="xcxm"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>项目笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>晚会互动大屏</tag>
+      
+      <tag>项目</tag>
+      
+      <tag>SpringBoot</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>晚会互动大屏项目总结</title>
     <link href="/posts/59778/"/>
     <url>/posts/59778/</url>
     
@@ -304,9 +333,9 @@
     
     <tags>
       
-      <tag>框架</tag>
-      
       <tag>SpringBoot</tag>
+      
+      <tag>框架</tag>
       
     </tags>
     
@@ -622,11 +651,11 @@
   
   
   <entry>
-    <title>【剑指Offer】把字符串转换成整数</title>
-    <link href="/posts/14041/"/>
-    <url>/posts/14041/</url>
+    <title>【剑指Offer】构建乘积数组</title>
+    <link href="/posts/0/"/>
+    <url>/posts/0/</url>
     
-    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>写一个函数 StrToInt，实现把字符串转换成整数这个功能。不能使用 atoi 或者其他类似的库函数。</p><p>首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。</p><p>当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。</p><p>该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。</p><p>注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。</p><p>在任何情况下，若函数不能进行有效的转换时，请返回 0。</p><p>说明：</p><p>假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−231,  231 − 1]。如果数值超过这个范围，请返回  INT_MAX (231 − 1) 或 INT_MIN (−231) 。</p><p>示例 1:</p><p>输入: “42”<br>输出: 42<br>示例 2:</p><p>输入: “   -42”<br>输出: -42<br>解释: 第一个非空白字符为 ‘-‘, 它是一个负号。<br>     我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。<br>示例 3:</p><p>输入: “4193 with words”<br>输出: 4193<br>解释: 转换截止于数字 ‘3’ ，因为它的下一个字符不为数字。<br>示例 4:</p><p>输入: “words and 987”<br>输出: 0<br>解释: 第一个非空字符是 ‘w’, 但它不是数字或正、负号。<br>     因此无法执行有效的转换。<br>示例 5:</p><p>输入: “-91283472332”<br>输出: -2147483648<br>解释: 数字 “-91283472332” 超过 32 位有符号整数范围。<br>     因此返回 INT_MIN (−231) 。</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">strToInt</span><span class="hljs-params">(String str)</span> </span>&#123;        <span class="hljs-keyword">char</span>[] c = str.trim().toCharArray();        <span class="hljs-keyword">if</span>(c.length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>, bndry = Integer.MAX_VALUE / <span class="hljs-number">10</span>;        <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>, sign = <span class="hljs-number">1</span>;        <span class="hljs-keyword">if</span>(c[<span class="hljs-number">0</span>] == <span class="hljs-string">'-'</span>) sign = -<span class="hljs-number">1</span>;        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c[<span class="hljs-number">0</span>] != <span class="hljs-string">'+'</span>) i = <span class="hljs-number">0</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i; j &lt; c.length; j++) &#123;            <span class="hljs-keyword">if</span>(c[j] &lt; <span class="hljs-string">'0'</span> || c[j] &gt; <span class="hljs-string">'9'</span>) <span class="hljs-keyword">break</span>;            <span class="hljs-keyword">if</span>(res &gt; bndry || res == bndry &amp;&amp; c[j] &gt; <span class="hljs-string">'7'</span>) <span class="hljs-keyword">return</span> sign == <span class="hljs-number">1</span> ? Integer.MAX_VALUE : Integer.MIN_VALUE;            res = res * <span class="hljs-number">10</span> + (c[j] - <span class="hljs-string">'0'</span>);        &#125;        <span class="hljs-keyword">return</span> sign * res;    &#125;&#125;</code></pre>]]></content>
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个数组 A[0,1,…,n-1]，请构建一个数组 B[0,1,…,n-1]，其中 B 中的元素 B[i]=A[0]×A[1]×…×A[i-1]×A[i+1]×…×A[n-1]。不能使用除法。</p><p>示例:</p><p>输入: [1,2,3,4,5]<br>输出: [120,60,40,30,24]</p><p>提示：</p><p>所有元素乘积之和不会溢出 32 位整数<br>a.length &lt;= 100000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] constructArr(<span class="hljs-keyword">int</span>[] a) &#123;        <span class="hljs-keyword">if</span>(a.length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];        <span class="hljs-keyword">int</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[a.length];        b[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;        <span class="hljs-keyword">int</span> tmp = <span class="hljs-number">1</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; a.length; i++) &#123;            b[i] = b[i - <span class="hljs-number">1</span>] * a[i - <span class="hljs-number">1</span>];        &#125;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = a.length - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;            tmp *= a[i + <span class="hljs-number">1</span>];            b[i] *= tmp;        &#125;        <span class="hljs-keyword">return</span> b;    &#125;&#125;</code></pre>]]></content>
     
     
     <categories>
@@ -649,11 +678,11 @@
   
   
   <entry>
-    <title>【剑指Offer】构建乘积数组</title>
-    <link href="/posts/0/"/>
-    <url>/posts/0/</url>
+    <title>【剑指Offer】把字符串转换成整数</title>
+    <link href="/posts/14041/"/>
+    <url>/posts/14041/</url>
     
-    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个数组 A[0,1,…,n-1]，请构建一个数组 B[0,1,…,n-1]，其中 B 中的元素 B[i]=A[0]×A[1]×…×A[i-1]×A[i+1]×…×A[n-1]。不能使用除法。</p><p>示例:</p><p>输入: [1,2,3,4,5]<br>输出: [120,60,40,30,24]</p><p>提示：</p><p>所有元素乘积之和不会溢出 32 位整数<br>a.length &lt;= 100000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] constructArr(<span class="hljs-keyword">int</span>[] a) &#123;        <span class="hljs-keyword">if</span>(a.length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];        <span class="hljs-keyword">int</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[a.length];        b[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;        <span class="hljs-keyword">int</span> tmp = <span class="hljs-number">1</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; a.length; i++) &#123;            b[i] = b[i - <span class="hljs-number">1</span>] * a[i - <span class="hljs-number">1</span>];        &#125;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = a.length - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;            tmp *= a[i + <span class="hljs-number">1</span>];            b[i] *= tmp;        &#125;        <span class="hljs-keyword">return</span> b;    &#125;&#125;</code></pre>]]></content>
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>写一个函数 StrToInt，实现把字符串转换成整数这个功能。不能使用 atoi 或者其他类似的库函数。</p><p>首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。</p><p>当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。</p><p>该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。</p><p>注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。</p><p>在任何情况下，若函数不能进行有效的转换时，请返回 0。</p><p>说明：</p><p>假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−231,  231 − 1]。如果数值超过这个范围，请返回  INT_MAX (231 − 1) 或 INT_MIN (−231) 。</p><p>示例 1:</p><p>输入: “42”<br>输出: 42<br>示例 2:</p><p>输入: “   -42”<br>输出: -42<br>解释: 第一个非空白字符为 ‘-‘, 它是一个负号。<br>     我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。<br>示例 3:</p><p>输入: “4193 with words”<br>输出: 4193<br>解释: 转换截止于数字 ‘3’ ，因为它的下一个字符不为数字。<br>示例 4:</p><p>输入: “words and 987”<br>输出: 0<br>解释: 第一个非空字符是 ‘w’, 但它不是数字或正、负号。<br>     因此无法执行有效的转换。<br>示例 5:</p><p>输入: “-91283472332”<br>输出: -2147483648<br>解释: 数字 “-91283472332” 超过 32 位有符号整数范围。<br>     因此返回 INT_MIN (−231) 。</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">strToInt</span><span class="hljs-params">(String str)</span> </span>&#123;        <span class="hljs-keyword">char</span>[] c = str.trim().toCharArray();        <span class="hljs-keyword">if</span>(c.length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>, bndry = Integer.MAX_VALUE / <span class="hljs-number">10</span>;        <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>, sign = <span class="hljs-number">1</span>;        <span class="hljs-keyword">if</span>(c[<span class="hljs-number">0</span>] == <span class="hljs-string">'-'</span>) sign = -<span class="hljs-number">1</span>;        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c[<span class="hljs-number">0</span>] != <span class="hljs-string">'+'</span>) i = <span class="hljs-number">0</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i; j &lt; c.length; j++) &#123;            <span class="hljs-keyword">if</span>(c[j] &lt; <span class="hljs-string">'0'</span> || c[j] &gt; <span class="hljs-string">'9'</span>) <span class="hljs-keyword">break</span>;            <span class="hljs-keyword">if</span>(res &gt; bndry || res == bndry &amp;&amp; c[j] &gt; <span class="hljs-string">'7'</span>) <span class="hljs-keyword">return</span> sign == <span class="hljs-number">1</span> ? Integer.MAX_VALUE : Integer.MIN_VALUE;            res = res * <span class="hljs-number">10</span> + (c[j] - <span class="hljs-string">'0'</span>);        &#125;        <span class="hljs-keyword">return</span> sign * res;    &#125;&#125;</code></pre>]]></content>
     
     
     <categories>
@@ -1597,11 +1626,11 @@
   
   
   <entry>
-    <title>【剑指Offer】数组中出现次数超过一半的数字</title>
-    <link href="/posts/32794/"/>
-    <url>/posts/32794/</url>
+    <title>【剑指Offer】最小的k个数</title>
+    <link href="/posts/11456/"/>
+    <url>/posts/11456/</url>
     
-    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。</p><p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p><p>示例 1:</p><p>输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]<br>输出: 2</p><p>限制：</p><p>1 &lt;= 数组长度 &lt;= 50000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;        <span class="hljs-keyword">int</span> x=nums[<span class="hljs-number">0</span>];        <span class="hljs-keyword">int</span> y=<span class="hljs-number">1</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;nums.length;i++)&#123;            <span class="hljs-keyword">if</span>(y==<span class="hljs-number">0</span>)&#123;                x=nums[i];                y=<span class="hljs-number">1</span>;                <span class="hljs-keyword">continue</span>;            &#125;            <span class="hljs-keyword">if</span>(x!=nums[i])&#123;                y--;            &#125;<span class="hljs-keyword">else</span>                y++;        &#125;        <span class="hljs-keyword">return</span> x;    &#125;&#125;</code></pre>]]></content>
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。</p><p>示例 1：</p><p>输入：arr = [3,2,1], k = 2<br>输出：[1,2] 或者 [2,1]<br>示例 2：</p><p>输入：arr = [0,1,2,1], k = 1<br>输出：[0]</p><p>限制：</p><p>0 &lt;= k &lt;= arr.length &lt;= 10000<br>0 &lt;= arr[i] &lt;= 10000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote><p>这道题直接排序即可，但是还是多写几次快排吧，毕竟太难记了</p></blockquote><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] getLeastNumbers(<span class="hljs-keyword">int</span>[] arr, <span class="hljs-keyword">int</span> k) &#123;        <span class="hljs-keyword">if</span> (k == <span class="hljs-number">0</span> || arr.length == <span class="hljs-number">0</span>) &#123;            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];        &#125;        <span class="hljs-comment">// 最后一个参数表示我们要找的是下标为k-1的数</span>        <span class="hljs-keyword">return</span> quickSearch(arr, <span class="hljs-number">0</span>, arr.length - <span class="hljs-number">1</span>, k - <span class="hljs-number">1</span>);    &#125;    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span>[] quickSearch(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> lo, <span class="hljs-keyword">int</span> hi, <span class="hljs-keyword">int</span> k) &#123;        <span class="hljs-comment">// 每快排切分1次，找到排序后下标为j的元素，如果j恰好等于k就返回j以及j左边所有的数；</span>        <span class="hljs-keyword">int</span> j = partition(nums, lo, hi);        <span class="hljs-keyword">if</span> (j == k) &#123;            <span class="hljs-keyword">return</span> Arrays.copyOf(nums, j + <span class="hljs-number">1</span>);        &#125;        <span class="hljs-comment">// 否则根据下标j与k的大小关系来决定继续切分左段还是右段。</span>        <span class="hljs-keyword">return</span> j &gt; k? quickSearch(nums, lo, j - <span class="hljs-number">1</span>, k): quickSearch(nums, j + <span class="hljs-number">1</span>, hi, k);    &#125;    <span class="hljs-comment">// 快排切分，返回下标j，使得比nums[j]小的数都在j的左边，比nums[j]大的数都在j的右边。</span>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">partition</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> lo, <span class="hljs-keyword">int</span> hi)</span> </span>&#123;        <span class="hljs-keyword">int</span> v = nums[lo];        <span class="hljs-keyword">int</span> i = lo, j = hi + <span class="hljs-number">1</span>;        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;            <span class="hljs-keyword">while</span> (++i &lt;= hi &amp;&amp; nums[i] &lt; v);            <span class="hljs-keyword">while</span> (--j &gt;= lo &amp;&amp; nums[j] &gt; v);            <span class="hljs-keyword">if</span> (i &gt;= j) &#123;                <span class="hljs-keyword">break</span>;            &#125;            <span class="hljs-keyword">int</span> t = nums[j];            nums[j] = nums[i];            nums[i] = t;        &#125;        nums[lo] = nums[j];        nums[j] = v;        <span class="hljs-keyword">return</span> j;    &#125;&#125;</code></pre>]]></content>
     
     
     <categories>
@@ -1626,11 +1655,11 @@
   
   
   <entry>
-    <title>【剑指Offer】最小的k个数</title>
-    <link href="/posts/11456/"/>
-    <url>/posts/11456/</url>
+    <title>【剑指Offer】数组中出现次数超过一半的数字</title>
+    <link href="/posts/32794/"/>
+    <url>/posts/32794/</url>
     
-    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。</p><p>示例 1：</p><p>输入：arr = [3,2,1], k = 2<br>输出：[1,2] 或者 [2,1]<br>示例 2：</p><p>输入：arr = [0,1,2,1], k = 1<br>输出：[0]</p><p>限制：</p><p>0 &lt;= k &lt;= arr.length &lt;= 10000<br>0 &lt;= arr[i] &lt;= 10000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote><p>这道题直接排序即可，但是还是多写几次快排吧，毕竟太难记了</p></blockquote><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] getLeastNumbers(<span class="hljs-keyword">int</span>[] arr, <span class="hljs-keyword">int</span> k) &#123;        <span class="hljs-keyword">if</span> (k == <span class="hljs-number">0</span> || arr.length == <span class="hljs-number">0</span>) &#123;            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">0</span>];        &#125;        <span class="hljs-comment">// 最后一个参数表示我们要找的是下标为k-1的数</span>        <span class="hljs-keyword">return</span> quickSearch(arr, <span class="hljs-number">0</span>, arr.length - <span class="hljs-number">1</span>, k - <span class="hljs-number">1</span>);    &#125;    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span>[] quickSearch(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> lo, <span class="hljs-keyword">int</span> hi, <span class="hljs-keyword">int</span> k) &#123;        <span class="hljs-comment">// 每快排切分1次，找到排序后下标为j的元素，如果j恰好等于k就返回j以及j左边所有的数；</span>        <span class="hljs-keyword">int</span> j = partition(nums, lo, hi);        <span class="hljs-keyword">if</span> (j == k) &#123;            <span class="hljs-keyword">return</span> Arrays.copyOf(nums, j + <span class="hljs-number">1</span>);        &#125;        <span class="hljs-comment">// 否则根据下标j与k的大小关系来决定继续切分左段还是右段。</span>        <span class="hljs-keyword">return</span> j &gt; k? quickSearch(nums, lo, j - <span class="hljs-number">1</span>, k): quickSearch(nums, j + <span class="hljs-number">1</span>, hi, k);    &#125;    <span class="hljs-comment">// 快排切分，返回下标j，使得比nums[j]小的数都在j的左边，比nums[j]大的数都在j的右边。</span>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">partition</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> lo, <span class="hljs-keyword">int</span> hi)</span> </span>&#123;        <span class="hljs-keyword">int</span> v = nums[lo];        <span class="hljs-keyword">int</span> i = lo, j = hi + <span class="hljs-number">1</span>;        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;            <span class="hljs-keyword">while</span> (++i &lt;= hi &amp;&amp; nums[i] &lt; v);            <span class="hljs-keyword">while</span> (--j &gt;= lo &amp;&amp; nums[j] &gt; v);            <span class="hljs-keyword">if</span> (i &gt;= j) &#123;                <span class="hljs-keyword">break</span>;            &#125;            <span class="hljs-keyword">int</span> t = nums[j];            nums[j] = nums[i];            nums[i] = t;        &#125;        nums[lo] = nums[j];        nums[j] = v;        <span class="hljs-keyword">return</span> j;    &#125;&#125;</code></pre>]]></content>
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。</p><p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p><p>示例 1:</p><p>输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]<br>输出: 2</p><p>限制：</p><p>1 &lt;= 数组长度 &lt;= 50000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;        <span class="hljs-keyword">int</span> x=nums[<span class="hljs-number">0</span>];        <span class="hljs-keyword">int</span> y=<span class="hljs-number">1</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;nums.length;i++)&#123;            <span class="hljs-keyword">if</span>(y==<span class="hljs-number">0</span>)&#123;                x=nums[i];                y=<span class="hljs-number">1</span>;                <span class="hljs-keyword">continue</span>;            &#125;            <span class="hljs-keyword">if</span>(x!=nums[i])&#123;                y--;            &#125;<span class="hljs-keyword">else</span>                y++;        &#125;        <span class="hljs-keyword">return</span> x;    &#125;&#125;</code></pre>]]></content>
     
     
     <categories>
@@ -2608,35 +2637,6 @@
   
   
   <entry>
-    <title>【剑指Offer】找出数组中重复的数字</title>
-    <link href="/posts/39270/"/>
-    <url>/posts/39270/</url>
-    
-    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>找出数组中重复的数字。</p><p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p><p>示例 1：</p><p>输入：<br>[2, 3, 1, 0, 2, 5, 3]<br>输出：2 或 3 </p><p>限制：</p><p>2 &lt;= n &lt;= 100000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findRepeatNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;        <span class="hljs-keyword">int</span> n=nums.length-<span class="hljs-number">1</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.length;i++)&#123;  <span class="hljs-comment">//看题目要求，这一段可以不写</span>            <span class="hljs-keyword">if</span>(nums[i]&lt;<span class="hljs-number">0</span> || nums[i]&gt;n)<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;        &#125;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.length;i++)&#123;            <span class="hljs-keyword">while</span>(nums[i]!=i)&#123;                <span class="hljs-keyword">if</span>(nums[i]==nums[nums[i]])<span class="hljs-keyword">return</span> nums[i];                swap(nums,i,nums[i]);            &#125;        &#125;        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;    &#125;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> [] nums,<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>&#123;        <span class="hljs-keyword">int</span> tmp=nums[a];        nums[a]=nums[b];        nums[b]=tmp;    &#125;&#125;</code></pre>]]></content>
-    
-    
-    <categories>
-      
-      <category>算法</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>剑指Offer</tag>
-      
-      <tag>算法</tag>
-      
-      <tag>数组</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>【剑指Offer】从尾到头打印链表</title>
     <link href="/posts/62262/"/>
     <url>/posts/62262/</url>
@@ -2658,6 +2658,35 @@
       <tag>算法</tag>
       
       <tag>链表</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【剑指Offer】找出数组中重复的数字</title>
+    <link href="/posts/39270/"/>
+    <url>/posts/39270/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>找出数组中重复的数字。</p><p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p><p>示例 1：</p><p>输入：<br>[2, 3, 1, 0, 2, 5, 3]<br>输出：2 或 3 </p><p>限制：</p><p>2 &lt;= n &lt;= 100000</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findRepeatNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;        <span class="hljs-keyword">int</span> n=nums.length-<span class="hljs-number">1</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.length;i++)&#123;  <span class="hljs-comment">//看题目要求，这一段可以不写</span>            <span class="hljs-keyword">if</span>(nums[i]&lt;<span class="hljs-number">0</span> || nums[i]&gt;n)<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;        &#125;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.length;i++)&#123;            <span class="hljs-keyword">while</span>(nums[i]!=i)&#123;                <span class="hljs-keyword">if</span>(nums[i]==nums[nums[i]])<span class="hljs-keyword">return</span> nums[i];                swap(nums,i,nums[i]);            &#125;        &#125;        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;    &#125;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> [] nums,<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>&#123;        <span class="hljs-keyword">int</span> tmp=nums[a];        nums[a]=nums[b];        nums[b]=tmp;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>数组</tag>
       
     </tags>
     
@@ -2771,9 +2800,9 @@
       
       <tag>SpringCloud</tag>
       
-      <tag>Redis</tag>
-      
       <tag>微服务</tag>
+      
+      <tag>Redis</tag>
       
       <tag>bean</tag>
       
@@ -2802,9 +2831,9 @@
       
       <tag>SpringCloud</tag>
       
-      <tag>微服务</tag>
-      
       <tag>Sentinel</tag>
+      
+      <tag>微服务</tag>
       
     </tags>
     
