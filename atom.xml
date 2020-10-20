@@ -6,7 +6,7 @@
   <link href="https://www.jimu98.cn/atom.xml" rel="self"/>
   
   <link href="https://www.jimu98.cn/"/>
-  <updated>2020-10-20T02:07:20.417Z</updated>
+  <updated>2020-10-20T02:12:31.429Z</updated>
   <id>https://www.jimu98.cn/</id>
   
   <author>
@@ -17,18 +17,18 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>晚会互动大屏项目总结</title>
+    <title>河传助手项目展示</title>
     <link href="https://www.jimu98.cn/posts/59779/"/>
     <id>https://www.jimu98.cn/posts/59779/</id>
     <published>2020-10-19T12:06:03.000Z</published>
-    <updated>2020-10-20T02:07:20.417Z</updated>
+    <updated>2020-10-20T02:12:31.429Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;【项目笔记】晚会互动大屏项目总结&quot;&gt;&lt;a href=&quot;#【项目笔记】晚会互动大屏项目总结&quot; class=&quot;headerlink&quot; title=&quot;【项目笔记】晚会互动大屏项目总结&quot;&gt;&lt;/a&gt;【项目笔记】晚会互动大屏项目总结&lt;/h1&gt;&lt;h2 id=&quot;项目简介&quot;&gt;&lt;a href=&quot;#项目简介&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;【项目笔记】河传助手项目展示&quot;&gt;&lt;a href=&quot;#【项目笔记】河传助手项目展示&quot; class=&quot;headerlink&quot; title=&quot;【项目笔记】河传助手项目展示&quot;&gt;&lt;/a&gt;【项目笔记】河传助手项目展示&lt;/h1&gt;&lt;h2 id=&quot;项目简介&quot;&gt;&lt;a href=&quot;#项目简介&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -356,9 +356,9 @@
     <category term="java总结" scheme="https://www.jimu98.cn/categories/java%E6%80%BB%E7%BB%93/"/>
     
     
-    <category term="SpringBoot" scheme="https://www.jimu98.cn/tags/SpringBoot/"/>
-    
     <category term="框架" scheme="https://www.jimu98.cn/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="SpringBoot" scheme="https://www.jimu98.cn/tags/SpringBoot/"/>
     
   </entry>
   
